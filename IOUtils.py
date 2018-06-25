@@ -1,7 +1,28 @@
 import os
-from JobObject import JobObject
+from Job import Job
+import requests
+from bs4 import BeautifulSoup
+import logging
+from html.parser import HTMLParser
 from nltk.tokenize import word_tokenize
 from time import sleep
+
+
+def get_html_from_url(url):
+    html_text = ''
+    headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
+    try:
+        response = requests.get(url, headers=headers)
+        html_text = response.text
+    except IOError as e:
+        logging.error('Request for ' + url + ' failed with exception: ' + e)
+    return html_text
+
+def get_soup_from_url(url):
+    html_text = get_html_from_url(url)
+    soup = BeautifulSoup(html_text, 'html.parser')
+    return soup
+
 
 def purge_directory(directory):
     if os.path.exists(directory):
@@ -64,7 +85,7 @@ def get_jobs(directory, passed, f):
             keywords = list(set(keywords))
             if len(keywords):
                 keywords.remove(',')
-            j = JobObject()
+            j = Job()
             j.keywords = keywords
             j.passed = passed
             jobs.append(j)

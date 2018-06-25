@@ -2,30 +2,28 @@ import requests
 from math import ceil
 from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
-from JobObject import JobObject
+from Job import Job
 from time import time
 import json
 from Helpers import Helpers
 from threading import Thread
 
-class FilterAlgorithm():
+
+class FilterAlgorithm:
+    def __init__(self, file_path):
+        self.keywords = []
+        self.helpers = Helpers()
+        if file_path:
+            keywords_file = open(file_path)
+            for line in keywords_file:
+                line = line.strip()
+                self.keywords.append(line.lower())
+            keywords_file.close()
 
     def remove_empty(self, jobs):
         for job in jobs:
             if not job.keywords:
                 jobs.remove(job)
-
-    def __init__(self, file_path):
-        
-        self.keywords = []
-        self.helpers = Helpers()
-        keywords_file = open(file_path)
-
-        for line in keywords_file:
-            line = line.strip()
-            self.keywords.append(line.lower())
-            
-        keywords_file.close()
 
     def find_csharp(self, text):
         for i, t in enumerate(text):
@@ -57,8 +55,4 @@ class FilterAlgorithm():
 
         for t in threads:
             t.join()
-            
         self.remove_empty(jobs)
-        
-     
-        

@@ -1,68 +1,76 @@
 import requests
 from math import ceil
 from bs4 import BeautifulSoup
-from JobObject import JobObject
+import re
+from Job import Job
+import logging
 from multiprocessing import Process, Manager, Pool as ThreadPool
 from threading import Thread
 from time import time, sleep
 from FilterAlgorithm import FilterAlgorithm
+from Job import Job, JobMetadata
+from JobManager import JobManager
+from MultiThreader import MultiThreader
+import IOUtils
+
 
 class Crawler:
-    
-    def __init__(self, file_path, frequency='1'):
+    def __init__(self, url, file_path=''):
         self.jobs = []
-        self.test_mode = False
+        self.details = []
         self.num_jobs = 0
+        self.f = None
+        self.jobs_per_page = 1
         self.percents = [0, 0, 0]
         self.num_pages = 0
+        self.jobs_regex = ''
         self.threads = []
-        self.base_url = "https://www.engineerjobs.com/jobs/software-engineering/canada/ontario/?f=" + frequency + "&page="
-        self.jobs_per_page = 20
+        self.entry_url = None
+        self.entry_html_soup = None
         self.details = []
+        self.JobManager = JobManager()
+        self.MultiThreader = MultiThreader()
+        self.configure(url, file_path)
+
+    def configure(self, url, file_path):  # override this method for LinkedInCrawler, IndeedCrawler
+        self.jobs_per_page = 20
+        self.jobs_regex = '\d+ Jobs'
+        self.entry_url = url
         self.f = FilterAlgorithm(file_path)
 
-    def dummy_call(self):    
-        html_data = requests.get(self.base_url)
-        jobs_string = BeautifulSoup(html_data.text, 'html.parser').find(id="search-results-count").get_text()
-        number_of_jobs = self.get_number_of_jobs(jobs_string)
-        num_pages = self.get_num_pages(number_of_jobs)
-        # need to send twice because bug causes job count to be displayed incorrectly on first page sometimes
-        html_data = requests.get(self.base_url + str (num_pages))
-        jobs_string = BeautifulSoup(html_data.text, 'html.parser').find(id="search-results-count").get_text()
-        number_of_jobs = self. get_number_of_jobs(jobs_string)
-        self.num_jobs = number_of_jobs
-        self.num_pages = self.get_num_pages(number_of_jobs)
+    def get_number_of_jobs_and_pages_from_soup(self, html_soup):
+        self.num_jobs = self.get_number_of_jobs(html_soup)
+        self.num_pages = self.get_num_pages(self.num_jobs)
 
-    def get_number_of_jobs(self, jobs_string):
-        jobs_regex  = "fill this in"
-        return 0
+    def get_number_of_jobs(self, html_soup):
+        try:
+            search_result = re.search(self.jobs_regex, html_soup.text)[0]
+            number_of_jobs = int(search_result[:-5])
+            logging.debug('Number of jobs: ' + str(number_of_jobs))
+        except Exception as e:
+            number_of_jobs = 0
+            logging.error('Error - unable to find number of jobs: ' + str(e))
+        return number_of_jobs
 
     def get_num_pages(self, num_jobs):
-        return ceil(num_jobs / 20)
+        return ceil(num_jobs / self.jobs_per_page)
     
-    def get_job_details(self, page_number, q):
-        url = self.base_url + str(page_number + 1)
-        html_data = requests.get(url)
-        soup = BeautifulSoup(html_data.text, 'html.parser')
-        for row in soup.find_all(class_="jobrow"):
-            job_data = []
-            link = row.find(class_ = "jobtitle")['data-mdref']
-            job_data.append(link)
-            cells = row.find_all('td')
-            for cell in cells:
-                job_data.append(cell.text)
-            q.put(job_data)
-        
-    def create_jobs(self, q, job):
-        link = job[0]
-        title = job[1]
-        location = job[2]
-        company = job[3]
-        date = job[4]
-        j = JobObject(title, link, location, company, date)
-        q.put(j)
+    def crawl_job_listing_page(self, page_number):
+        url = self.entry_url + str(page_number + 1)
+        soup = IOUtils.get_soup_from_url(url)
+        self.extract_jobs_from_page_soup(soup)
 
-    def percent_complete(self, max_size, bar, q):
+    def extract_jobs_from_page_soup(self, page_soup):
+        for job_entry in page_soup.find_all(class_="jobrow"):
+            job_data = []
+            items = job_entry.find_all('td')
+            for item in items:
+                job_data.append(item.text)
+            metadata = JobMetadata(url=job_data[0], title=job_data[1], location=job_data[2],
+                                   company=job_data[3], date=job_data[4])
+            self.JobManager.add_job(metadata)
+
+    def percent_complete(self, max_size, q, bar):
         q_size = 0
         while q_size < max_size:
             q_size = q.qsize()
@@ -70,17 +78,9 @@ class Crawler:
             sleep(1)
 
     def multi_thread(self):
-        max_threads = 400
         q = Manager().Queue(maxsize=0)
-        start = time()
-        threads = []
-        
-        if self.test_mode:
-            self.num_pages = 1
-            self.num_jobs = 20
-
-        loading = Thread(target=self.percent_complete, args=(self.num_jobs, 0, q))
-        loading.start()
+        self.MultiThreader.add_thread(target=self.percent_complete, args =(self.num_jobs, q, 0))
+        self.MultiThreader.run_threads()
 
         for page_num in range(self.num_pages):
             t = Thread(target=self.get_job_details, args=(page_num, q))
@@ -89,8 +89,6 @@ class Crawler:
         
         for thrd in threads:
             thrd.join()
-
-        loading.join()
 
         threads = []
         
@@ -129,7 +127,7 @@ class Crawler:
 
      
     def crawl(self):
-        self.jobs = []
-        self.details = []
-        self.dummy_call()
+        html_soup = IOUtils.get_soup_from_url(self.entry_url)
+        self.get_number_of_jobs_and_pages_from_soup(html_soup)
+        self.entry_html_soup = html_soup
         self.multi_thread()

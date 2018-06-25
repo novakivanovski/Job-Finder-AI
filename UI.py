@@ -2,7 +2,7 @@ from appJar import gui
 from Crawler import Crawler
 from FilterAlgorithm import FilterAlgorithm
 from Stats import Stats
-from JobObject import JobObject
+from Job import Job
 from time import sleep
 import os
 import IOUtils
@@ -90,7 +90,7 @@ class UI:
                 self.num_jobs = 0
                 frequency = self.app.getRadioButton('frequency')
                 app.showSubWindow("LoadScreen")
-                self.spider = Crawler(file_path, frequency)
+                self.spider = Crawler(file_path, self.url, frequency)
                 app.thread(self.load)
                 app.thread(self.spider.crawl)
                 self.setup_completed = True
@@ -137,6 +137,7 @@ class UI:
         self.app.showSubWindow('Settings')
         
     def __init__(self):
+        self.url = "https://www.engineerjobs.com/jobs/software-engineering/canada/ontario/?f="
         self.spider = [None]
         self.stats = [None]
         self.io = IOUtils
