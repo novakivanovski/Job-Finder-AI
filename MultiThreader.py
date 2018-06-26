@@ -17,7 +17,7 @@ class MultiThreader:
             thread = Thread(target=target, args=args, kwargs=kwargs)
             self.inactive_threads.append(thread)
         except Exception as e:
-            logging.error('Unable to create thread: ' + str (e))
+            logging.error('Unable to create thread: ' + str(e))
 
     def schedule_threads(self):
         thread_chunks = self.chunk_threads()

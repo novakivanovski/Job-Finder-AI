@@ -77,54 +77,28 @@ class Crawler:
             self.percents[bar] = (q_size / max_size) * 100
             sleep(1)
 
-    def multi_thread(self):
-        q = Manager().Queue(maxsize=0)
-        self.MultiThreader.add_thread(target=self.percent_complete, args =(self.num_jobs, q, 0))
-        self.MultiThreader.run_threads()
+    def multi_thread(self): #need to be revamped further
+        queue = self.MultiThreader.queue
+        self.MultiThreader.add_thread(self.percent_complete, self.num_jobs, queue, 0)  #need as daemon thread!!!
 
         for page_num in range(self.num_pages):
-            t = Thread(target=self.get_job_details, args=(page_num, q))
-            threads.append(t)
-            t.start()
-        
-        for thrd in threads:
-            thrd.join()
+            self.MultiThreader.add_thread(self.get_job_details, page_num, queue)
 
-        threads = []
-        
-        while not q.empty():
-            self.details.append(q.get())
+        self.MultiThreader.schedule_threads()
+        self.details = self.MultiThreader.consume_queue()
 
         for job in self.details:
-            t = Thread(target=self.create_jobs, args =(q, job))
-            threads.append(t)
-            
-        num_threads = len(threads)
-        num_passes = int(ceil(num_threads/max_threads))
-        loading = Thread(target=self.percent_complete, args=(num_threads, 1, q))
-        loading.start()
+            self.MultiThreader.add_thread(self.create_jobs, queue, job)
 
-        for k in range(num_passes):
-            start = k * max_threads
-            end = (k + 1) * max_threads
-            for i in range(start, end):
-                if i < num_threads:
-                    threads[i].start()
-            for i in range(start, end):
-                if i < num_threads:
-                    threads[i].join()
+        self.MultiThreader.add_thread(self.percent_complete, num_threads, 1, queue) #another percent bar
+        self.MultiThreader.schedule_threads()
+        self.jobs = self.MultiThreader.consume_queue()
 
-        loading.join()
+        self.MultiThreader.add_thread(self.percent_complete, num_threads, 2, queue)
+        self.MultiThreader.schedule_threads()
 
-        while not q.empty():
-            self.jobs.append(q.get())
-        
-        loading = Thread(target=self.percent_complete, args=(num_threads, 2, q))
-        loading.start()
         self.f.extract(self.jobs, q)
         self.num_jobs = len (self.jobs)
-        loading.join()
-
      
     def crawl(self):
         html_soup = IOUtils.get_soup_from_url(self.entry_url)
