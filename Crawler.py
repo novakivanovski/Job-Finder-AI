@@ -12,6 +12,7 @@ from Job import Job, JobMetadata
 from JobManager import JobManager
 from MultiThreader import MultiThreader
 import IOUtils
+from LoadingBar import LoadingBar
 
 
 class Crawler:
@@ -70,35 +71,33 @@ class Crawler:
                                    company=job_data[3], date=job_data[4])
             self.JobManager.add_job(metadata)
 
-    def percent_complete(self, max_size, q, bar):
-        q_size = 0
-        while q_size < max_size:
-            q_size = q.qsize()
-            self.percents[bar] = (q_size / max_size) * 100
-            sleep(1)
+    def create_jobs(self):
+        pass
 
-    def multi_thread(self): #need to be revamped further
-        queue = self.MultiThreader.queue
-        self.MultiThreader.add_thread(self.percent_complete, self.num_jobs, queue, 0)  #need as daemon thread!!!
+    def multi_thread(self):  # need to be revamped further
+        queue = Manager().Queue()
+        loading_bar = LoadingBar(queue, self.num_pages)
+        self.MultiThreader.run_daemon(loading_bar.start)
 
         for page_num in range(self.num_pages):
-            self.MultiThreader.add_thread(self.get_job_details, page_num, queue)
+            self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num)
 
         self.MultiThreader.schedule_threads()
-        self.details = self.MultiThreader.consume_queue()
 
-        for job in self.details:
+        for job in self.JobManager.jobs:
             self.MultiThreader.add_thread(self.create_jobs, queue, job)
 
-        self.MultiThreader.add_thread(self.percent_complete, num_threads, 1, queue) #another percent bar
+        loading_bar = LoadingBar(queue, self.num_pages)
+        self.MultiThreader.run_daemon(loading_bar.start)
+
         self.MultiThreader.schedule_threads()
         self.jobs = self.MultiThreader.consume_queue()
 
-        self.MultiThreader.add_thread(self.percent_complete, num_threads, 2, queue)
+        self.MultiThreader.run_daemon(loading_bar.start)
         self.MultiThreader.schedule_threads()
 
-        self.f.extract(self.jobs, q)
-        self.num_jobs = len (self.jobs)
+        self.f.extract(self.jobs, queue)
+        self.num_jobs = len(self.jobs)
      
     def crawl(self):
         html_soup = IOUtils.get_soup_from_url(self.entry_url)

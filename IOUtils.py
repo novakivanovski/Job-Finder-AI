@@ -3,20 +3,19 @@ from Job import Job
 import requests
 from bs4 import BeautifulSoup
 import logging
-from html.parser import HTMLParser
 from nltk.tokenize import word_tokenize
-from time import sleep
 
 
 def get_html_from_url(url):
     html_text = ''
-    headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'}
     try:
         response = requests.get(url, headers=headers)
         html_text = response.text
     except IOError as e:
-        logging.error('Request for ' + url + ' failed with exception: ' + e)
+        logging.error('Request for ' + url + ' failed with exception: ' + str(e))
     return html_text
+
 
 def get_soup_from_url(url):
     html_text = get_html_from_url(url)
@@ -30,10 +29,12 @@ def purge_directory(directory):
             file_path = os.path.join(directory, the_file)
             if os.path.isfile(file_path):
                 os.unlink(file_path)
-            
+
+
 def create_directory(directory):
         if not os.path.exists(directory):
                 os.makedirs(directory)
+
 
 def get_start_index(directory):
     int_list = []
@@ -42,9 +43,11 @@ def get_start_index(directory):
             i = int (file[:-4])
             int_list.append(i)
         max_value = max(int_list)
-        return (max_value + 1)
-    except:
+        return max_value + 1
+    except Exception as e:
+        logging.error(e)
         return 0
+
 
 def write_jobs(jobs, pass_dir, fail_dir):
     start_pass = get_start_index(pass_dir)
@@ -73,6 +76,7 @@ def write_jobs(jobs, pass_dir, fail_dir):
             if (i % 25) == 0:
                 file.write('\n')
         file.close()
+
 
 def get_jobs(directory, passed, f):
     jobs = []

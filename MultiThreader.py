@@ -11,6 +11,15 @@ class MultiThreader:
         self.queue = Manager().Queue(maxsize=0)
         self.active_threads = []
         self.inactive_threads = []
+        self.daemons = []
+
+    def run_daemon(self, target, *args, **kwargs):
+        try:
+            daemon = Thread(target=target, args=args, kwargs=kwargs)
+            self.daemons.append(daemon)
+            daemon.start()
+        except Exception as e:
+            logging.error('Error while adding daemon ' + str(e))
 
     def add_thread(self, target, *args, **kwargs):
         try:

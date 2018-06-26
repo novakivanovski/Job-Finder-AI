@@ -33,7 +33,7 @@ class UI:
             else:
                 current_job.passed = False
 
-            if (self.job_num >= self.spider.num_jobs):
+            if self.job_num >= self.spider.num_jobs:
                 app.hideSubWindow("Train")
                 self.io.write_jobs(self.spider.jobs, self.train_pass, self.train_fail)
                 return
