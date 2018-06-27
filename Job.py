@@ -19,11 +19,10 @@ class JobMetadata:   # Acquired from Crawler - general info
 # Acquired from JobParser - job description document
 
 class JobDescription:
-    def __init__(self):
+    def __init__(self, text):
         self.url = None
         self.keywords = None
-        self.text = None
         self.passed = False
-
+	    self.text = text
 
      

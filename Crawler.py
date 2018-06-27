@@ -12,7 +12,7 @@ from Job import Job, JobMetadata
 from JobManager import JobManager
 from MultiThreader import MultiThreader
 import IOUtils
-from LoadingBar import LoadingBar
+from QueueMonitor import QueueMonitor
 
 
 class Crawler:
@@ -56,12 +56,13 @@ class Crawler:
     def get_num_pages(self, num_jobs):
         return ceil(num_jobs / self.jobs_per_page)
     
-    def crawl_job_listing_page(self, page_number):
+    def crawl_job_listing_page(self, page_number, queue):
         url = self.entry_url + str(page_number + 1)
         soup = IOUtils.get_soup_from_url(url)
-        self.extract_jobs_from_page_soup(soup)
+        metadata = self.get_metadata_from_page_soup(soup)
+		queue.put(metadata)
 
-    def extract_jobs_from_page_soup(self, page_soup):
+    def get_metadata_from_page_soup(self, page_soup):
         for job_entry in page_soup.find_all(class_="jobrow"):
             job_data = []
             items = job_entry.find_all('td')
@@ -69,31 +70,33 @@ class Crawler:
                 job_data.append(item.text)
             metadata = JobMetadata(url=job_data[0], title=job_data[1], location=job_data[2],
                                    company=job_data[3], date=job_data[4])
-            self.JobManager.add_job(metadata)
+            
+			return metadata
+	
+	def update_job_description(queue, job):
+		url = job.entry_url
+		r = requests.get(url)
+		description = JobDescription(r.text)
+		job.description = description
+		
 
-    def create_jobs(self):
-        pass
-
-    def multi_thread(self):  # need to be revamped further
-        queue = Manager().Queue()
-        loading_bar = LoadingBar(queue, self.num_pages)
-        self.MultiThreader.run_daemon(loading_bar.start)
+    def multi_thread(self):  # need to be revamped further - indexer class to hold num pages?
+		queue = Manager.Queue()
+        pages_load = QueueMonitor(queue, self.num_pages)
+        self.MultiThreader.run_daemon(pages_load.start)
 
         for page_num in range(self.num_pages):
-            self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num)
+            self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num, queue)
 
         self.MultiThreader.schedule_threads()
+		self.JobManager.add_jobs_from_queue(queue)
 
         for job in self.JobManager.jobs:
-            self.MultiThreader.add_thread(self.create_jobs, queue, job)
+            self.MultiThreader.add_thread(self.update_job_description, queue, job)
+			
+        jobs_load = QueueMonitor(queue, self.num_jobs) 
+        self.MultiThreader.run_daemon(jobs_load.start)
 
-        loading_bar = LoadingBar(queue, self.num_pages)
-        self.MultiThreader.run_daemon(loading_bar.start)
-
-        self.MultiThreader.schedule_threads()
-        self.jobs = self.MultiThreader.consume_queue()
-
-        self.MultiThreader.run_daemon(loading_bar.start)
         self.MultiThreader.schedule_threads()
 
         self.f.extract(self.jobs, queue)

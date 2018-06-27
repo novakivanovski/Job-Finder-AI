@@ -5,7 +5,13 @@ from Job import Job
 class JobManager:
     def __init__(self):
         self.jobs = []
-        self.headers = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
+        self.headers = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36
+		self.num_jobs
+	
+	def add_jobs_from_queue(self, queue):
+	while not queue.empty():
+		metadata = queue.get()
+		self.JobManager.add_job(metadata)
 
     def add_job(self, job_metadata):
         j = Job(job_metadata)
@@ -13,6 +19,9 @@ class JobManager:
 
     def store_job(self, job):
         self.jobs.append(job)
+	
+	def get_num_jobs(self):
+		return self.num_jobs
 
     def clear_jobs(self):
         self.jobs = []
