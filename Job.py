@@ -1,5 +1,3 @@
-import requests
-
 
 class Job:
     def __init__(self, job_metadata):
@@ -23,6 +21,5 @@ class JobDescription:
         self.url = None
         self.keywords = None
         self.passed = False
-	    self.text = text
+        self.text = text
 
-     

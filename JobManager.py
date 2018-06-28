@@ -1,17 +1,17 @@
-import requests
-import logging
-from Job import Job
+from Job import Job, JobDescription
+import IOUtils
+
 
 class JobManager:
     def __init__(self):
         self.jobs = []
-        self.headers = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36
-		self.num_jobs
-	
-	def add_jobs_from_queue(self, queue):
-	while not queue.empty():
-		metadata = queue.get()
-		self.JobManager.add_job(metadata)
+        self.headers = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
+        self.num_jobs = 0
+
+    def add_jobs_from_queue(self, queue):
+        while not queue.empty():
+            metadata = queue.get()
+            self.add_job(metadata)
 
     def add_job(self, job_metadata):
         j = Job(job_metadata)
@@ -19,9 +19,15 @@ class JobManager:
 
     def store_job(self, job):
         self.jobs.append(job)
-	
-	def get_num_jobs(self):
-		return self.num_jobs
+
+    def get_num_jobs(self):
+        return self.num_jobs
+
+    @staticmethod
+    def update_job_description(job):
+        description_text = IOUtils.get_html_from_url(job.entry_url)
+        description = JobDescription(description_text)
+        job.description = description
 
     def clear_jobs(self):
         self.jobs = []
@@ -31,10 +37,6 @@ class JobManager:
 
     def update_location(self, job, location):
         job.location = location
-
-    def resync_html(self, job):
-        html_source = get_job_html(job.url)
-        job.html = html_source
 
     def update_metadata(self, metadata, job):
         job.metadata = metadata

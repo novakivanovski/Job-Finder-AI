@@ -1,8 +1,7 @@
-from multiprocessing import Process, Manager, Pool as ThreadPool
+from multiprocessing import Manager
 from threading import Thread
-from math import ceil
-from time import time, sleep
 import logging
+import QueueMonitor
 
 
 class MultiThreader:
@@ -13,6 +12,10 @@ class MultiThreader:
         self.inactive_threads = []
         self.daemons = []
 
+    def add_queue_monitor_thread(self, total):
+        monitor = QueueMonitor.QueueMonitor(self.queue, total)
+        self.add_thread(monitor.start)
+
     def run_daemon(self, target, *args, **kwargs):
         try:
             daemon = Thread(target=target, args=args, kwargs=kwargs)
@@ -21,12 +24,18 @@ class MultiThreader:
         except Exception as e:
             logging.error('Error while adding daemon ' + str(e))
 
-    def add_thread(self, target, *args, **kwargs):
+    def add_thread(self, *args, **kwargs):
         try:
-            thread = Thread(target=target, args=args, kwargs=kwargs)
+            thread = Thread(target=self.wrap_thread, args=args, kwargs=kwargs)
             self.inactive_threads.append(thread)
         except Exception as e:
             logging.error('Unable to create thread: ' + str(e))
+
+    def wrap_thread(self, func, *args, **kwargs):
+        queue = self.queue
+        result = func(*args, **kwargs)
+        if result:
+            queue.put(result)
 
     def schedule_threads(self):
         thread_chunks = self.chunk_threads()
@@ -59,6 +68,10 @@ class MultiThreader:
                 thread.join()
         except Exception as e:
             logging.error('Unable to join thread ' + str(e))
+
+    def join_daemon(self):
+        for daemon in self.daemons:
+            daemon.join()
 
     def kill_active_threads(self):
         for thread in self.active_threads:
