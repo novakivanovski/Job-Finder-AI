@@ -2,12 +2,10 @@ from appJar import gui
 from Crawler import Crawler
 from FilterAlgorithm import FilterAlgorithm
 from Stats import Stats
-from Job import Job
 from time import sleep
 import os
-import IOUtils
-from threading import Thread
-from nltk.tokenize import word_tokenize
+import os
+import Storage
 
 class UI:
     
@@ -35,7 +33,7 @@ class UI:
 
             if self.job_num >= self.spider.num_jobs:
                 app.hideSubWindow("Train")
-                self.io.write_jobs(self.spider.jobs, self.train_pass, self.train_fail)
+                self.storage.write_jobs(self.spider.jobs, self.train_pass, self.train_fail)
                 return
             
             else:
@@ -76,21 +74,20 @@ class UI:
             if file_path:
                 self.f = FilterAlgorithm(file_path)
                 self.stats = Stats(self.f.keywords)
-                self.train_pass = self.cwd + '\\train\\pass'
-                self.train_fail = self.cwd + '\\train\\fail'
+                self.train_pass = self.storage.train_pass_dir
+                self.train_fail = self.storage.train_fail_dir
                 self.classify_pass = self.cwd + '\\classify\\pass'
                 self.classify_fail = self.cwd + '\\classify\\fail'
-                self.io.create_directory(self.train_pass)
-                self.io.create_directory(self.train_fail)
-                self.io.create_directory(self.classify_pass)
-                self.io.create_directory(self.classify_fail)
-                self.io.purge_directory(self.train_pass)       
-                self.io.purge_directory(self.train_fail)
+                self.storage.create_directory(self.train_pass)
+                self.storage.create_directory(self.train_fail)
+                self.storage.create_directory(self.classify_pass)
+                self.storage.create_directory(self.classify_fail)
+                self.storage.clear_directory(self.train_pass)       
+                self.storage.clear_directory(self.train_fail)
                 self.job_num = 0
                 self.num_jobs = 0
-                frequency = self.app.getRadioButton('frequency')
                 app.showSubWindow("LoadScreen")
-                self.spider = Crawler(file_path, self.url, frequency)
+                self.spider = Crawler(self.url, file_path)
                 app.thread(self.load)
                 app.thread(self.spider.crawl)
                 self.setup_completed = True
@@ -99,10 +96,10 @@ class UI:
             
         elif win == 'Train':
             if self.setup_completed:
-                if (self.job_num >= self.num_jobs):
+                if self.job_num >= self.num_jobs:
                     self.num_jobs = self.spider.num_jobs
-                    self.io.purge_directory(self.train_pass)
-                    self.io.purge_directory(self.train_fail)
+                    self.storage.clear_directory(self.train_pass)
+                    self.storage.clear_directory(self.train_fail)
                     self.train_btn('dummy')
                     self.job_num = 0
                 app.showSubWindow("Train")
@@ -117,30 +114,30 @@ class UI:
                 return
             
             if training_data:
-                self.io.purge_directory(self.classify_pass)
-                self.io.purge_directory(self.classify_fail)
-                self.jobs = self.io.get_jobs(self.train_pass, True, self.f)
-                self.jobs += self.io.get_jobs(self.train_fail, False, self.f)
+                self.storage.clear_directory(self.classify_pass)
+                self.storage.clear_directory(self.classify_fail)
+                self.jobs = self.storage.get_jobs(self.train_pass, True, self.f)
+                self.jobs += self.storage.get_jobs(self.train_fail, False, self.f)
                 self.stats.clear_training_data()
                 self.stats.train(self.jobs)
                 for job in self.spider.jobs:
                     job.passed = self.stats.classify(job)
-                self.io.write_jobs(self.spider.jobs, self.classify_pass, self.classify_fail)
+                self.storage.write_jobs(self.spider.jobs, self.classify_pass, self.classify_fail)
             else:
                 app.errorBox("An error has occured.", "No training data found.")
 
-    def about(self, value):
+    def about(self):
         message = 'This program finds job postings of interest based on training using keywords.'
         self.app.infoBox("About ML Job Searcher", message, parent=None)
 
-    def settings(self, value):
+    def settings(self):
         self.app.showSubWindow('Settings')
         
     def __init__(self):
         self.url = "https://www.engineerjobs.com/jobs/software-engineering/canada/ontario/?f="
         self.spider = [None]
         self.stats = [None]
-        self.io = IOUtils
+        self.storage = Storage.Storage('C:\Users\Novak\Documents\projects\Job-Finder-AI')
         self.job_num = 0
         self.num_jobs = 0
         self.f = [None]

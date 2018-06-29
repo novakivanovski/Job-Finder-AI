@@ -80,6 +80,7 @@ def write_jobs(jobs, pass_dir, fail_dir):
 
 def get_jobs(directory, passed, f):
     jobs = []
+    metadata = None
     for file in os.listdir(directory):
             file_path = os.path.join(directory, file)
             file = open(file_path, 'r', encoding='utf-8')
@@ -89,7 +90,7 @@ def get_jobs(directory, passed, f):
             keywords = list(set(keywords))
             if len(keywords):
                 keywords.remove(',')
-            j = Job()
+            j = Job(metadata)
             j.keywords = keywords
             j.passed = passed
             jobs.append(j)

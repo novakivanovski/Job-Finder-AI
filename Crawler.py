@@ -6,7 +6,7 @@ from FilterAlgorithm import FilterAlgorithm
 from Job import JobMetadata
 from JobManager import JobManager
 from MultiThreader import MultiThreader
-import IOUtils
+import NetworkUtilities
 from QueueMonitor import QueueMonitor
 
 
@@ -53,7 +53,7 @@ class Crawler:
 
     def crawl_job_listing_page(self, page_number):
         url = self.entry_url + '&page=' + str(page_number + 1)
-        soup = IOUtils.get_soup_from_url(url)
+        soup = NetworkUtilities.get_soup_from_url(url)
         metadata = self.get_metadata_from_page_soup(soup)
         return metadata
 
@@ -76,13 +76,13 @@ class Crawler:
 
         for page_num in range(self.num_pages):
             self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num)
-        self.MultiThreader.schedule_threads()
-        self.JobManager.add_jobs_from_queue(self.MultiThreader.queue)
+        metadata = self.MultiThreader.schedule_threads()
+        self.JobManager.add_jobs_from_queue(metadata)
 
     def load_jobs(self):
         queue = Manager().Queue()
         for job in self.JobManager.jobs:
-            self.MultiThreader.add_thread(self.JobManager.update_job_description, queue, job)
+            self.MultiThreader.add_thread(self.JobManager.update_job_description, job)
 
         jobs_load = QueueMonitor(queue, self.num_jobs) 
         self.MultiThreader.add_thread(jobs_load.start)  # don't make daemon so it can be joined
@@ -96,7 +96,7 @@ class Crawler:
         self.num_jobs = len(self.jobs)
 
     def crawl(self):
-        html_soup = IOUtils.get_soup_from_url(self.entry_url)
+        html_soup = NetworkUtilities.get_soup_from_url(self.entry_url)
         self.get_number_of_jobs_and_pages_from_soup(html_soup)
         self.entry_html_soup = html_soup
         self.load_pages()

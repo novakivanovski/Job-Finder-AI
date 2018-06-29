@@ -1,17 +1,20 @@
 from Job import Job, JobDescription
-import IOUtils
+import NetworkUtilities
 
 
 class JobManager:
     def __init__(self):
         self.jobs = []
-        self.headers = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
         self.num_jobs = 0
+        self.job_id = 0
 
     def add_jobs_from_queue(self, queue):
         while not queue.empty():
             metadata = queue.get()
+            metadata.job_id = self.job_id
             self.add_job(metadata)
+            self.job_id += 1
 
     def add_job(self, job_metadata):
         j = Job(job_metadata)
@@ -25,7 +28,7 @@ class JobManager:
 
     @staticmethod
     def update_job_description(job):
-        description_text = IOUtils.get_html_from_url(job.entry_url)
+        description_text = NetworkUtilities.get_html_from_url(job.entry_url)
         description = JobDescription(description_text)
         job.description = description
 

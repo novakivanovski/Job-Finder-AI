@@ -41,6 +41,7 @@ class MultiThreader:
         thread_chunks = self.chunk_threads()
         for chunk in thread_chunks:
             self.run_threads(chunk)
+        return self.queue
 
     def chunk_threads(self):
         chunk_size = self.max_threads
@@ -123,5 +124,5 @@ class MultiThreader:
         try:
             item = self.queue.get()
         except Exception as e:
-            logging.error('Unable to retrieve item from queue: '+ str(e))
+            logging.error('Unable to retrieve item from queue: ' + str(e))
         return item
