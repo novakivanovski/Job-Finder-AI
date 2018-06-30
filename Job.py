@@ -1,8 +1,8 @@
 
 class Job:
-    def __init__(self, job_metadata):
+    def __init__(self, job_metadata, job_description):
         self.metadata = job_metadata
-        self.description = None
+        self.description = job_description
 
 
 class JobMetadata:   # Acquired from Crawler - general info
@@ -18,9 +18,9 @@ class JobMetadata:   # Acquired from Crawler - general info
 # Acquired from JobParser - job description document
 
 class JobDescription:
-    def __init__(self, text):
+    def __init__(self, soup):
         self.url = None
         self.keywords = None
         self.passed = False
-        self.text = text
+        self.soup = soup
 

@@ -8,6 +8,7 @@ from enum import Enum
 class Path(Enum):
     FILE = 0
     FOLDER = 1
+    ALL = 2
 
 
 class Storage:
@@ -114,8 +115,13 @@ class Storage:
     def clear_jobs(self):
         self.clear_directory(self.jobs_dir)
 
+    def clear_directory(self, directory):
+        files = self.get_items_from_path(directory, item_type=Path.ALL)
+        for file in files:
+            os.unlink(file)
+
     @staticmethod
-    def clear_directory(directory):
+    def clear_files(directory):
         if os.path.exists(directory):
             for the_file in os.listdir(directory):
                 file_path = os.path.join(directory, the_file)
@@ -133,8 +139,7 @@ class Storage:
     def get_folders_from_path(self, path):
         return self.get_items_from_path(path, item_type=Path.FOLDER)
 
-
-    def get_items_from_path(self, path, item_type=Path.FILE):
+    def get_items_from_path(self, path, item_type=Path.ALL):
         items = []
         contents = self.get_contents_of_path(path)
         for path in contents:
@@ -160,8 +165,10 @@ class Storage:
             match = os.path.isfile(path)
         elif path_type == Path.FOLDER:
             match = os.path.isdir(path)
+        elif path_type == Path.ALL:
+            match = True
         else:
-            logging.error('Error determining file type: ' + str(path_type))
+            logging.error('Invalid path type: ' + str(path_type))
         return match
 
     @staticmethod
@@ -182,7 +189,7 @@ class Storage:
             file.write(job.location + '\n')
             file.write(job.company + '\n')
             file.write(job.date + '\n')
-            file.write ('\n\n')
+            file.write('\n\n')
             raw_txt = word_tokenize(job.raw)
             for j, word in enumerate(raw_txt):
                 file.write(word + ' ')

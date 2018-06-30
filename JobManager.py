@@ -2,29 +2,61 @@ from Job import Job, JobDescription
 import NetworkUtilities
 
 
+class JobPackage:
+    def __init__(self, soup, metadata, job_id):
+        self.soup = soup
+        self.metadata = metadata
+        self.metadata.job_id = job_id
+
+
 class JobManager:
-    def __init__(self):
+    def __init__(self, crawler):
         self.jobs = []
-        self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'}
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'}
         self.num_jobs = 0
         self.job_id = 0
+        self.crawler = crawler
 
-    def add_jobs_from_queue(self, queue):
+    def obtain_jobs(self):
+        listings = self.crawler.crawl_pages()
+        jobs_metadata = self.get_metadata_from_queue(listings)
+        jobs_soup = self.crawler.crawl_jobs(jobs_metadata)
+        job_packages = self.create_job_packages(jobs_soup, jobs_metadata)
+        self.jobs = self.make_jobs_from_packages(job_packages)
+        return self.jobs
+
+    def create_job_packages(self, soups, jobs_metadata):
+        packages = []
+        for soup, metadata in zip(soups, jobs_metadata):
+            job_id = self.generate_job_id()
+            package = JobPackage(soup, metadata, job_id)
+            packages.append(package)
+        return packages
+
+    @staticmethod
+    def get_metadata_from_queue(queue):
+        jobs_metadata = []
         while not queue.empty():
             metadata = queue.get()
-            metadata.job_id = self.job_id
-            self.add_job(metadata)
-            self.job_id += 1
+            jobs_metadata.append(metadata)
+        return jobs_metadata
 
-    def add_job(self, job_metadata):
-        j = Job(job_metadata)
-        self.store_job(j)
-
-    def store_job(self, job):
-        self.jobs.append(job)
+    @staticmethod
+    def make_jobs_from_packages(packages):
+        jobs = []
+        for package in packages:
+            metadata = package.metadata
+            description = JobDescription(package.soup)
+            job = Job(metadata, description)
+            jobs.append(job)
+        return jobs
 
     def get_num_jobs(self):
         return self.num_jobs
+
+    def generate_job_id(self):
+        self.job_id += 1
+        return self.job_id
 
     @staticmethod
     def update_job_description(job):
@@ -35,29 +67,14 @@ class JobManager:
     def clear_jobs(self):
         self.jobs = []
 
-    def update_title(self, job, title):
+    @staticmethod
+    def update_title(job, title):
         job.title = title
 
-    def update_location(self, job, location):
+    @staticmethod
+    def update_location(job, location):
         job.location = location
 
-    def update_metadata(self, metadata, job):
+    @staticmethod
+    def update_metadata(metadata, job):
         job.metadata = metadata
-
-
-
-'''
-    def get_job_details(self, page_number, q):
-        url = self.base_url + str(page_number + 1)
-        html_data = requests.get(url)
-        soup = BeautifulSoup(html_data.text, 'html.parser')
-        for row in soup.find_all(class_="jobrow"):
-            job_data = []
-            link = row.find(class_ = "jobtitle")['data-mdref']
-            job_data.append(link)
-            cells = row.find_all('td')
-            for cell in cells:
-                job_data.append(cell.text)
-            q.put(job_data)
-     
-'''

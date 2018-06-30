@@ -1,16 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import logging
 
-class Helpers():  #this helper class gets the raw text pertaining to the job posting
-                               
+
+class Helpers:  # refactor this into parser?
     def __init__(self):
         self.tags = ['li', 'p', 'article', 'pre']
-        self.headers = {'User-Agent':
-                          'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Mobile Safari/537.36'
-                        }
-        
-    def get_field(self, text, start_string, end_string):  #get a field from a string, e.g. jobId=abc
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'}
+
+    @staticmethod
+    def get_field(text, start_string, end_string):  # get a field from a string, e.g. jobId=abc
         start = text.find(start_string) + len(start_string)
         end = text.find(end_string, start)
         value = text[start:end]
@@ -27,59 +27,68 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
         try:
             r = requests.get(job.url, headers=self.headers)
             job.text = r.text
-        except:
+        except Exception as e:
             job.text = ''
+            logging.error(e)
         self.generic(job)
 
-    def indeed(self, job):
+    @staticmethod
+    def indeed(job):
         soup = BeautifulSoup(job.text, 'html.parser')
         job.raw = soup.find(id="job_summary").get_text()
 
-    def talgroup(self, job):
+    @staticmethod
+    def talgroup(job):
         soup = BeautifulSoup(job.text, 'html.parser')
         job.raw = soup.get_text()
 
-    def workday(self, job):
-            headers = {'Accept':'application/json,application/xml'}
+    @staticmethod
+    def workday(job):
+            headers = {'Accept': 'application/json,application/xml'}
             r = requests.get(job.url, headers=headers)
-            job.raw  = r.json()['openGraphAttributes']['description']
-        
-    def aerotek(self, job):
-        headers = {'refresh' : '0'}
-        for i in range (0, 2):
+            job.raw = r.json()['openGraphAttributes']['description']
+
+    @staticmethod
+    def aerotek(job):
+        headers = {'refresh': '0'}
+        for i in range(0, 2):
             soup = BeautifulSoup(job.text, 'html.parser')
             try:
-                text = soup.find('meta', attrs = {'http-equiv' : True})['content']
+                text = soup.find('meta', attrs={'http-equiv': True})['content']
                 start = text.find("'")
                 end = text.find("'", start + 1)
-                job.url = text[start + 1 : end - 1]
+                job.url = text[start + 1: end - 1]
                 r = requests.get(job.url, headers=headers)
                 job.text = r.text
-            except:
+            except Exception as e:
                 job.text = ''
+                logging.error(e)
                 
         soup = BeautifulSoup(job.text, 'html.parser')
         job.raw = soup.get_text()
 
-    def smoothhiring(self, job):
+    @staticmethod
+    def smoothhiring(job):
         soup = BeautifulSoup(job.text, 'html.parser')
         script_tags = soup.find_all('script')
         start = script_tags[10].text.find('{"id"')
         end = script_tags[10].text.find('};')
         job.raw = script_tags[10].text[start:end+1]
 
-    def rbc(self, job):
+    @staticmethod
+    def rbc(job):
         soup = BeautifulSoup(job.text, 'html.parser')
-        attrs = {'type' : 'text/javascript'}
+        attrs = {'type': 'text/javascript'}
         raw = soup.find('script', attrs=attrs).get_text()
         start = raw.find('{"status":200')
-        end =  raw.find(',"flashParams', start)
+        end = raw.find(',"flashParams', start)
         json_data = json.loads(raw[start:end])
         job.text = json_data['data']['job']['description'] 
         soup = BeautifulSoup(job.text, 'html.parser')
         job.raw = soup.get_text()
 
-    def brassring(self, job):
+    @staticmethod
+    def brassring(job):
         raw = ''
         soup = BeautifulSoup(job.text, 'html.parser')
         text = str(soup.find('input', id='preLoadJSON'))
@@ -88,54 +97,59 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
         json_data = json.loads(text[start:end])
         for item in json_data['Jobdetails']['JobDetailQuestions']:
             raw = raw + item['AnswerValue'] + '\n'
-        
         job.raw = BeautifulSoup(raw, 'html.parser').get_text()
 
-    def davidAplin(self, job):
+    def david_aplin(self, job):
         job_id = self.get_field(job.url, 'rpid=', '&')
         r = requests.get('https://api.aplin.com/jobs/get-job.json?job_id=' + job_id)
         json_txt = json.loads(r.text)['description']
         job.raw = BeautifulSoup(json_txt, 'html.parser').get_text()
 
     def adp(self, job):
-        jobId = self.get_field(job.url, 'jobId=', '&')
+        job_id = self.get_field(job.url, 'jobId=', '&')
         client = self.get_field(job.url, 'client=', '&')
-        firstUrl = 'https://workforcenow.adp.com/jobs/apply/common/careercenter.faces?client=' + client + '&op=0&locale=en_US&mode=LIVE&access=E&jobId=' + jobId + '6&source=IN&A=N&dojo.preventCache=0'
-        secondUrl = 'https://workforcenow.adp.com/jobs/apply/metaservices/careerCenter/jobDetails/E/en_US?requisitionOid=' + jobId + '&ccRefId=19000101&client=' + client
+        first_url = 'https://workforcenow.adp.com/jobs/apply/common/careercenter.faces?client=' + client + \
+                    '&op=0&locale=en_US&mode=LIVE&access=E&jobId=' + job_id + '6&source=IN&A=N&dojo.preventCache=0'
+        second_url = 'https://workforcenow.adp.com/jobs/apply/metaservices/careerCenter/jobDetails/E/en_US?' + \
+                     'requisitionOid=' + job_id + '&ccRefId=19000101&client=' + client
         s = requests.Session()
-        s.get(firstUrl)
-        r = s.get(secondUrl)
+        s.get(first_url)
+        r = s.get(second_url)
         text = json.loads(r.text)['data']['description']
         job.raw = BeautifulSoup(text, 'html.parser').get_text()
 
-    def jobdiva(self, job):
+    @staticmethod
+    def jobdiva(job):
         soup = BeautifulSoup(job.text, 'html.parser')
-        job.raw = soup.find(class_= 'job_des').get_text()
+        job.raw = soup.find(class_='job_des').get_text()
 
     def recruitinginmotion(self, job):
-        jobId = self.get_field(job.url, 'b=', '&')
-        url = 'https://www2.pcrecruiter.net/pcrbin/jobboard.aspx?action=detail&b=' + jobId + '&src=Indeed&utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed&referrer=&referrer='
+        job_id = self.get_field(job.url, 'b=', '&')
+        url = 'https://www2.pcrecruiter.net/pcrbin/jobboard.aspx?action=detail&b=' + job_id + \
+              '&src=Indeed&utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed&referrer=&referrer='
         r = requests.get(url, headers=self.headers)
         soup = BeautifulSoup(r.text, 'html.parser')
-        attrs = {'property' : 'og:description'}
-        text = soup.find('meta', attrs = attrs)
+        attrs = {'property': 'og:description'}
+        text = soup.find('meta', attrs=attrs)
         job.raw = (text['content'])
 
-    def webconnect(self, job):
+    @staticmethod
+    def webconnect(job):
         soup = BeautifulSoup(job.text, 'html.parser')
         job.raw = soup.find('span', id='lblDescription').text
 
     def taleo(self, job):
         search_string = "'descRequisition', "
         start = job.text.find(search_string)
-        if start != -1:     #taleo api
+        if start != -1:  # taleo api
             start = start + len(search_string)
             end = job.text.find(']', start) + 1
             job.raw = job.text[start:end]
         else:
             self.generic(job)
 
-    def akamai(self, job):
+    @staticmethod
+    def akamai(job):
         link = job.url
         for i in range(4):
             r = requests.get(link, allow_redirects=False)
@@ -147,26 +161,29 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
             job.raw = job.raw + tag.text + '\n'
         job.url = link
 
-
     def ian_martin(self, job):
         job_id = self.get_field(job.url, '/jobs/', '?')
-        url = 'https://public-rest33.bullhornstaffing.com/rest-services/16XNKG/query/JobBoardPost?start=0&count=1&where=id=' + job_id + '&fields=id,title,publishedCategory(id,name),address(city,state),employmentType,dateLastPublished,publicDescription,isOpen,isPublic,isDeleted'
+        url = 'https://public-rest33.bullhornstaffing.com/rest-services/16XNKG/query/JobBoardPost?start=0&count=1&' \
+              'where=id=' + job_id + '&fields=id,title,publishedCategory(id,name),address(city,state),employmentType,' \
+              'dateLastPublished,publicDescription,isOpen,isPublic,isDeleted'
         r = requests.get(url)
         job.text = json.loads(r.text)['data'][0]['publicDescription']
         job.raw = BeautifulSoup(job.text, 'html.parser').text
 
-    def teksystems(self, job):
+    @staticmethod
+    def teksystems(job):
         soup = BeautifulSoup(job.text, 'html.parser')
-        attrs = {'type' : 'application/ld+json'}
+        attrs = {'type': 'application/ld+json'}
         json_text = soup.find('script', attrs=attrs).text
         job.raw = json.loads(json_text)['responsibilities']
 
-    def hire_google(self, job):
+    @staticmethod
+    def hire_google(job):
         soup = BeautifulSoup(job.text, 'html.parser')
         job.raw = soup.find(class_='bb-jobs-posting__content').text
 
     def google(self, job):
-        attrs = {'type' : 'text/javascript'}
+        attrs = {'type': 'text/javascript'}
         s = requests.Session()
         r = s.get(job.url)
         soup = BeautifulSoup(r.text, 'html.parser')
@@ -180,7 +197,6 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
         js_cache = tags[3]['src']
         cache_url = 'https://careers.google.com' + js_cache
         r = s.get(cache_url)
-        
         r_j = self.get_field(r.text, "'r-j','", "',")
         link = 'https://careers.google.com/jobs/|'
         payload = '7|3|7|' + link + r_j + '|22|' + xsrf_token + '|_|getJobById|4o|1|2|3|4|5|6|1|7|7|Ce9YM_|'
@@ -190,8 +206,7 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
         headers['x-gwt-permutation'] = js_cache[6:-9]   
         r = s.post('https://careers.google.com/jobs/r-j', headers=headers, data=payload)
         job.raw = r.text
-        
-            
+
     def get_raw(self, job):
         indeed = job.url.find('ca.indeed.com') != -1
         talgroup = job.url.find('talgroup.net') != -1
@@ -202,8 +217,8 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
         brassring = job.url.find('krb-sjobs.brassring.com') != -1
         eagle = job.url.find('jobs.eagleonline.com') != -1
         taleo = job.url.find('taleo.net') != -1
-        davidAplin = job.url.find('www.aplin.com') != -1
-        adp = job.url.find ('workforcenow.adp.com') != -1
+        david_aplin = job.url.find('www.aplin.com') != -1
+        adp = job.url.find('workforcenow.adp.com') != -1
         jobdiva = job.url.find('jobdiva.com') != -1
         recruitinginmotion = job.url.find('recruitinginmotion.com') != -1
         webconnect = job.url.find('webconnect.sendouts.net') != -1
@@ -235,8 +250,8 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
             elif brassring:
                 self.brassring(job)
 
-            elif davidAplin:
-                self.davidAplin(job)
+            elif david_aplin:
+                self.david_aplin(job)
 
             elif talgroup:
                 self.talgroup(job)
@@ -275,17 +290,4 @@ class Helpers():  #this helper class gets the raw text pertaining to the job pos
                 self.generic(job)
 
         except Exception as e:
-            pass
-            '''
-            print ('An exception has occured:', e)
-            print ('Job title:', job.title)
-            print ('Company:', job.company)
-            '''
-
-    
-        
-        
-            
-
-        
-    
+            logging.error('Error while crawling job posting: ' + str(e))

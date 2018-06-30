@@ -83,7 +83,7 @@ class MultiThreader:
             thread.stop()
             self.active_threads.remove(thread)
         except Exception as e:
-            logging.error('Unable to kill thread: ' + str (e))
+            logging.error('Unable to kill thread: ' + str(e))
 
     def suspend_threads(self):
         for thread in self.active_threads:
