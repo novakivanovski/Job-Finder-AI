@@ -32,10 +32,13 @@ class MultiThreader:
             logging.error('Unable to create thread: ' + str(e))
 
     def wrap_thread(self, func, *args, **kwargs):
-        queue = self.queue
-        result = func(*args, **kwargs)
-        if result:
-            queue.put(result)
+        try:
+            queue = self.queue
+            result = func(*args, **kwargs)
+            if result:
+                queue.put(result)
+        except Exception as e:
+            logging.error(e)
 
     def schedule_threads(self):
         thread_chunks = self.chunk_threads()

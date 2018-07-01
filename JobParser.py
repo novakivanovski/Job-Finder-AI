@@ -17,19 +17,19 @@ class JobParser:
                 self.keywords.append(line.lower())
             keywords_file.close()
 
-    @staticmethod  # move parsing to parser
-    def get_metadata_from_page_soup(page_soup):
-        metadata = None
+    @staticmethod
+    def get_metadata_from_page_soup(page_soup, base_url=''):
+        metadata = []
         for job_entry in page_soup.find_all(class_="jobrow"):
             job_data = []
-            link = job_entry.find(class_="jobtitle")['data-mdref']
+            link = base_url + job_entry.find(class_="jobtitle")['data-mdref']
             items = job_entry.find_all('td')
             for item in items:
                 job_data.append(item.text)
                 logging.debug(item.text)
-
-            metadata = JobMetadata(url=link, title=job_data[0], location=job_data[1],
-                                   company=job_data[2], date=job_data[3])
+            m = JobMetadata(url=link, title=job_data[0], location=job_data[1],
+                            company=job_data[2], date=job_data[3])
+            metadata.append(m)
         return metadata
 
     @staticmethod
