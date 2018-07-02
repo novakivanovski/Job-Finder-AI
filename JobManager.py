@@ -60,8 +60,6 @@ class JobManager:
                 flattened_list.append(this_item)
         return flattened_list
 
-
-
     @staticmethod
     def make_jobs_from_packages(packages):
         jobs = []

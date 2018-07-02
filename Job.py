@@ -4,6 +4,9 @@ class Job:
         self.metadata = job_metadata
         self.description = job_description
 
+    def get_id(self):
+        return self.metadata.job_id
+
 
 class JobMetadata:   # Acquired from Crawler - general info
     def __init__(self, title='', date='', location='', company='', url='', job_id=0):
@@ -23,4 +26,5 @@ class JobDescription:
         self.keywords = None
         self.passed = False
         self.soup = soup
+        self.text = soup.text
 

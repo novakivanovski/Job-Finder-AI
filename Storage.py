@@ -3,6 +3,7 @@ import pickle
 import logging
 from nltk import word_tokenize
 from enum import Enum
+from bs4 import BeautifulSoup
 
 
 class Path(Enum):
@@ -23,16 +24,26 @@ class Storage:
         self.job_object_name = 'job.pickle'
 
     def store_jobs(self, jobs):
+        self.clear_jobs()
+        self.create_directory(self.jobs_dir)
         for job in jobs:
             self.store_job(job)
 
-    def store_job(self, job):
-        job_dir = os.path.join(self.jobs_dir, job.metadata.id)
-        text_file_path = os.path.join(job_dir, self.job_file_name)
-        object_file_path = os.path.join(job_dir, self.job_object_name)
-        self.create_directory(job_dir)
+    def store_job(self, original_job):
+        job = self.unsoup_job(original_job)
+        job_id = str(job.get_id())
+        job_txt = job_id + '.txt'
+        job_pickle = job_id + '.pickle'
+        text_file_path = os.path.join(self.jobs_dir, job_txt)
+        object_file_path = os.path.join(self.jobs_dir, job_pickle)
         self.store_job_text(text_file_path, job)
         self.store_object(object_file_path, job)
+
+    @staticmethod
+    def unsoup_job(job):
+        job_copy = job
+        job_copy.description.soup = None
+        return job_copy
 
     @staticmethod
     def store_object(file_path, obj):
@@ -43,13 +54,11 @@ class Storage:
             logging.error('Error while pickling: ' + str(e))
 
     def retrieve_jobs(self):
-        job_folders = self.get_folders_from_path(self.jobs_dir)
+        pickle_paths = self.get_pickles_in_folder(self.jobs_dir)
         jobs = []
-        for folder in job_folders:
-            pickle_paths = self.get_pickles_in_folder(folder)
-            for pickle_path in pickle_paths:
-                job = self.retrieve_object(pickle_path)
-                jobs.append(job)
+        for pickle_path in pickle_paths:
+            job = self.retrieve_job(pickle_path)
+            jobs.append(job)
         return jobs
 
     def get_pickles_in_folder(self, folder):
@@ -65,11 +74,16 @@ class Storage:
                 files_out.append(file)
         return files_out
 
+    def retrieve_job(self, pickle_path):
+        job = self.retrieve_object(pickle_path)
+        job.description.soup = BeautifulSoup(job.description.text, 'html.parser')
+        return job
+
     @staticmethod
     def retrieve_object(file_path):
         obj = None
         try:
-            with open(file_path, 'r') as file:
+            with open(file_path, 'rb') as file:
                 obj = pickle.load(file)
         except Exception as e:
                 logging.error('Error while retrieving object: ' + str(e))
@@ -82,18 +96,15 @@ class Storage:
         except Exception as e:
             logging.error('Error while storing text: ' + str(e))
 
-    def dump_job_text(self, file, job):
-        file.write(job.title + '\n')
-        for keyword in job.keywords:
-            file.write(keyword + ", ")
-            file.write('\n')
-        file.write(job.url + '\n')
-        file.write(job.location + '\n')
-        file.write(job.company + '\n')
-        file.write(job.date + '\n')
-        file.write('\n\n')
-        text = word_tokenize(job.raw)
-        self.write_formatted_text(file, text)
+    @staticmethod
+    def dump_job_text(file, job):
+        metadata = job.metadata
+        file.write(metadata.title + '\n')
+        file.write(metadata.date + '\n')
+        file.write(metadata.location + '\n')
+        file.write(metadata.company + '\n')
+        file.write(metadata.origin_url + '\n')
+        file.write(str(metadata.job_id) + '\n')
 
     @staticmethod
     def write_formatted_text(file, text, max_words_per_line=25):
