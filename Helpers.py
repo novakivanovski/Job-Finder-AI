@@ -291,3 +291,5 @@ class Helpers:  # refactor this into parser?
 
         except Exception as e:
             logging.error('Error while crawling job posting: ' + str(e))
+
+        return True  # queue sentinel value to indicate thread completion

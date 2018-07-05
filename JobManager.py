@@ -1,7 +1,9 @@
 from Job import Job, JobDescription
-import NetworkUtilities
 import logging
 from bs4 import BeautifulSoup
+import Helpers
+import JobParser
+import MultiThreader
 
 
 class JobPackage:
@@ -18,6 +20,9 @@ class JobManager:
         self.num_jobs = 0
         self.job_id = 0
         self.crawler = crawler
+        self.helpers = Helpers.Helpers()
+        self.parser = JobParser.JobParser('keywords_file_path.txt')
+        self.MultiThreader = MultiThreader.MultiThreader()
 
     def obtain_jobs(self):
         metadata_queue = self.crawler.crawl_pages()
@@ -77,23 +82,16 @@ class JobManager:
         self.job_id += 1
         return self.job_id
 
-    @staticmethod
-    def update_job_description(job):
-        description_text = NetworkUtilities.get_html_from_url(job.entry_url)
-        description = JobDescription(description_text)
-        job.description = description
-
     def clear_jobs(self):
         self.jobs = []
 
-    @staticmethod
-    def update_title(job, title):
-        job.title = title
+    def obtain_job_descriptions(self):
+        for job in self.jobs:
+            self.MultiThreader.add_thread(self.helpers.get_raw, job)
+        self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
+        self.MultiThreader.schedule_threads()
 
-    @staticmethod
-    def update_location(job, location):
-        job.location = location
+        for job in self.jobs:
+            self.parser.filter_job_and_get_keywords(job)
+        self.jobs = self.parser.remove_empty(self.jobs)
 
-    @staticmethod
-    def update_metadata(metadata, job):
-        job.metadata = metadata

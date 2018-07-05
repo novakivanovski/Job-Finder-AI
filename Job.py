@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 
 class Job:
     def __init__(self, job_metadata, job_description):
@@ -6,6 +8,22 @@ class Job:
 
     def get_id(self):
         return self.metadata.job_id
+
+    def get_soup(self):
+        return self.description.soup
+
+    def get_description(self):
+        return self.description.text
+
+    def set_description(self, text):
+        self.description.text = text
+        self.description.soup = BeautifulSoup(text)
+
+    def set_url(self, url):
+        self.description.url = url
+
+    def get_entry_url(self):
+        return self.metadata.origin_url
 
 
 class JobMetadata:   # Acquired from Crawler - general info
@@ -27,4 +45,5 @@ class JobDescription:
         self.passed = False
         self.soup = soup
         self.text = soup.text
+        self.raw = ''
 

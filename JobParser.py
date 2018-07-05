@@ -1,15 +1,15 @@
-
 from nltk.tokenize import word_tokenize
 import logging
 from Helpers import Helpers
-from threading import Thread
 from Job import JobMetadata
+import MultiThreader
 
 
 class JobParser:
     def __init__(self, file_path):
         self.keywords = []
         self.helpers = Helpers()
+        self.MultiThreader = MultiThreader.MultiThreader()
         if file_path:
             keywords_file = open(file_path)
             for line in keywords_file:
@@ -37,6 +37,7 @@ class JobParser:
         for job in jobs:
             if not job.keywords:
                 jobs.remove(job)
+        return jobs
 
     @staticmethod
     def find_csharp(text):
@@ -44,9 +45,7 @@ class JobParser:
             if t == '#':
                 text[i-1] += text[i]
 
-    def multi_thread(self, job, q):
-        self.helpers.get_raw(job)
-        q.put(True)
+    def filter_job_and_get_keywords(self, job):
         job.raw = (job.raw + ' ' + job.title).lower()
         raw_list = word_tokenize(job.raw)
         self.find_csharp(raw_list)  # fixes delimiter issue with C#
@@ -56,14 +55,3 @@ class JobParser:
                 word = word[1:]
             if word in self.keywords:
                 job.keywords.append(word)
-
-    def extract(self, jobs, q):
-        threads = []
-        for job in jobs:
-            t = Thread(target=self.multi_thread, args=(job, q))
-            threads.append(t)
-            t.start()
-
-        for t in threads:
-            t.join()
-        self.remove_empty(jobs)
