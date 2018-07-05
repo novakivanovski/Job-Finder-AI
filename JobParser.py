@@ -45,6 +45,13 @@ class JobParser:
             if t == '#':
                 text[i-1] += text[i]
 
+    @staticmethod
+    def get_field(text, start_string, end_string):  # get a field from a string, e.g. jobId=abc
+        start = text.find(start_string) + len(start_string)
+        end = text.find(end_string, start)
+        value = text[start:end]
+        return value
+
     def filter_job_and_get_keywords(self, job):
         job.raw = (job.raw + ' ' + job.title).lower()
         raw_list = word_tokenize(job.raw)
