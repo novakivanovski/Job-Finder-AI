@@ -3,7 +3,7 @@ import re
 import logging
 from MultiThreader import MultiThreader
 import NetworkUtilities
-from JobParser import JobParser
+from DescriptionCrawlerFactory import DescriptionCrawlerFactory
 
 
 class Crawler:
@@ -20,6 +20,7 @@ class Crawler:
         self.base_url = None
         self.details = []
         self.MultiThreader = MultiThreader()
+        self.description_crawler_factory = DescriptionCrawlerFactory()
         self.configure(url)
 
     def configure(self, url):  # override this method for LinkedInCrawler, IndeedCrawler
@@ -28,10 +29,6 @@ class Crawler:
         self.page_addend = '&page='
         self.entry_url = url
         self.base_url = 'https://www.engineerjobs.com'
-
-    def get_number_of_jobs_and_pages_from_soup(self, html_soup):
-        self.num_jobs = self.get_number_of_jobs(html_soup)
-        self.num_pages = self.get_num_pages(self.num_jobs)
 
     def get_number_of_jobs(self, html_soup):
         try:
@@ -44,38 +41,54 @@ class Crawler:
         return number_of_jobs
 
     def get_num_pages(self, num_jobs):
-        return ceil(num_jobs / self.jobs_per_page)
+        num_pages = ceil(num_jobs / self.jobs_per_page)
+        return int(num_pages)
 
     def crawl_job_listing_page(self, page_number):
-        url = self.entry_url + '&page=' + str(page_number + 1)
-        listings_soup = NetworkUtilities.get_soup_from_url(url)
-        metadata = JobParser.get_metadata_from_page_soup(listings_soup, self.base_url)
-        return metadata
+        url = self.entry_url + self.page_addend + str(page_number + 1)
+        job_listings = NetworkUtilities.get_html(url)
+        return job_listings
 
     @staticmethod
-    def crawl_job_posting_page(metadata):
-        posting = NetworkUtilities.get_html_from_url(metadata.origin_url)
-        return posting
+    def crawl_job_posting_page(job):
+        url = job.get_entry_url()
+        posting = NetworkUtilities.get_html(url)
+        job.set_description(posting)
+        return True
 
-    def crawl_pages(self):
-        self.crawl_first_page()
+    def crawl_job_listings(self):
+        html_soup = NetworkUtilities.get_soup(self.entry_url)
+        self.num_jobs = self.get_number_of_jobs(html_soup)
+        self.num_pages = self.get_num_pages(self.num_jobs)
         self.MultiThreader.add_queue_monitor_thread(self.num_pages)
 
         for page_num in range(self.num_pages):
             self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num)
-        metadata_queue = self.MultiThreader.schedule_threads()
-        return metadata_queue
+        job_listings_queue = self.MultiThreader.schedule_threads()
+        return job_listings_queue
 
-    def crawl_first_page(self):
-        html_soup = NetworkUtilities.get_soup_from_url(self.entry_url)
-        self.get_number_of_jobs_and_pages_from_soup(html_soup)
-
-    def crawl_jobs(self, jobs_metadata):
-        for metadata in jobs_metadata:
-            self.MultiThreader.add_thread(self.crawl_job_posting_page, metadata)
+    def crawl_job_postings(self, jobs):
+        for job in jobs:
+            self.MultiThreader.add_thread(self.crawl_job_posting_page, job)
 
         self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
-        jobs_text = self.MultiThreader.schedule_threads()
-        return jobs_text
+        job_postings_queue = self.MultiThreader.schedule_threads()
+        return job_postings_queue
+
+    def crawl_job_descriptions(self, jobs):
+        self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
+        for job in jobs:
+            self.MultiThreader.add_thread(self.crawl_job_description, job)
+        raw_descriptions = self.MultiThreader.schedule_threads()
+        return raw_descriptions
+
+    def crawl_job_description(self, job):
+        description_crawler = self.description_crawler_factory.get(job)
+        raw_text = description_crawler.get_description()
+        job.set_raw(raw_text)
+        return True
+
+
+
 
 

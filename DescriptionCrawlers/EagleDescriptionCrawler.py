@@ -11,7 +11,7 @@ class EagleDescriptionCrawler(BaseDescriptionCrawler):
         job_text = ''
         try:
             url = self.job.get_entry_url()
-            response = NetworkUtilities.get_html_from_url(url, headers=self.headers)
+            response = NetworkUtilities.get_html(url, headers=self.headers)
             job_text = response.text
         except Exception as e:
             logging.error(e)

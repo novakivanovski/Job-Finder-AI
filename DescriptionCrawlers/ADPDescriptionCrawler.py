@@ -10,8 +10,8 @@ class ADPDescriptionCrawler(BaseDescriptionCrawler):
     
     def get_description(self):
         job = self.job
-        job_id = JobParser.get_field(job.url, 'jobId=', '&')
-        client = JobParser.get_field(job.url, 'client=', '&')
+        job_id = JobParser.get_value_between_strings(job.url, 'jobId=', '&')
+        client = JobParser.get_value_between_strings(job.url, 'client=', '&')
         first_url = 'https://workforcenow.adp.com/jobs/apply/common/careercenter.faces?client=' + client + \
                     '&op=0&locale=en_US&mode=LIVE&access=E&jobId=' + job_id + '6&source=IN&A=N&dojo.preventCache=0'
         second_url = 'https://workforcenow.adp.com/jobs/apply/metaservices/careerCenter/jobDetails/E/en_US?' + \

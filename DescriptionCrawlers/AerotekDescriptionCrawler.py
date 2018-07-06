@@ -17,7 +17,7 @@ class AerotekDescriptionCrawler(BaseDescriptionCrawler):
                 start = text.find("'")
                 end = text.find("'", start + 1)
                 url = text[start + 1: end - 1]
-                job_text = NetworkUtilities.get_html_from_url(url, headers=self.headers)
+                job_text = NetworkUtilities.get_html(url, headers=self.headers)
             except Exception as e:
                 logging.error(e)
         self.job.set_description(job_text)

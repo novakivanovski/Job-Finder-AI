@@ -9,10 +9,10 @@ class RecruitingInMotionDescriptionCrawler(BaseDescriptionCrawler):
     
     def get_description(self):
         job = self.job
-        job_id = JobParser.get_field(job.url, 'b=', '&')
+        job_id = JobParser.get_value_between_strings(job.url, 'b=', '&')
         url = 'https://www2.pcrecruiter.net/pcrbin/jobboard.aspx?action=detail&b=' + job_id + \
               '&src=Indeed&utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed&referrer=&referrer='
-        response = NetworkUtilities.get_html_from_url(url, headers=self.headers)
+        response = NetworkUtilities.get_html(url, headers=self.headers)
         job.set_description(response.text)
         soup = job.get_soup()
         attrs = {'property': 'og:description'}
