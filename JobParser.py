@@ -1,6 +1,6 @@
 from nltk.tokenize import word_tokenize
 import logging
-from Job import JobMetadata, JobDescription
+from Job import JobMetadata
 import MultiThreader
 
 
@@ -39,18 +39,10 @@ class JobParser:
         return metadata
 
     @staticmethod
-    def get_descriptions(description_soups):
-        descriptions = []
-        for soup in description_soups:
-            description = JobDescription(soup)
-            descriptions.append(description)
-        return descriptions
-
-
-    @staticmethod
     def remove_empty(jobs):
         for job in jobs:
-            if not job.keywords:
+            keywords = job.get_keywords()
+            if not keywords:
                 jobs.remove(job)
         return jobs
 
@@ -94,15 +86,15 @@ class JobParser:
         word = word[1:]
         return word
 
+    def get_keywords(self, job):
+        raw_text = job.get_raw() + ' ' + job.get_title()
+        unique_text_list = self.tokenize(raw_text)
+        keywords = self.extract_keywords(unique_text_list)
+        return keywords
+
     def extract_keywords(self, text_list):
         keywords = []
         for word in text_list:
             if word in self.keywords:
                 keywords.append(word)
-        return keywords
-
-    def get_keywords(self, job):
-        raw_text = job.get_raw() + ' ' + job.get_title()
-        unique_text_list = self.tokenize(raw_text)
-        keywords = self.extract_keywords(unique_text_list)
         return keywords

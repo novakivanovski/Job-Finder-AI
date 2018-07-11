@@ -103,7 +103,7 @@ class Storage:
         file.write(metadata.date + '\n')
         file.write(metadata.location + '\n')
         file.write(metadata.company + '\n')
-        file.write(metadata.origin_url + '\n')
+        file.write(metadata.entry_url + '\n')
         file.write(str(metadata.job_id) + '\n')
 
     @staticmethod

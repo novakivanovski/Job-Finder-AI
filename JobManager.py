@@ -1,8 +1,8 @@
-from Job import Job, JobDescription
+from Job import Job
 from JobParser import JobParser
 import MultiThreader
 from QueueUnpacker import QueueUnpacker
-import logging
+
 
 class JobManager:
     def __init__(self, crawler):
@@ -12,48 +12,41 @@ class JobManager:
         self.job_id = 0
         self.crawler = crawler
         self.helpers = None
-        self.parser = JobParser('keywords_file_path.txt')
+        self.parser = JobParser(None)
         self.MultiThreader = MultiThreader.MultiThreader()
 
-    def obtain_jobs(self):   # make a new class just for creating the metadata, description?
+    def obtain_jobs(self): 
         metadata = self.get_jobs_metadata()
-        jobs = self.make_jobs_from_metadata(metadata)
+        jobs_with_metadata = self.make_jobs_from_metadata(metadata)
+        jobs_with_descriptions = self.update_jobs_with_descriptions(jobs_with_metadata)
+        jobs = self.process_jobs(jobs_with_descriptions)
         self.set_jobs(jobs)
-        descriptions_added = self.set_job_descriptions(self.jobs)
-        descriptions_updated = self.update_job_descriptions(self.jobs)
-        logging.debug('Number of jobs: ' + str(self.num_jobs))
-        logging.debug('Descriptions added: ' + str(descriptions_added))
-        logging.debug('Descriptions updated: ' + str(descriptions_updated))
-        non_empty_jobs = self.parser.remove_empty(self.jobs)
-        self.set_jobs(non_empty_jobs)
-        logging.debug('Number of non empty jobs: ' + str(self.num_jobs))
+        return jobs
 
     def get_jobs_metadata(self):
         job_listings_queue = self.crawler.crawl_job_listings()
         job_listings_soups = QueueUnpacker.unpack_to_soup(job_listings_queue)
         jobs_metadata = JobParser.get_metadata(job_listings_soups)
         return jobs_metadata
-
-    def set_job_descriptions(self, jobs):
-        job_postings_queue = self.crawler.crawl_job_postings(jobs)
-        descriptions_added = len(QueueUnpacker.unpack(job_postings_queue))
-        return descriptions_added
-
-    def update_job_descriptions(self, jobs):
-        description_queue = self.crawler.crawl_job_descriptions(jobs)
-        descriptions_updated = len(QueueUnpacker.unpack(description_queue))
-        for job in jobs:
-            keywords = self.parser.extract_keywords(job)
+    
+    def process_jobs(self, jobs):
+        non_empty_jobs = self.parser.remove_empty(jobs)
+        for job in non_empty_jobs:
+            keywords = self.parser.get_keywords(job)
             job.set_keywords(keywords)
-        return descriptions_updated
+        return non_empty_jobs  # keep the empty jobs somewhere for debugging?
+            
+    def update_jobs_with_descriptions(self, jobs):
+        updated_job_queue = self.crawler.crawl_job_postings(jobs)
+        jobs_with_descriptions = QueueUnpacker.unpack(updated_job_queue)
+        return jobs_with_descriptions
 
     def make_jobs_from_metadata(self, metadata):
         jobs = []
         for m in metadata:
-            description = JobDescription(None)
             job_id = self.generate_job_id()
             m.set_id(job_id)
-            job = Job(m, description)
+            job = Job(m)
             jobs.append(job)
         return jobs
 

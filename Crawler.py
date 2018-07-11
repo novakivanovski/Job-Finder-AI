@@ -54,7 +54,7 @@ class Crawler:
         url = job.get_entry_url()
         posting = NetworkUtilities.get_html(url)
         job.set_description(posting)
-        return True
+        return job
 
     def crawl_job_listings(self):
         html_soup = NetworkUtilities.get_soup(self.entry_url)
@@ -72,8 +72,8 @@ class Crawler:
             self.MultiThreader.add_thread(self.crawl_job_posting_page, job)
 
         self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
-        job_postings_queue = self.MultiThreader.schedule_threads()
-        return job_postings_queue
+        job_posting_queue = self.MultiThreader.schedule_threads()
+        return job_posting_queue
 
     def crawl_job_descriptions(self, jobs):
         self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
@@ -86,7 +86,7 @@ class Crawler:
         description_crawler = self.description_crawler_factory.get(job)
         raw_text = description_crawler.get_description()
         job.set_raw(raw_text)
-        return True
+        return job
 
 
 
