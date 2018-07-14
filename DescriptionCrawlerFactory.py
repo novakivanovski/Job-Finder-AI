@@ -1,4 +1,5 @@
 from importlib import import_module
+import logging
 
 
 class DescriptionCrawlerFactory:
@@ -11,18 +12,26 @@ class DescriptionCrawlerFactory:
 
     def get(self, job):
         crawler_instance = None
-        for crawler_type in self.crawlers:
-            job_site = self.crawlers[crawler_type]
-            if self.is_match(job.get_entry_url(), job_site):
-                class_name = crawler_type
-                module_name = self.package_name + '.' + class_name
-                crawler_module = import_module(module_name)
-                crawler_class = getattr(crawler_module, class_name)
-                crawler_instance = crawler_class()
+        try:
+            url = job.get_url()
+            for crawler_type in self.crawlers:
+                job_site = self.crawlers[crawler_type]
+                if self.is_match(url, job_site):
+                    logging.debug('Match found: ' + url + ' with ' + job_site)
+                    class_name = crawler_type
+                    module_name = self.package_name + '.' + class_name
+                    crawler_module = import_module(module_name)
+                    crawler_class = getattr(crawler_module, class_name)
+                    crawler_instance = crawler_class(job)
+        except Exception as e:
+            logging.error('Unable to retrieve a crawler instance: ' + str(e))
+            raise
         return crawler_instance
 
     @staticmethod
     def is_match(url, job_site):
+        if not url:
+            raise ValueError('No url exists in job description')
         return url.find(job_site) != -1
 
 

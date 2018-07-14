@@ -39,12 +39,14 @@ class JobParser:
         return metadata
 
     @staticmethod
-    def remove_empty(jobs):
+    def remove_and_get_empty(jobs):
+        empty_jobs = []
         for job in jobs:
             keywords = job.get_keywords()
             if not keywords:
                 jobs.remove(job)
-        return jobs
+                empty_jobs.append(job)
+        return empty_jobs
 
     @staticmethod
     def csharp_workaround(text_list):

@@ -5,11 +5,9 @@ import logging
 
 def get_html(url, *args, **kwargs):
     html_text = ''
-    try:
-        response = requests.get(url, *args, **kwargs)
+    response = get(url, *args, **kwargs)
+    if response:
         html_text = response.text
-    except Exception as e:
-        logging.error('Request for ' + url + ' failed with exception: ' + str(e))
     return html_text
 
 
@@ -27,3 +25,11 @@ def get_soup(url):
     soup = BeautifulSoup(html_text, 'html.parser')
     return soup
 
+
+def get(url, *args, **kwargs):
+    kwargs['timeout'] = 5
+    try:
+        response = requests.get(url, *args, **kwargs)
+    except Exception:
+        raise
+    return response

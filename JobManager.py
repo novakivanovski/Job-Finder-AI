@@ -2,11 +2,13 @@ from Job import Job
 from JobParser import JobParser
 import MultiThreader
 from QueueUnpacker import QueueUnpacker
+import logging
 
 
 class JobManager:
     def __init__(self, crawler):
         self.jobs = []
+        self.failed_jobs = []
         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'}
         self.num_jobs = 0
         self.job_id = 0
@@ -19,6 +21,7 @@ class JobManager:
         metadata = self.get_jobs_metadata()
         jobs_with_metadata = self.make_jobs_from_metadata(metadata)
         jobs_with_descriptions = self.update_jobs_with_descriptions(jobs_with_metadata)
+        logging.debug("Jobs with descriptions: " + str(len(jobs_with_descriptions)))
         jobs = self.process_jobs(jobs_with_descriptions)
         self.set_jobs(jobs)
         return jobs
@@ -30,16 +33,19 @@ class JobManager:
         return jobs_metadata
     
     def process_jobs(self, jobs):
-        non_empty_jobs = self.parser.remove_empty(jobs)
-        for job in non_empty_jobs:
+        empty_jobs = self.parser.remove_and_get_empty(jobs)
+        self.failed_jobs = empty_jobs
+        for job in jobs:
             keywords = self.parser.get_keywords(job)
             job.set_keywords(keywords)
-        return non_empty_jobs  # keep the empty jobs somewhere for debugging?
+        return jobs
             
     def update_jobs_with_descriptions(self, jobs):
         updated_job_queue = self.crawler.crawl_job_postings(jobs)
         jobs_with_descriptions = QueueUnpacker.unpack(updated_job_queue)
-        return jobs_with_descriptions
+        updated_job_queue = self.crawler.crawl_job_descriptions(jobs_with_descriptions)
+        updated_jobs = QueueUnpacker.unpack(updated_job_queue)
+        return updated_jobs
 
     def make_jobs_from_metadata(self, metadata):
         jobs = []

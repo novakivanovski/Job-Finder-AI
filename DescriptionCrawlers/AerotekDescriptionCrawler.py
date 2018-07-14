@@ -1,6 +1,6 @@
 import NetworkUtilities
 import logging
-from . import BaseDescriptionCrawler
+from .BaseDescriptionCrawler import BaseDescriptionCrawler
 
 
 class AerotekDescriptionCrawler(BaseDescriptionCrawler):

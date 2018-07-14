@@ -18,9 +18,12 @@ class QueueUnpacker:
     def unpack_to_soup(queue):
         html_texts = QueueUnpacker.unpack(queue)
         soups = []
-        for text in html_texts:
-            soup = BeautifulSoup(text, 'html.parser')
-            soups.append(soup)
+        try:
+            for text in html_texts:
+                soup = BeautifulSoup(text, 'html.parser')
+                soups.append(soup)
+        except Exception as e:
+            logging.debug('Error unpacking to soup: ' + str(e))
         return soups
 
 

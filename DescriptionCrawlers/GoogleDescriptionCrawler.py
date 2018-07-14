@@ -1,7 +1,8 @@
-from . import BaseDescriptionCrawler
+from .BaseDescriptionCrawler import BaseDescriptionCrawler
 import requests
 from bs4 import BeautifulSoup
 import json
+from JobParser import JobParser
 
 
 class GoogleDescriptionCrawler(BaseDescriptionCrawler):
@@ -24,7 +25,7 @@ class GoogleDescriptionCrawler(BaseDescriptionCrawler):
         js_cache = tags[3]['src']
         cache_url = 'https://careers.google.com' + js_cache
         r = s.get(cache_url)
-        r_j = self.get_field(r.text, "'r-j','", "',")
+        r_j = JobParser.get_value_between_strings(r.text, "'r-j','", "',")
         link = 'https://careers.google.com/jobs/|'
         payload = '7|3|7|' + link + r_j + '|22|' + xsrf_token + '|_|getJobById|4o|1|2|3|4|5|6|1|7|7|Ce9YM_|'
         headers = self.headers

@@ -99,12 +99,15 @@ class Storage:
     @staticmethod
     def dump_job_text(file, job):
         metadata = job.metadata
-        file.write(metadata.title + '\n')
-        file.write(metadata.date + '\n')
-        file.write(metadata.location + '\n')
-        file.write(metadata.company + '\n')
-        file.write(metadata.entry_url + '\n')
-        file.write(str(metadata.job_id) + '\n')
+        description = job.description
+        file.write('Job title: ' + metadata.title + '\n')
+        file.write('Posting date: ' + metadata.date + '\n')
+        file.write('Job Location: ' + metadata.location + '\n')
+        file.write('Company: ' + metadata.company + '\n')
+        file.write('Entry point: ' + metadata.entry_url + '\n')
+        file.write('Job ID: ' + str(metadata.job_id) + '\n')
+        file.write('Raw description: ' + description.raw + '\n')
+        file.write('Filtered keywords:' + str(description.keywords) + '\n')
 
     @staticmethod
     def write_formatted_text(file, text, max_words_per_line=25):

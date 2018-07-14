@@ -51,9 +51,14 @@ class Crawler:
 
     @staticmethod
     def crawl_job_posting_page(job):
-        url = job.get_entry_url()
-        posting = NetworkUtilities.get_html(url)
-        job.set_description(posting)
+        try:
+            entry_url = job.get_entry_url()
+            response = NetworkUtilities.get(entry_url)
+            response_url = response.url
+            job.set_description(response.text)
+            job.set_url(response_url)
+        except Exception as e:
+            logging.error('No response crawling job posting ' + str(e))
         return job
 
     def crawl_job_listings(self):
@@ -68,24 +73,36 @@ class Crawler:
         return job_listings_queue
 
     def crawl_job_postings(self, jobs):
+        num_jobs = len(jobs)
+        logging.debug('Crawling ' + str(num_jobs) + ' job postings...')
         for job in jobs:
+            logging.debug('Adding job posting crawler thread: ' + str(job.get_id()))
             self.MultiThreader.add_thread(self.crawl_job_posting_page, job)
 
-        self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
+        self.MultiThreader.add_queue_monitor_thread(num_jobs)
         job_posting_queue = self.MultiThreader.schedule_threads()
         return job_posting_queue
 
     def crawl_job_descriptions(self, jobs):
-        self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
+        num_jobs = len(jobs)
+        logging.debug('Crawling ' + str(num_jobs) + ' job descriptions...')
+        self.MultiThreader.add_queue_monitor_thread(num_jobs)
         for job in jobs:
+            logging.debug('Adding job description crawler thread: ' + str(job.get_id()))
             self.MultiThreader.add_thread(self.crawl_job_description, job)
-        raw_descriptions = self.MultiThreader.schedule_threads()
-        return raw_descriptions
+        updated_jobs = self.MultiThreader.schedule_threads()
+        return updated_jobs
 
     def crawl_job_description(self, job):
-        description_crawler = self.description_crawler_factory.get(job)
-        raw_text = description_crawler.get_description()
-        job.set_raw(raw_text)
+        try:
+            if job.has_description():
+                description_crawler = self.description_crawler_factory.get(job)
+                raw_text = description_crawler.get_description()
+                job.set_raw(raw_text)
+            else:
+                logging.debug('Job has no description: ' + str(job.get_id()))
+        except Exception as e:
+            logging.error('Error crawling job description: ' + str(e))
         return job
 
 

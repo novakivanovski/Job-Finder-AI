@@ -1,5 +1,5 @@
 import NetworkUtilities
-from . import BaseDescriptionCrawler
+from .BaseDescriptionCrawler import BaseDescriptionCrawler
 
 
 class WorkdayDescriptionCrawler(BaseDescriptionCrawler):

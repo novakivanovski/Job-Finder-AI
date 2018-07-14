@@ -1,4 +1,4 @@
-from . import BaseDescriptionCrawler
+from .BaseDescriptionCrawler import BaseDescriptionCrawler
 from JobParser import JobParser
 import requests
 import json

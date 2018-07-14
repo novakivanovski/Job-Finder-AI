@@ -35,6 +35,9 @@ class Job:
     def get_entry_url(self):
         return self.metadata.entry_url
 
+    def get_url(self):
+        return self.description.url
+
     def get_raw(self):
         return self.description.raw
 
@@ -49,6 +52,10 @@ class Job:
 
     def set_raw(self, text):
         self.description.raw = text
+
+    def has_description(self):
+        has_description = self.description.text is not '' and self.description.text is not None
+        return has_description
 
 
 class JobMetadata:   # Acquired from Crawler - general info

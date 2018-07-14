@@ -2,11 +2,11 @@ from multiprocessing import Manager
 from threading import Thread
 import logging
 import QueueMonitor
-
+import traceback
 
 class MultiThreader:
     def __init__(self):
-        self.max_threads = 400
+        self.max_threads = 1000  # TEMP WORKAROUND FOR QUEUE ISSUE
         self.queue = Manager().Queue(maxsize=0)
         self.active_threads = []
         self.inactive_threads = []
@@ -38,7 +38,8 @@ class MultiThreader:
             if result:
                 queue.put(result)
         except Exception as e:
-            logging.error(e)
+            logging.error('Error executing thread: ' + str(e))
+            logging.debug(logging.error(traceback.print_exc()))
 
     def schedule_threads(self):
         thread_chunks = self.chunk_threads()

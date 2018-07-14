@@ -1,4 +1,4 @@
-from . import BaseDescriptionCrawler
+from .BaseDescriptionCrawler import BaseDescriptionCrawler
 
 class JobDivaDescriptionCrawler(BaseDescriptionCrawler):
     def __init__(self, job):
