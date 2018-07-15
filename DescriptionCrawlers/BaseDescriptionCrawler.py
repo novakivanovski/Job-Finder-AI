@@ -10,6 +10,9 @@ class BaseDescriptionCrawler(metaclass=ABCMeta):
     def generic_search(self):
         raw = ''
         soup = self.job.get_soup()
+        if not soup:
+            return 'No soup in job description...'
+
         for tag in self.tags:
             instances = soup.find_all(tag)
             for instance in instances:

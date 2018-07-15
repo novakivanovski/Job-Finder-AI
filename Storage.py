@@ -22,6 +22,7 @@ class Storage:
         self.classify_dir = os.path.join(self.jobs_dir, 'classify')
         self.job_file_name = 'job.txt'
         self.job_object_name = 'job.pickle'
+        self.listings_dir = os.path.join(base_directory, 'listings')
 
     def store_jobs(self, jobs):
         self.clear_jobs()
@@ -226,3 +227,13 @@ class Storage:
                 keywords_list.append(keywords)
         return keywords_list
 
+    def store_listings(self, text_list):
+        self.clear_files(self.listings_dir)
+        self.create_directory(self.listings_dir)
+        for i, text in enumerate(text_list):
+            file_path = os.path.join(self.listings_dir, str(i) + '.txt')
+            try:
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    file.write(text)
+            except Exception as e:
+                logging.error('Error while storing text: ' + str(e))

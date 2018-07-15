@@ -1,5 +1,5 @@
 from appJar import gui
-from Crawler import Crawler
+from Crawlers.EngineerJobsCrawler import EngineerJobsCrawler
 from JobParser import JobParser
 from Stats import Stats
 from time import sleep
@@ -85,7 +85,7 @@ class UI:
                 self.job_num = 0
                 self.num_jobs = 0
                 app.showSubWindow("LoadScreen")
-                self.spider = Crawler(self.url)
+                self.spider = EngineerJobsCrawler()
                 self.job_manager = JobManager(self.spider)
                 app.thread(self.load)
                 app.thread(self.job_manager.obtain_jobs())

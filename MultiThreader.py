@@ -4,6 +4,7 @@ import logging
 import QueueMonitor
 import traceback
 
+
 class MultiThreader:
     def __init__(self):
         self.max_threads = 1000  # TEMP WORKAROUND FOR QUEUE ISSUE
