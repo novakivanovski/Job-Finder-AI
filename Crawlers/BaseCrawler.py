@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from MultiThreader import MultiThreader
+from Utilities.MultiThreader import MultiThreader
 from DescriptionCrawlerFactory import DescriptionCrawlerFactory
 
 

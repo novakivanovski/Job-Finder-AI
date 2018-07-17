@@ -1,7 +1,7 @@
 from multiprocessing import Manager
 from threading import Thread
 import logging
-import QueueMonitor
+from Utilities import QueueMonitor
 import traceback
 
 

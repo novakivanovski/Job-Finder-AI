@@ -1,20 +1,16 @@
 from Job import Job
-from JobParser import JobParser
-import MultiThreader
-from QueueUnpacker import QueueUnpacker
+from Utilities import MultiThreader, QueueUnpacker, ParsingUtilities
 import logging
 
 
 class JobManager:
-    def __init__(self, crawler):
+    def __init__(self, crawler, parser):
         self.jobs = []
         self.failed_jobs = []
-        self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'}
         self.num_jobs = 0
         self.job_id = 0
         self.crawler = crawler
-        self.helpers = None
-        self.parser = JobParser(None)
+        self.parser = parser  # e.g EngineerJobsParser
         self.MultiThreader = MultiThreader.MultiThreader()
 
     def obtain_jobs(self): 
@@ -29,14 +25,14 @@ class JobManager:
     def get_jobs_metadata(self):
         job_listings_queue = self.crawler.crawl_job_listings()
         job_listings_soups = QueueUnpacker.unpack_to_soup(job_listings_queue)
-        jobs_metadata = JobParser.get_metadata(job_listings_soups)
+        jobs_metadata = self.parser.get_metadata(job_listings_soups)
         return jobs_metadata
     
     def process_jobs(self, jobs):
-        empty_jobs = self.parser.remove_and_get_empty(jobs)
+        empty_jobs = ParsingUtilities.remove_and_get_empty(jobs)
         self.failed_jobs = empty_jobs
         for job in jobs:
-            keywords = self.parser.get_keywords(job)
+            keywords = ParsingUtilities.get_keywords(job)
             job.set_keywords(keywords)
         return jobs
             
@@ -69,15 +65,4 @@ class JobManager:
 
     def clear_jobs(self):
         self.jobs = []
-
-    def obtain_job_descriptions(self):
-        for job in self.jobs:
-            self.MultiThreader.add_thread(self.helpers.get_raw, job)
-        self.MultiThreader.add_queue_monitor_thread(self.num_jobs)
-        self.MultiThreader.schedule_threads()
-
-        for job in self.jobs:
-            keywords = self.parser.extract_keywords(job)
-            job.set_keywords(keywords)
-
 

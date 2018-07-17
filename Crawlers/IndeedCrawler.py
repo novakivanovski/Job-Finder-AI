@@ -10,7 +10,7 @@ class IndeedCrawler(GenericCrawler):
         self.jobs_regex = 'Jobs 1 to 50 of .+\d'
         self.page_addend = '&start='
         self.base_url = 'https://www.indeed.ca'
-        self.entry_url = 'https://www.indeed.ca/jobs?q=engineer&l=Toronto%2C+ON&limit=50&fromage=3&radius=50'
+        self.entry_url = 'https://www.indeed.ca/jobs?q=engineer&l=Toronto%2C+ON&limit=50&fromage=3&filter=0&radius=50'
 
     def extract_number_of_jobs(self, search_result):
         search_result = search_result.replace(",", "")

@@ -1,7 +1,7 @@
 from math import ceil
 import re
 import logging
-import NetworkUtilities
+from Utilities import NetworkUtilities
 from Crawlers.BaseCrawler import BaseCrawler
 
 
