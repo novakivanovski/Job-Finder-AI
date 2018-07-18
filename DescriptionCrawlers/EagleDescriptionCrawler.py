@@ -1,5 +1,5 @@
 from .BaseDescriptionCrawler import BaseDescriptionCrawler
-import NetworkUtilities
+from Utilities import NetworkUtilities
 import logging
 
 

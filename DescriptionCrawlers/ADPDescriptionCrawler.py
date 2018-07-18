@@ -1,7 +1,7 @@
 from .BaseDescriptionCrawler import BaseDescriptionCrawler
-from JobParser import JobParser
 import requests
 import json
+from Utilities import ParsingUtilities
 
 
 class ADPDescriptionCrawler(BaseDescriptionCrawler):
@@ -10,8 +10,8 @@ class ADPDescriptionCrawler(BaseDescriptionCrawler):
     
     def get_description(self):
         job = self.job
-        job_id = JobParser.get_value_between_strings(job.url, 'jobId=', '&')
-        client = JobParser.get_value_between_strings(job.url, 'client=', '&')
+        job_id = ParsingUtilities.get_value_between_strings(job.url, 'jobId=', '&')
+        client = ParsingUtilities.get_value_between_strings(job.url, 'client=', '&')
         first_url = 'https://workforcenow.adp.com/jobs/apply/common/careercenter.faces?client=' + client + \
                     '&op=0&locale=en_US&mode=LIVE&access=E&jobId=' + job_id + '6&source=IN&A=N&dojo.preventCache=0'
         second_url = 'https://workforcenow.adp.com/jobs/apply/metaservices/careerCenter/jobDetails/E/en_US?' + \

@@ -9,3 +9,4 @@ class WebConnectDescriptionCrawler(BaseDescriptionCrawler):
         soup = self.job.get_soup()
         span = soup.find('span', id='lblDescription')
         return span.text
+

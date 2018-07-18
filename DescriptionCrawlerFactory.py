@@ -5,8 +5,10 @@ import logging
 class DescriptionCrawlerFactory:
     def __init__(self):
         self.indeed = 'ca.indeed.com'
-        self.crawlers = {'IndeedDescriptionCrawler': 'ca.indeed.com', 'TalgroupDescriptionCrawler': 'talgroup.net',
-                         'WorkdayDescriptionCrawler': 'myworkdayjobs.com', 'AerotekDescriptionCrawler': 'www.aplitrak.com',
+        self.crawlers = {'IndeedDescriptionCrawler': 'ca.indeed.com',
+                         'TalgroupDescriptionCrawler': 'talgroup.net',
+                         'WorkdayDescriptionCrawler': 'myworkdayjobs.com',
+                         'AerotekDescriptionCrawler': 'www.aplitrak.com',
                          'GenericDescriptionCrawler': ''}
         self.package_name = 'DescriptionCrawlers'
 

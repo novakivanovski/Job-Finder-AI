@@ -8,7 +8,7 @@ class QueueMonitor:
         self.total_size = total_size
         self.max_stale_time = 30
 
-    def start(self):
+    def run(self):
         current_size = self.queue.qsize()
         last_update_time = time()
         while current_size < self.total_size and not self.is_queue_stale(last_update_time):

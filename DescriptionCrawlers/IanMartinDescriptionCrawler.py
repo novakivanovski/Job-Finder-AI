@@ -1,6 +1,6 @@
 from .BaseDescriptionCrawler import BaseDescriptionCrawler
-import NetworkUtilities
-from JobParser import JobParser
+from Utilities import NetworkUtilities
+from Utilities import ParsingUtilities
 import json
 
 
@@ -10,7 +10,7 @@ class IanMartinDescriptionCrawler(BaseDescriptionCrawler):
 
     def get_description(self):
         url = self.job.get_entry_url()
-        job_id = JobParser.get_value_between_strings(url, '/jobs/', '?')
+        job_id = ParsingUtilities.get_value_between_strings(url, '/jobs/', '?')
         url = 'https://public-rest33.bullhornstaffing.com/rest-services/16XNKG/query/JobBoardPost?start=0&count=1&' \
               'where=id=' + job_id + '&fields=id,title,publishedCategory(id,name),address(city,state),employmentType,' \
               'dateLastPublished,publicDescription,isOpen,isPublic,isDeleted'

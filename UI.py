@@ -1,11 +1,11 @@
 from appJar import gui
 from Crawlers.EngineerJobsCrawler import EngineerJobsCrawler
-from JobParser import JobParser
-from Stats import Stats
+from Parsers.EngineerJobsParser import EngineerJobsParser
+from Utilities.Stats import Stats
 from time import sleep
 import os
 from JobManager import JobManager
-import Storage
+from Utilities.Storage import Storage
 
 
 class UI:
@@ -70,7 +70,6 @@ class UI:
         if win == 'Setup':
             file_path = self.app.openBox()
             if file_path:
-                self.f = JobParser(file_path)
                 self.stats = Stats(self.f.keywords)
                 self.train_pass = self.storage.train_pass_dir
                 self.train_fail = self.storage.train_fail_dir
@@ -86,7 +85,7 @@ class UI:
                 self.num_jobs = 0
                 app.showSubWindow("LoadScreen")
                 self.spider = EngineerJobsCrawler()
-                self.job_manager = JobManager(self.spider)
+                self.job_manager = JobManager(self.spider, self.parser)
                 app.thread(self.load)
                 app.thread(self.job_manager.obtain_jobs())
                 self.setup_completed = True
@@ -135,7 +134,8 @@ class UI:
         self.url = "https://www.engineerjobs.com/jobs/software-engineering/canada/ontario/?f="
         self.spider = None
         self.stats = None
-        self.storage = Storage.Storage(r'C:\Users\Novak\Documents\projects\Job-Finder-AI')
+        self.parser = EngineerJobsParser()
+        self.storage = Storage(r'C:\Users\Novak\Documents\projects\Job-Finder-AI')
         self.job_num = 0
         self.num_jobs = 0
         self.job_manager = None

@@ -8,4 +8,4 @@ class IndeedParser(BaseParser):
     def get_page_metadata_from_soup(self, page_soup):  # need to fill this in
         metadata = []
         search_tag = 'jobKeysWithInfo'
-        return metadata
+        return search_tag, metadata

@@ -52,7 +52,7 @@ class GenericCrawler(BaseCrawler):
         html_text = NetworkUtilities.get_html(self.entry_url)
         self.num_jobs = self.get_number_of_jobs(html_text)
         self.num_pages = self.get_num_pages(self.num_jobs)
-        self.MultiThreader.add_queue_monitor_thread(self.num_pages)
+        self.MultiThreader.run_queue_monitor(self.num_pages)
 
         for page_num in range(self.num_pages):
             self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num)
@@ -66,14 +66,14 @@ class GenericCrawler(BaseCrawler):
             logging.debug('Adding job posting crawler thread: ' + str(job.get_id()))
             self.MultiThreader.add_thread(self.crawl_job_posting_page, job)
 
-        self.MultiThreader.add_queue_monitor_thread(num_jobs)
+        self.MultiThreader.run_queue_monitor(num_jobs)
         job_posting_queue = self.MultiThreader.schedule_threads()
         return job_posting_queue
 
     def crawl_job_descriptions(self, jobs):
         num_jobs = len(jobs)
         logging.debug('Crawling ' + str(num_jobs) + ' job descriptions...')
-        self.MultiThreader.add_queue_monitor_thread(num_jobs)
+        self.MultiThreader.run_queue_monitor(num_jobs)
         for job in jobs:
             logging.debug('Adding job description crawler thread: ' + str(job.get_id()))
             self.MultiThreader.add_thread(self.crawl_job_description, job)

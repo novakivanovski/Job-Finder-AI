@@ -7,23 +7,16 @@ import traceback
 
 class MultiThreader:
     def __init__(self):
-        self.max_threads = 1000  # TEMP WORKAROUND FOR QUEUE ISSUE
+        self.max_threads = 100
         self.queue = Manager().Queue(maxsize=0)
         self.active_threads = []
         self.inactive_threads = []
-        self.daemons = []
+        self.monitor = None
 
-    def add_queue_monitor_thread(self, total):
+    def run_queue_monitor(self, total):
         monitor = QueueMonitor.QueueMonitor(self.queue, total)
-        self.add_thread(monitor.start)
-
-    def run_daemon(self, target, *args, **kwargs):
-        try:
-            daemon = Thread(target=target, args=args, kwargs=kwargs)
-            self.daemons.append(daemon)
-            daemon.start()
-        except Exception as e:
-            logging.error('Error while adding daemon ' + str(e))
+        self.monitor = Thread(target=monitor.run)
+        self.monitor.start()
 
     def add_thread(self, *args, **kwargs):
         try:
@@ -46,6 +39,7 @@ class MultiThreader:
         thread_chunks = self.chunk_threads()
         for chunk in thread_chunks:
             self.run_threads(chunk)
+        self.join_monitor()
         return self.queue
 
     def chunk_threads(self):
@@ -75,9 +69,9 @@ class MultiThreader:
         except Exception as e:
             logging.error('Unable to join thread ' + str(e))
 
-    def join_daemon(self):
-        for daemon in self.daemons:
-            daemon.join()
+    def join_monitor(self):
+        if self.monitor:
+            self.monitor.join()
 
     def kill_active_threads(self):
         for thread in self.active_threads:

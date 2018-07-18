@@ -1,4 +1,4 @@
-import NetworkUtilities
+from Utilities import NetworkUtilities
 import logging
 from .BaseDescriptionCrawler import BaseDescriptionCrawler
 
