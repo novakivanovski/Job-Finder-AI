@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from Utilities.MultiThreader import MultiThreader
-from DescriptionCrawlerFactory import DescriptionCrawlerFactory
+from DescriptionCrawlers.DescriptionCrawlerFactory import DescriptionCrawlerFactory
 
 
 class BaseCrawler(ABC):

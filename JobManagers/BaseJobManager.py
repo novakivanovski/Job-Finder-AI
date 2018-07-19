@@ -2,9 +2,10 @@ from Job import Job
 from Utilities import MultiThreader, QueueUnpacker, ParsingUtilities
 import logging
 from Listings import ListingsFactory
+from abc import ABC
 
 
-class JobManager:
+class BaseJobManager(ABC):
     def __init__(self, crawler, listing_type):
         self.jobs = []
         self.failed_jobs = []

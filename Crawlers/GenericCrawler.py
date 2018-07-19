@@ -9,6 +9,9 @@ class GenericCrawler(BaseCrawler):
     def __init__(self):
         super().__init__()
 
+    def get_listings(self):  # Override
+        pass
+
     def configure(self):  # Override
         pass
 
@@ -31,8 +34,8 @@ class GenericCrawler(BaseCrawler):
 
     def crawl_job_listing_page(self, page_number):
         url = self.get_page_url(page_number)
-        job_listings = NetworkUtilities.get_html(url)
-        return job_listings
+        listing_html = NetworkUtilities.get_html(url)
+        return listing_html
 
     def get_page_url(self, page_number):  # Override
         return ''
