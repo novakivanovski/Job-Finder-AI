@@ -1,6 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 import logging
+from DataStructures.Page import Page
+
+
+def get_page(url, *args, **kwargs):
+    response = get(url, *args, **kwargs)
+    page = Page(response.text, response.url)
+    return page
 
 
 def get_html(url, *args, **kwargs):
@@ -30,6 +37,7 @@ def get(url, *args, **kwargs):
     kwargs['timeout'] = 5
     try:
         response = requests.get(url, *args, **kwargs)
-    except Exception:
+    except Exception as e:
+        logging.error('Network error: ' + str(e))
         raise
     return response

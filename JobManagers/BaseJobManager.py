@@ -1,7 +1,7 @@
-from Job import Job
+from DataStructures.Job import Job
 from Utilities import MultiThreader, QueueUnpacker, ParsingUtilities
 import logging
-from Listings import ListingsFactory
+from DataStructures.Listers import ListerFactory
 from abc import ABC
 
 
@@ -27,7 +27,7 @@ class BaseJobManager(ABC):
     def get_jobs_metadata(self):
         job_listings_text_queue = self.crawler.crawl_job_listings()
         job_listings_text = QueueUnpacker.unpack(job_listings_text_queue)
-        job_listings = ListingsFactory.get(job_listings_text, self.listing_type)
+        job_listings = ListerFactory.get(job_listings_text, self.listing_type)
         jobs_metadata = job_listings.get_metadata()
         return jobs_metadata
     

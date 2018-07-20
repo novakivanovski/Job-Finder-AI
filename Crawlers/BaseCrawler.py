@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from Utilities.MultiThreader import MultiThreader
-from DescriptionCrawlers.DescriptionCrawlerFactory import DescriptionCrawlerFactory
+from PostingCrawlers.PostingCrawlerFactory import PostingCrawlerFactory
 
 
 class BaseCrawler(ABC):
@@ -17,7 +17,7 @@ class BaseCrawler(ABC):
         self.base_url = ''
         self.details = []
         self.MultiThreader = MultiThreader()
-        self.description_crawler_factory = DescriptionCrawlerFactory()
+        self.description_crawler_factory = PostingCrawlerFactory()
         self.configure()
 
     @abstractmethod
