@@ -1,0 +1,63 @@
+Job title: Back-end Developer
+Posting date: 7/18/2018
+Job Location: Toronto
+Company: Affinio
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=BPG-iu3UDrqmujmuvqBqFfPBqdaUb-x0ewVloMUYXvg_Hr9KoyrHAyZlLf_yefgDDnjSvyYetUW2k7GG3_Y3w5KjhTINKSTeFcWDZJuGXuyTG-Ogucfgu3z3v-biTz69SBqIHfun0-o9FxzIxDdf0giVnxRpPufcbOs_Vxj5JvS-vKrUlK7-ef219YWD281aioG9spOzltONcwVBZZKRhchytUU48CFPIphv3HNMfWY4VNm373yzgdokCaowM_OidEr2QNeT3RnitQLJw3E7Auu53KGxAI4lTCuv27p2oAy6LH3Yix3D9Zw9v5z4thu-OovYnMHh9vQA1gbC-3tcZECaFie5zf5nSc7s9LWubAQXxmr5kpyeTsVfHbL0IRJdtMYmnvOureyms_ENvBFaG1g-RJUqTK4YdpX5adfoazewKay5-Ys4teK-AY0AlCju0cDQo6dOAh0Kew9tPK4FCyAAdG7J_A6qzO3BQ6nFgOrhnArhuRY_wnyMmbGh1FFgvylyLSIGhbVql7ovs5TgyLWKTAGILdD9T5RrCUKw2qbCRE18vpPoKaIKs4Nlv-AQB340k-3H1v4ogU9Qm1kK21kZYQ&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D18&jk=OJJi3J4-fDyzmM7CZGwv3xPshLurpgusoiN8_HgsKrkGAFCr1EG7hA
+Job ID: 244
+Raw description:  
+Building features on our client-facing platform and API
+ 
+Working alongside a team of talented front-end, back-end, and data developers. We strive for code pairing and peer review, and we hope you do, too!
+ 
+Developing systems backend architectures to help users create and access Affinio data
+ 
+Exploring and leveraging new datasets and sources to improve our audience reporting capabilities
+ 
+Working with and setting up multiple database types (SQL, NoSQL) and schemas to support our datasets
+ 
+Degree in Computer Science or related field.
+ 
+3+ years of web-stack software development.
+ 
+Deep competency with a back-end language, specifically Java or Scala. 
+ 
+Familiarity with cloud service architectures, such as Azure or AWS.
+ 
+Experience with API-building and knowledge of best-practices.
+ 
+Experience with Docker, Kubernetes.
+ 
+Knowledge of Serverless Systems Architecture
+ 
+Experience dealing with large datasets
+ 
+An insatiable desire to document and test code
+ 
+Familiarity with Machine Learning and Natural Language Processing tools and techniques
+ 
+Space-age data tech. You’ll be working on the newest and most unexplored frontiers of data on the web.
+ 
+Your dream setup: OSX, Linux, or Win - we make sure you'll be working on a top-of-the-line machine, just the way you like it.
+ 
+Flexible work hours: Early birds and midnight-oil-burners rejoice!
+ 
+Location
+Toronto, Ontario
+ 
+Department
+Development
+ 
+Employment Type
+Full-Time
+ 
+Minimum Experience
+Experienced
+ 
+		Powered by
+		
+
+
+
+
+ The role Affinio is looking for a talented web-stack Software Developer to join our Platform team.   What you'll be doing Building features on our client-facing platform and API Working alongside a team of talented front-end, back-end, and data developers. We strive for code pairing and peer review, and we hope you do, too! Developing systems backend architectures to help users create and access Affinio data Exploring and leveraging new datasets and sources to improve our audience reporting capabilities Working with and setting up multiple database types (SQL, NoSQL) and schemas to support our datasets   Must Haves Degree in Computer Science or related field. 3+ years of web-stack software development. Deep competency with a back-end language, specifically Java or Scala.  Familiarity with cloud service architectures, such as Azure or AWS. Experience with API-building and knowledge of best-practices. Experience with Docker, Kubernetes. Knowledge of Serverless Systems Architecture Experience dealing with large datasets An insatiable desire to document and test code   Nice to Have Familiarity with Machine Learning and Natural Language Processing tools and techniques   Perks of the job Space-age data tech. You’ll be working on the newest and most unexplored frontiers of data on the web. Your dream setup: OSX, Linux, or Win - we make sure you'll be working on a top-of-the-line machine, just the way you like it. Flexible work hours: Early birds and midnight-oil-burners rejoice!   If this sounds like you and you’re looking to join the Affinio team, please submit your resume and cover letter. This posting will remain open until filled.  Employment will be conditional on consent to and the satisfactory review of a background check. Candidates must be legally eligible to work in the Canada. While we thank all interested candidates for their application, only those candidates selected for an interview will be contacted.
+Filtered keywords:['software']

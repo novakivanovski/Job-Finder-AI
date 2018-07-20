@@ -1,0 +1,27 @@
+Job title: Senior Software Engineer in Test
+Posting date: 7/19/2018
+Job Location: Markham
+Company: NETINT Technologies Inc.
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=UV0Fef9EtA5kKxMssOHo2JzDdIwJ_MbnMzbsT3EEgKW6Yo4XFytjVUzhGs78O-SVhTg01aCDV2a60Tbd1HYuRldhc-xivJ_U1_ftKkMmd0Vs_-6IQPNcc7hdajbcEPsCZewRhrShEfcRkV5JvOsYTHHlIqLItZAY40Wrxz307VQOmu_WaW5xhkIz_xb89Bo6UBgP3t8l5UB1LYJpL6kI1S5VquCl_N5FR5Y3NRMctsGmvRy53od_gdhI0QC9mfACUHeM3yCSpagfAtc9AqO0RIE8dbCNS6GxZkiwi79dF127PdZiz-qMvrXi3k4VFt_RnQPU5MeJRfndCqS6oFx0DQewBgzJfzmnjlqc13eqdCItfLIabSwf7kV5RZrWWUeYGFgdFBl7QsDnLwN0NU5Dnw9s9692cyvEu6ha8nhbGhSOOHUxGJiRp_ePClUemBhHdK3ZUfoVN1dSqp5pkXhmlQcO33X_Mf1PGztd_XIBmc3_N5md0hK_-zlRQu5tvkhvr3FrR2tormrPAy8BO1DKoi_bkvGw_a4V6gL1MXTjjslAQt2fA1MXgNfD7DZroeNMp4hENUHBaU9udHTk9zUPC4Bmgg&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D11&jk=1KvMdyacZd_zcPU9SmfaFkfYQZZkw7ixwNkhTknLN0b7tq7B70ghYg
+Job ID: 131
+Raw description:  
+Location
+Markham, Ontario
+ 
+Department
+FW Verification
+ 
+Employment Type
+Full-Time
+ 
+Minimum Experience
+Experienced
+ 
+		Powered by
+		
+
+
+
+
+ About NETINT Technologies Inc. NETINT Technologies is a developer of intelligent silicon solutions for data-intensive applications. Its Codensity portfolio enables enterprise, cloud data centers and content providers to deploy high performance applications that they can scale without limit, while minimizing their data storage and processing costs. NETINT, founded by  an experienced team of storage SoC veterans, is a Canadian venture-funded startup with R&D facilities in Vancouver and Toronto. For more information, visit www.netint.ca. Job Scope As a senior software engineer in test, you will be part of a team developing firmware and software solutions for SoCs designed by Netint. You will play a lead role in the testing of software, firmware and systems.  Responsibilities  -   Analyze firmware/software/system requirements and design corresponding test plans -  Set up requirements and development plans for test tools and automated test systems -  Design, implement, maintain test tools and automated test systems -  Design and implement test cases and test suites -  Design and implement software and firmware features needed for test purposes -  Debug and fix problems found in software, firmware or test tools/systems -  Conduct tests required for product certificates -  Mentor junior software developers  Qualifications  -  MS or BS in Electrical Engineering or Computer Engineering/Science  -  Proficient in Python and C/C++ programming  -  5+ years of relevant experience   Desirable Skills/Experiences·      -  Experience in storage and NAND flash   -  Experience with H.264/H.265 video codecs    -  Experience of firmware debugging tools such as JTAG, Emulator, and logical analyzer      -  Experience in Linux kernel and driver 
+Filtered keywords:['software', 'engineer']

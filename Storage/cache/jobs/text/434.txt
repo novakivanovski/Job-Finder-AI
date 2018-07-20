@@ -1,0 +1,21 @@
+Job title: Junior SQL Programmer - Analyst
+Posting date: 7/18/2018
+Job Location: Mississauga
+Company: IMT Richmond
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=QK7I4a3p-3E9g_fIO0muYGGJENzXm3weZGxBWPWBHjo63IK-5BaN8hic3TD-qcA4AxYHI_VWu7BOmLcw8uQXbffMqFPgvrT1VVdJUkIK48gVeThnzD_Ss-iuWkQs6utqoaof6WjeWgogepIcn_0bVcRvCWZf3RKSCWcCU6YrtVpFJMHRU-epvKzY2i94yOwBKMbeR6gsurzPz8G7mcKOm_yHX2c4xSJ58M_-jVQ8R-8nuRhHoyJKWW2TCvlLeyKVqSyVhFTv81SnUumySUQ9CNhrPnne7lBHg4fw0O3kzmwsUB2IobGWhfGQlMQMx8RBRNyHMEfW5oQfNcF5v7OrPpJmAAGYgt9mHNu2KDfs_RVV6ntDB0VjcKF55-YKRnb_4-cMtL3h7pvyl7PA6FJvFAA6FCRZ69Or30TTj2YxvwhNcMpBB-oz3MnzYQqxZ23aJHKX8PVCYtUugWDy7g0ymsd_NxRTsDNEGpG98fEnoj9fiTvJDD5RWadtu8TYGioR9wHHNx0_2LDKFsmD8AsE4UmIQjBd_sGbwJ1E4lgK8MImaNMla2nKb2rtsJfKtEPyRVqF2mOyBGu-EEjqTNu0_zn2lA&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D16&jk=JRe2BSIh_0UCj10AnqgubUw7kE80xlFaq2urkD94ac4ZExqysT3lZA
+Job ID: 434
+Raw description:  You should have a university degree in statistics, mathematics, applied mathematics, computer science, or have arelated quantitative background. Your knowledge of SQL programming software (MS SQL) should be strong. You should have an acute understanding of data structure and quality assurance processes. You possess the ability to write complex queries for large data sets. You are willing to participate in collaborative analysis and design sessions. Analytical and problem-solving skills come naturally to you. You have advanced computer skills and knowledge of Word, Excel and PowerPoint. Support the project team’s development of statistical data models and analytical techniques Conduct data quality monitoring Analyze data and research for potential errors Use SQL, SAS, and other languages to test and suggest code improvements and optimization Create customized data displays, including data listings, summary tables and routine graphics Implement data, including coding, troubleshooting, debugging, and documentation Be responsible for data extraction, coding standards, statistical reporting, and query optimization Perform data collection using primary and secondary research Visit www.imtrichmond.com (_Only those who applied through the link will be considered) _ Junior SQL Programmer - Analyst Reference ID: 11804012 We are looking for a Junior SQL Programmer—Analyst on behalf of our Mississauga-based client. You will be responsible for extracting and aggregating data from large databases. You should be able to use database management tools to derive critical insights for targeted decisions by our clients. As part of the project team, you will be responsible for assisting in building insightful stories using dataset and solving complex business problems. How do we know if you’re qualified? Your communication skills are outstanding, and your relationship building skills will promote trust among project members and clients. What will your responsibilities be? To Apply:  Only those candidates selected to continue with the recruitment process will be contacted. Please be patient due to the high volume of applicants. We are an equal opportunity organization. Job Types: Full-time, Contract Apply Now 
+            Please review all application instructions before applying to IMT Richmond. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();
+Filtered keywords:['software']

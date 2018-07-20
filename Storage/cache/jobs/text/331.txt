@@ -1,0 +1,77 @@
+Job title: QA Engineer
+Posting date: 7/18/2018
+Job Location: Ottawa
+Company: High Tech Genesis
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=3jkzUox4JVEhi9OyacIhIaLyW-nwNsxK7-fNyurGZDl9bIanlOBfJ3FMiNm2mM0e2JFFXK5v-3RCFXqNSF0iwcAnI0lqLQCZH7kbt2OXkXPXkLMHtI5nFCc0TlfdjE62qU6DPCVUbBmyP0idqCpwTa9wKiFZ-8wy_ccdy4tA7gGryaj46P_Z4mPn36XrENcEnwMBR5U7aHtg_dLqamMsnkiKw7BYzlPT2ts3dtRZLFPrsprCPbHP0acaxwF5Z4K0F0c8iKWHenT820kS-lWsVACr7qBsMRcGYhCsUJFDtpArXpRx8I4jv1K05ZUb1bAk4JvrdeIQOhYq1HCQNJNYZmLkOh0MtgVbdZUNlw1H6lNcHpMq7POTWsly5zbhDrOVaY9eLoqqDV7BDpvGISF_sv5BABmn5YKpXoquwYmGwbKFh2zAGKdofpCPEMpI9Lu6Zu1H9FxBVhaIgIT6b9ldbEfuS8bxGAwnkX0_TXPz5pB3IaoT6lCddJSDMA7Bt4A7xndrjHzqrJTRgPrr3ayvdvocVU5VZBu4hhfqNWFC_oJaCNpoVvkJYcURWm3DzP0e3BVjLh_Ew0IcOARgOIUjS6kiLQ&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D17&jk=MNbvUBG6kabRqkdSa1fezXjW31K-t9CF-pkUMqrMi1kxY02fXZKzcw
+Job ID: 331
+Raw description:  
+Home
+ 
+Jobs
+ 
+Photos
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+              029
+             
+
+              Ottawa, Canada
+             
+Job openings
+ 
+QA Engineer
+  An easy-to-use, vendor-neutral Cloud Management Platform  An awesome Agile team of software developers and testers  A culture of fun that encourages interaction, team work, and learning  A dynamic environment open to great ideas  The opportunity to work with the latest technologies in virtualization, cloud computing, and containers  Review software requirements and participate in review meetings  Develop a technical understanding of software features and how these will be used by end users  Provide feedback to engineering on suitability of functionality to customers and end-users  Consider user errors and error paths; exercise software in unexpected ways to try and break it  Develop test-cases and test plans to verify software requirements and usability  Develop and execute manual and automated test-cases; attention to detail is imperative  Develop scripts (Powershell/Java) as required to verify functionality  Document software defects, and provide sufficient details (logs, screenshots, steps)  Analyze and troubleshoot software defects  Verify software fixes  Setup virtual test environments, and integrate with 3rd party applications  Work closely with test team and development teams to improve product quality  Manage and prioritize tasks to ensure project completion Excellent English verbal and written communication skills  Ability to work in a dynamic and collaborative team environment  Strong organizational, analytical, multi-tasking, problem solving and critical thinking skills  Ability to quickly learn and apply new concepts, technologies, and solutions  Exceptionally self-motivated, self-directed, and detail-oriented  At least 5 years of Software Testing experience  Creativity in devising ways to break software to expose failures during the test cycles Knowledge of software testing, test automation, and test design  Familiar with REST API testing  Testing in a lean, agile close-knit team environment  Testing web applications  Experience with the following would definitely be an asset:  Former System/IT Administration  Automation, deployment, and configuration of IT services across private and public clouds  Working knowledge of virtualization, public and private clouds, datacenter products  VMware vCenter/ESXi, SCVMM, Hyper-V, AWS, Azure, Google Cloud, Kubernetes  Powershell scripting, Jenkins  Working knowledge or experience with Microservices application architecture, Container frameworks and/or DevOps CI/CD Pipelines Excellent English verbal and written communication skills  Ability to work in a dynamic and collaborative team environment  Strong organizational, analytical, multi-tasking, problem solving and critical thinking skills  Ability to quickly learn and apply new concepts, technologies, and solutions  Exceptionally self-motivated, self-directed, and detail-oriented  At least 5 years of Software Testing experience  Creativity in devising ways to break software to expose failures during the test cycles Knowledge of software testing, test automation, and test design  Familiar with REST API testing  Testing in a lean, agile close-knit team environment  Testing web applications  Experience with the following would definitely be an asset:  Former System/IT Administration  Automation, deployment, and configuration of IT services across private and public clouds  Working knowledge of virtualization, public and private clouds, datacenter products  VMware vCenter/ESXi, SCVMM, Hyper-V, AWS, Azure, Google Cloud, Kubernetes  Powershell scripting, Jenkins  Working knowledge or experience with Microservices application architecture, Container frameworks and/or DevOps CI/CD Pipelines 
+
+
+
+
+
+
+
+Linkedin
+
+
+ 
+
+
+
+
+
+
+
+Facebook
+
+
+ 
+
+
+
+
+
+
+
+Twitter
+
+
+ 
+
+
+
+
+
+
+
+Google+
+
+
+ We’re looking for an exceptional QA Analyst to join our growing Development team.   Why would you want to join our team? We have:   Key Responsibilities: Required Skills: Experience:   Required Skills: Experience:  
+Filtered keywords:['software', 'engineer']

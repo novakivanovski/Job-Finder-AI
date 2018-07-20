@@ -1,0 +1,82 @@
+Job title: Senior Java Developer - 257300
+Posting date: 7/19/2018
+Job Location: Kitchener
+Company: Procom
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=rxSbIugchtgEvZ5EgYl3Q_0bSrdAjvna-mSkZUKucEDKBSDYqTqWCrIYZ5NyV-7yDKahQugMVRJbR1cSGGN0NFXsjtrD8P7MTiaRQaAlPpw_f7Jy4Nrng9LmyhcZzobAmLkcDM3vO83btyNzZRfTXtO09E_wNyFivaBjP9NxfuJFeSd0qnHw7ZMeXzBfDpjpmiqCkRxF3_8pKIPVvK51aYbu_sTaaKerqC1z4KdFdWBFU-bfdlHG-5eu159erZz1v7GVm-R4YZJCu_Gk5spVv8Hj20KZmO0GosasnP6Qh3KzCBXiNXBhBHJ-e3TpJYeY59C0cuytvXTBIQmHwmSVjIdmK9SDzU_0irSFVEhEERy3lUHCwBQvsPL1zAgVqQY3RSj9sOhbY1vJo7a5AVrSPRLoBY1CgqvsKA4is6n1jW3QsrPDTUaCl41NuSg9QFBqtlo_u_2kD1qV4efAJVbq6jVIyomSQtiYfySV4zigyTzF18vXGZTaOcjvIXDiAhP_mLviNBYroexEUgOKGt6CjZakHaBarvtimXLOkYlzheD9OcD_PYA2KN4IObfn0pBcmYbzftQ4z3H0t2ojKv6QqDWHPw&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D9&jk=Bi90FBaiKOv3KCCAYfZo4EkbeLHTQVXWwoWFpTM5fL5e1gjbRZeRcw
+Job ID: 197
+Raw description:  
+
+                        Staffing Services
+                    
+ 
+
+                            Workforce Management
+                        
+ 
+Français
+ 
+Browse Jobs
+ 
+Find Talent
+ 
+About Us
+ 
+Contact Us
+ 
+Blog
+ 
+Create Profile
+ 
+Login
+ 
+Français
+ Design, develop, troubleshoot, and debug back-end processes and big-data storage software; Develop and execute unit and integration tests; Assist with deployment design; Contribute to the estimating of designs and implementations; Bring forth new ideas, approaches, technologies, and best practices; Take a leadership position in working with an offshore development team.
+	  Clear communications skills, with ability to discuss architect, design, and implementation efficiently and clearly; 1+ years’ experience with design, development, and deployment of a high performing, scalable big-data solution (eg. Tableau, Hadoop or Cassandra); 5+ years of software development experience; 3+ years’ within a cloud-based server solutions using some of the above technologies; Experience with Web Services REST/WSDL/XML/JSON; Experience using continuous integration and delivery concepts and software (Jenkins, Selenium, Maven, JUnit, etc.); Experience with Angular or Express.js or Node or React; Sound knowledge of design patterns and frameworks; Ability to estimate task complexity and timeframe; Ability to anticipate technical issues and formulate remedial responses; Must be able to multitask efficiently and progressively and work comfortably in an agile environment; Ability to analyze software requirements to determine feasibility of design within time and cost constraints; Knowledge of unit testing methodologies and frameworks.
+	  Experience with a Jenkins-centric DevOps chain; Experience with Salesforce CRM and related APIs. Procom 
+About Us
+ 
+Contact Us
+ 
+Blog
+ 
+Français
+ Job Seekers 
+Browse Jobs
+ 
+Create your Jobseeker Profile
+ 
+View your Jobseeker Profile
+ 
+Submit your Timesheet
+ Employers 
+Find Talent
+ 
+Procom Services
+ 
+Contact Procom
+ 
+Manage Contractor Timesheets
+ Tools 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+                        © 2018 Procom All rights reserved
+                     
+Privacy Policy
+ 
+Terms of Service
+ Get connected with Procom and join their talent network! Senior Java Developer – Procom is currently seeking a Senior Java Developer for our client in Waterloo in the energy industry.   Senior Java Developer Job Details The successful candidate will be a senior Java Developer with experience in developing high-performing big-data solutions.  Your strengths are in back-end design and development, with big-data solution experience. You will also have a leadership role in the development of a new web-based application as a successor to our current application, working with both internal and offshore team members.   Senior Java Developer Responsibilities Senior Java Developer Mandatory Skills Senior Java Developer Nice to Have Skills   Senior Java Developer Start Date Immediate.   Senior Java Developer Assignment Length Full Time, Permanent.  
+Filtered keywords:['software']

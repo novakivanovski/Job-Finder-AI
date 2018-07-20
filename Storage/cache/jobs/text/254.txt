@@ -1,0 +1,21 @@
+Job title: Communications developer
+Posting date: 7/18/2018
+Job Location: Greater Sudbury
+Company: Sudbury Arts Council
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=EFXKZi4ALiukgUJLDxPHRCbSQd03tHLpCGQufzheB9GiwCKYu42HdLWnkinrH_cETsNv_r301zAprPBKtmllemb3HPYzCBMsBqZIXJ59Ah2wXyyscXXyYwoM48B8Z_t5eu2XVEehhUJ7CuZtl3279G2YICnAkpkmz6DjKNCglhtDKWC8zXtBMRHqXUXhrm88-upfzSKoVX8gxMu0G5xk-56xNlKWaTxTjAc9HGyRTpFLFMkTBhenlck96YizHoDrqmxdHBCFz0n0AbfJbRncQbOCEN2d1e9O1F0878EZI2BelqLTx8ONIKOmwAtrC3rWIiw4wedw-xGq5o9Md2jowAzhsixYhOHj2GiJM76XkqMhHwEtHIQ-3J3ibh2WosU-HPA2A6Ip8GsCT4MN6CBPtz2fiyR4wUcCrxXeahdX6RIqRWSr-zmp7A4b_ZNkvM25vhac-DEHXPNsnzJvXsoWXZ2cy0pqqB6DUNtrzo6AfOxB_34WqgHy2ojlI8SR5CdDwgXgahk63VEm9wdSc4ps8qCT5aHd3McSAjrp7RcboVdlqxzmKGZS3QkCiEeWEUgTD6yn6BX2-y86cRGPo597XSnIzg&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D18&jk=PAzb09_ytqd2jhfx5wrlcG6fL56rc1DMVNV4nDp1yxaQTw0KMAnFAQ
+Job ID: 254
+Raw description:  French Who is eligible? Unemployed or underemployed graduate with a degree or diploma from a post secondary institution within the last three years, who is legally entitled to work in Northern Ontario, and have not been previously employed under a Northern Ontario Internship Program or other federal or provincial internship with pay for a period of six (6) months or more. Salary and Terms of Employment:  52 weeks, 35 hours per week – $18.50 per hour. This full-time position is partially funded by Northern Ontario Heritage Fund Corporation and Sudbury Arts Council Successful candidates must be fluent in speaking and writing both English and French. Required formal training and educational background with a diploma in Computer Science or Business and Marketing if necessary for candidates to apply. Knowledge of web based programming and all forms of social media is the basis of the position. Marketing skills and development of promoting arts and culture is an integral part of the internship. Other related duties. Job Types: Full-time, Contract Salary: $18.50 /hour Language: Apply Now 
+            Please review all application instructions before applying to Sudbury Arts Council. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();
+Filtered keywords:[]

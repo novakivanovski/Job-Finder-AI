@@ -1,0 +1,21 @@
+Job title: CNC Set-up Operator/Programmer
+Posting date: 7/19/2018
+Job Location: Brantford
+Company: Addition ManufacturingTechnologies
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=rYk8aiAeUXjXlV7Fcj7FUBjzYYdbBHrpwP6SfAgWcXTUydcV4WkBbH-_m2DxpJZaLUgIxIgSaKDUZsaAuRHZqqsM35gQG5VVSR23YDsom_Le1AVtHQxTEnzwFpkM5U_8y9xSOWYt9cv2S_u5TducN59uoyn-9AeKU4D-otRLDdCff05Wqp98jvNoViGhlWFAygb54cdhJXIWL2drwQayJ_T9lrzHzU1PROA_o0OB-kBmPOD6Xr8hl6nDjP5n3eOlTog3QwZcOkQKgYRzOGfZKR0ERPhZ2dNkLDvY7XLWRdQ0PpI2m29Ils0M9XKs6Ron8qOpeJ-Jd7huje7mdskrNZTcp1xqaYG1RlO1kMJJY3jGn6iCaL1RgHxlP4fIEvaCbiz2PeSTjojPwRMkQ0u_S3hHU4M6LdjVMoKJOyROwU1dJpLhrQJJ80j4ivF417IkuL4ahtlHX5hsOWEFFZYwOU21BL_gRQ4zcL3pqSECplE3Tgj2kfL9s4fMrIrW6-K8fsrOgZhamGEh-EgdYHG9nL-eSY3flUIOrH8pujBiVmzNmMx9Nk8864WcD8deKaxGm9PCwk9-EiyyQxj6v2xQGzny2vlWwZT6DaXmbzPpbfbg3gPkQ79w2WJ-Ndfgxgd27_Th-k9IhoJMbTuoHtnq6GuFGJh-RzGXuvXbdTm9fRyvkdYqIWvDeDQgf8nAAHHDPLY0yA6erp3I3VcGfIvy0gLiTmZMOMk3kH2WKe1ap548m_mD4RihZccMpNREBK79JOk-fwGLzElcI66WOiO7ESpGgZz-EmB7b-lE27tmtoeqPV80ZOnq7hG4G3YfbzuIhVPoQk8nRdOkEv_MAtKq4wvcYw3L9ikwrA2uPfskL2xFMf1icEjfiTlVnH1J-gPnmUsakLAC-0EjP7ewJYSZ_ksKaRP0KBkMH6HJblVFvmXEh7vsWwa3aDiYiHAaud5FO8_eiPZb7K7BWRlb2NkGW3cXjWpOzNxOXx15NSINWDTnFtGIaM53dVe97jsKB4ASp1n2LeUJOvqxE32j3jGrlymIzT59_rBwYrwTS5SwnepzUhhQq7vMShacphkOYmAttspkS5Zyx5oTymIEBLWD90IM5y5brsMcqiYODr5Te_qmPqU6aVY5RemGxIWyZ_7FjsfpXsH81VpxKRC2fRAAl-vaUs3emd3xbg&isp=1&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D3&jk=D9bMD5HchFoTL30WZzlj37FTL-Hck5PYnrMb0Iknb25ImhgBggCYRg
+Job ID: 99
+Raw description:  CNC Programming: 5 years AEC / DEP or Skilled Trade Certificate Requirement; Certified CNC Lathe and CNC Mill machinists 5 years experience preferred Able to do your own programming in powermill 14 (CNC Mill) Mastercam 8 (CNC Lathe) Produce quality high tolerance parts from print. Strong work ethic - Team player with a positive attitude Follow all safety procedures and keep a clean work area Able to work afternoon shift (4 x 10 hour shift) Must have eligible work status in Canada Competitive salary and benefits package Job Type: Full-time Experience: Education: Apply Now 
+            Please review all application instructions before applying to Addition ManufacturingTechnologies. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();This employer accepts applications via Indeed.
+Filtered keywords:[]

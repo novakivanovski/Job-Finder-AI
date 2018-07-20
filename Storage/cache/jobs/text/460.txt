@@ -1,0 +1,264 @@
+Job title: Full Stack Developer - React, Node, Intermediate
+Posting date: 7/18/2018
+Job Location: Toronto
+Company: Workbridge Associates
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=LtHhq5bWkqUIxDVkJxWk1wSiqHmpIpxyRsXGZA5Inxkiw5uomjP98TVOPBcvrsZoaniIPR5Fpv4R9pAZLGsWt9L8CXVI4qWnyiRHJoTS24G9FQ3kN93ECvLA_9jQYhFT4XMNUg59psriR6MHxop79UjZdGRQjFGHbGvLYWkF2PC2-iLei_c5JWPq_Hd80eAy9jk_J2ZvD-I-c-1JM_pR6waIQC6hUem8W8IVowqsLWZOqQt67MwlYH3Gira_Mz7szEYfn3NO5zzdv3YBdeSRTdChAgCotHZCFiI96zqYkWGOox7GV2094pG1RT9xzzjOKb3NawiugvTx1SckzEmGdtHHHURIShXqZ9ZNR6utfKX8c5RT4g7D0r2VVvmg5NtLzY_U7fEU6vDxFGq65Zd9S6Mt2W64f2dJPir8-JNSVMzWBXuxCvl8JGXZXAWpZYWvR40BsPkCI3Io1uFoEu7mtyUlZ7C5JzduZEQV9OV96zvWneQzy_3f0UNBfif655Pg5zID1ls7lyU6CSLz6m6QKmnfXmxG6jN-EdeAidNZNig90wSdb--4xxFsBTJXPjNPf_aj7nOPzR62qkVmsQ65wKnrTg&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D23&jk=F2sDBnOMfCX_fgjUaCMxSDUgD5R4dKJuVRWGs-s8mm2kw9nWVnPdYQ
+Job ID: 460
+Raw description:  About 
+  Locations  
+
+
+
+Boston
+
+
+
+
+Chicago
+
+
+
+
+Dallas
+
+
+
+
+Los Angeles
+
+
+
+
+New York
+
+
+
+
+Orange County
+
+
+
+
+Philadelphia
+
+
+
+
+San Francisco
+
+
+
+
+Silicon Valley
+
+
+
+
+Toronto
+
+
+
+
+Washington DC
+
+
+
+ 
+
+Boston
+
+ 
+
+Chicago
+
+ 
+
+Dallas
+
+ 
+
+Los Angeles
+
+ 
+
+New York
+
+ 
+
+Orange County
+
+ 
+
+Philadelphia
+
+ 
+
+San Francisco
+
+ 
+
+Silicon Valley
+
+ 
+
+Toronto
+
+ 
+
+Washington DC
+
+ Employers Tech in Motion Blog Work for Us Contact Modified:July 18, 2018 Compensation:$100-110K DOE City, State:Toronto, ON  Technologies:Javascript 
+Share on Facebook
+ 
+Share on Twitter
+ 
+Share on LinkedIn
+ 
+Email this job to a friend
+ 2+ Years of React, Redux 1+ years of Node Bachelor of Computer Science (or equivalent) Experience building highly scalable applications Experience working in a startup is a huge asset 60% Front end 40% Back end 100% Hands On Competitive Salary: Up to $110K/year, DOE Statutory Vacation Holiday Pay Professional Development Collaborative Environment Growth Opportunities Free Lunches Jaimie Osetti Recruiter Workbridge Toronto - OSD Workbridge Associates 
+
+                Senior Full Stack Developer - Angular, Guidewire, Node 
+$100-120K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                Intermediate Full Stack Developer - React, Redux, SQL 
+$90-105K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                Intermediate Frontend Contractor 
+$50-65/HR
+Contract
+Calgary, Alberta 
+Workbridge Toronto
+ 
+
+                Full Stack Developer - React, Node, Intermediate 
+$100-110K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                Angular 5 Developer (4+ yrs.) 
+$75-85K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                Senior React/Node Engineer 
+$120-130K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                Senior React/Node Engineer 
+$80-110K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                React/Redux Engineer 
+$80-110K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                Senior Software Engineer (Tech Agnostic) 
+$130-180K
+Direct Hire
+Toronto, ON 
+Workbridge Toronto
+ 
+
+                React/Redux Engineer 
+$80-110K
+Direct Hire
+Toronto, Ontario 
+Workbridge Toronto
+ Home About Employers Events Contractor Login Blog Work for Us Contact Help & Privacy Facebook Twitter LinkedIn YouTube 
+Comma Separated Job Title or Keyword
+
+ 
+
+
+
+
+All Locations
+ Boston
+Chicago
+Dallas
+Los Angeles
+New York
+Orange County
+Philadelphia
+San Francisco
+Silicon Valley
+Toronto
+Washington DC
+
+
+ July 18, 2018 $100-110K DOE Toronto, ON  Javascript 
+An emerging product based startup needs Full Stack Developers. This is a full-time opportunity paying up to $110K a year plus benefits in downtown Toronto. The ideal candidate will have at least 2 years of professional development using React and Node on the backend. Experience building web based application with high scalability and seamless UI. One great perk offered is the continued professional development and opportunity to take classes and workshops to hone pre-existing skills or develop new ones.
+Required Skills & Experience
+2+ Years of React, Redux
+1+ years of Node
+Bachelor of Computer Science (or equivalent)
+Experience building highly scalable applications
+Desired Skills & Experience
+Experience working in a startup is a huge asset
+What You Will Be Doing
+Tech Breakdown
+60% Front end
+40% Back end
+Daily Responsibilities
+100% Hands On
+The Offer
+Competitive Salary: Up to $110K/year, DOE
+You will receive the following benefits:
+Statutory Vacation
+Holiday Pay
+Professional Development
+Collaborative Environment
+Growth Opportunities
+Free Lunches
+ 
+Applicants must be currently authorized to work in Canada on a full-time basis now and in the future.
+This position does not offer sponsorship.
+ 
+Workbridge Associates, part of the Motion Recruitment network, provides IT Staffing Solutions (Contract, Contract-to-Hire, and Direct Hire) across 11 major North American markets. Our unique expertise in today’s highest demand tech skill sets, paired with our deep networks and knowledge of our local technology markets, results in an exemplary track record with candidates and clients.
+ An emerging product based startup needs Full Stack Developers. This is a full-time opportunity paying up to $110K a year plus benefits in downtown Toronto. The ideal candidate will have at least 2 years of professional development using React and Node on the backend. Experience building web based application with high scalability and seamless UI. One great perk offered is the continued professional development and opportunity to take classes and workshops to hone pre-existing skills or develop new ones. Tech Breakdown Daily Responsibilities You will receive the following benefits:   Applicants must be currently authorized to work in Canada on a full-time basis now and in the future. This position does not offer sponsorship.   Workbridge Associates, part of the Motion Recruitment network, provides IT Staffing Solutions (Contract, Contract-to-Hire, and Direct Hire) across 11 major North American markets. Our unique expertise in today’s highest demand tech skill sets, paired with our deep networks and knowledge of our local technology markets, results in an exemplary track record with candidates and clients. Jaimie Osetti is leading the search for this position. Use the button below to send us your resume and let us know you’re interested in the job! Use this form to send me your resume, and my team and I will review it for this job: So you know, this isn't the only job like this we're working on. We'll review your resume for every relevant job that comes in! Apply for Full Stack Developer - React, Node, Intermediate  So you know, this isn't the only job like this we're working on. We'll review your resume for every relevant job that comes in! 
+First Name
+
+ 
+Last Name
+
+ 
+Your Email Address
+
+ 
+Phone (###) ### - ####
+
+ Attach your resume: One of our teams will give it a careful look for the Full Stack Developer - React, Node, Intermediate job, and for every other relevant position we’re working on right now, too. If it looks like we can help you out, you’ll hear from us shortly!  If you know someone who'd be interested in this job, send them a link so they can check it out. 
+Your Name
+
+ 
+Your Email
+
+ 
+Recipient's Email
+
+ 
+Your Message
+
+ Your note about the position number: 304502 has been sent to your friend Return to Search Results $100-120K Direct Hire Toronto, ON  Workbridge Toronto $90-105K Direct Hire Toronto, ON  Workbridge Toronto $50-65/HR Contract Calgary, Alberta  Workbridge Toronto $100-110K Direct Hire Toronto, ON  Workbridge Toronto $75-85K Direct Hire Toronto, ON  Workbridge Toronto $120-130K Direct Hire Toronto, ON  Workbridge Toronto $80-110K Direct Hire Toronto, ON  Workbridge Toronto $80-110K Direct Hire Toronto, ON  Workbridge Toronto $130-180K Direct Hire Toronto, ON  Workbridge Toronto $80-110K Direct Hire Toronto, Ontario  Workbridge Toronto Workbridge Associates is proud to be a part of the Motion Recruitment network
+Filtered keywords:['software', 'engineer']

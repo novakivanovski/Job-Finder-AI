@@ -1,0 +1,21 @@
+Job title: PeopleSoft Developer
+Posting date: 7/18/2018
+Job Location: Toronto
+Company: FIND Staffing Solutions inc.
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=iJ3Q5UNg8DYSOudtx26GBBuwCcY0ZoxG362O7rDSP2oLbKJ4Yo3HyuBqJOluUzpM9E1eVBJjr2kjKME_yjqqeZbwEKkKUJDj_FUWaOgaYy117LL0LfbqcUJU6H07DHlnD02_qEBUQ2uWVHm5pJ7AWYqAk-IXeCsrNuRb3Ev4wD70zyx0DjHpSnYftKdcnCAL6estC2U0usdaXAMujDC_J6rGoN6pDlozpzg0koHvuMf3wWEWtyqm46O6oh_PAAv-yRtQVf9c6-sd4p3jRC0rHMdOcdQRd1YlAfZbwqrmMI7qBR037ZRMUX7f1O0DjT_PqWT9DwlLyA0ZZq1MBJRqYrKG4LsRokGBpnfYlk4yoKd1ztqr_NBqrJoxUQxcRmt4Or_Ykro-dIOg93m0LyalM9HMBU38L-49EC4Zs0OBPwQyZWuSJPgfB5aeqVH6Th2ESrq_6H6ANgB5dK8cYzdCGOG2R05KR8hGOp237yoNT8l6W1f-2IlnaCwP5BlgxF9nB5g98PeYrUmRiKBGNMWN2kUClB-mQDkw9Zy6TwANmtWdcx4CRgj8n9Un8Kgwd3Dl-bqK4yzUS6I7Wgw3S8yksOVgLw&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D23&jk=4eoiaXbZcasEorXFjdMM8XYoX1R9Mbm7g84exbladMOmGMHQGu6pqw
+Job ID: 450
+Raw description:  10+ years’ experience with PeopleSoft experience, ideally including PS 9.2 HR and Finance related modules / components. Completion of post-secondary education in a technology related field 10+ relevant technical or systems analysis experience, ideally with a mix of technical and functional PeopleSoft experience. 5+ years of experience and knowledge with PeopleSoft Advanced Tools such as Application Engines, Component Interfaces, Integration Broker, Business Interlinks, Workflow, and Object Oriented PeopleCode. Proven experience working with accepted methods, standards, techniques and best practices for development. Oral communication skills to work effectively with and discuss development approaches to clients/senior management and external stakeholders; written communications skills to document and communicate development specifications. Decision making skills to assist with decisions and recommendations on various issues and solutions that impact the projects/programs. Knowledge of software development lifecycle management, development and implementation of software and hardware solutions, systems or products. Provide technical assistance in constructing and implementing PeopleSoft systems solutions in support of approved project and service requets Translate client business requirements and associated functional designs into technical design documentation, ensuring that the solution(s) satisfy all business requirements. Work with Analysts, Administrators, and Testing teams to support configurations, code customizations, code migrations, and testing from System, Integration, User Acceptance and performance. Participate in technical sessions to prototype new system functionality. Participate in workshops with project teams to explain and gain consensus on the solution(s) to be developed. Work with systems analysts to ensure the solution meets the approved solution design. Perform code reviews to identify potential issues. Perform unit testing and troubleshoot coding issues. Provide support during systems integration testing. Coordinate testing, release management and change management activities Duration: 5 Month(s) Option to extend 12 months Resource Profile:  One (1) PeopleSoft Developer Knowledge & Skills NICE TO HAVE: PeopleSoft HR and Finance experience, ideally version 9.1 and 9.2 Resource Responsibilities:  Other Resource Requirements:  (Includes travel and variable hours) Job Type: Contract Apply Now 
+            Please review all application instructions before applying to FIND Staffing Solutions inc.. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();This employer accepts applications via Indeed.
+Filtered keywords:['software']

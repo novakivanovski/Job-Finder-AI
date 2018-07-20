@@ -1,0 +1,21 @@
+Job title: Cobol Developer
+Posting date: 7/19/2018
+Job Location: Toronto
+Company: Aaron Consulting Inc.
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=DlKlNYsDWdhPSw2mltoAp5dLWq2NicSCTuwwWqUz1rTBJoR4wBNkHeu9MubV-R6P5_VfpC1D6i4xsLQHYcRbeRc6GdzE8_oiTdr2-CB1zzUwqAE3prxgCU2fUJL6frmsn7ww1F-xkK_cOcu2pof2_g9kqeqUuw7dxxtnai16OT-52kCPY5dWjNR-47nMZEk-5TjME_PJhjVFHVsw0e1OWPoq3bmXdU7Acg1ueoqUK4NSBll7m1uPizyjQxz81pLWgopUedqEPlvwTBhSXnAEfdXK3IvMFfO-TeN0CSsnlst7lcwiljtIho1Fz_T_f0G3H-xSW-9UCmREnO-IHCxyegtVt8UjY1wUzHBKjeCRx9LX6DUQ_843DYTdKsCvxkCY45On0QpybEjh76Qm5ja19bzrrkQmgEUOpUH-ZDpBOhRGZx7ORj2ReKxQ6Uy1NC7C3gVztsK9BYDkKPJouTw2GCTSw5Z-p8hSHjm-56bZ8kz8OWWkeIbXGm2wHpkbk9j38_FARvel72tBcD3u9eYf4upRxgP1tup47Vc9YPbaNMuGeaKFE35164qpuR0bJ0IUn3PM2rFpa7mFiybrvm8kJ2-1Aw&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D12&jk=Epa2OgxugeFZM3lwhETriCL41_8t1kCECocnqxZsCh0Bo6riTdQa3Q
+Job ID: 362
+Raw description:  Must have hands-on Mainframe COBOL and assembler programming experience Retail Banking domain knowledge is a must Prior experience working with Canadian banks preferably in Retail Banking Developed and supported applications on Mainframe technologies Technical documentation Experienced writing batch programs to access DB2/SQL and IMS databases using JCL and Assembler Good communication and analytical skills Bachelor’s degree is a must have Cobol: 5 years Banking: 2 years Toronto, ON Job Title: COBOL Programmer Client: Major Bank JOB DESCRIPTION Translate business requirements and functional specifications into working, tested applications. This includes developing detailed programming specifications, user interface designs, prototypes, writing and/or generating code, compiling data-driven programs, conducting unit tests and debugging code. Analysis, design, development, testing, implementation and documentation of approved requests related to our mainframe environments Assessment of and recommendations for program enhancements/changes requested by business partners Support and maintenance for mainframe application programs and program modules, including on-call support Knowledge transfer to team members and other personnel Devise or modify procedures to solve complex problems considering computer equipment capacity and limitations, operating time, and form of desired results Modify, install, and prepare technical documentation for system software applications Monitor systems capacity and performance, plan and execute disaster recovery procedures, and provide technical support Troubleshoot issues and make system changes as needed to resolve issue Required Qualifications/Experience COBOL, MVS, CICS, JCL, DB2/SQL ( 7+ experience with mainframe tools & utilities) Job Type: Contract Experience: Location: Apply Now 
+            Please review all application instructions before applying to Aaron Consulting Inc.. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();This employer accepts applications via Indeed.
+Filtered keywords:['software']

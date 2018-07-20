@@ -1,0 +1,21 @@
+Job title: Angular JS / Front-end Developer
+Posting date: 7/19/2018
+Job Location: Toronto
+Company: Softcom Systems Inc.
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=JoCiIROSqhxZvrLiEiEpRjqiEad1YcTsvC85c3EM0bncP0DtyB3TtVuwVx31t440XbUlRvyOGNdVjbodeh8iUntYElEM-szWaKoqcc-a-LW6K2ZAeIs5V4SyUBFHpaDmHubXg1gytPXGvMN-afLBqkBdCYdGA19ipdON-reMRV4gtSU7O7ABr0fLrBs47PYWZZ6COsj8t-8MUS3SufsL1UweOmwoCpRCaX1w2BUJ5tiimHkp4SDLWDBJ6yA42oUiR4XrgzBl4XZc1P2cH8IcWULk6Uzv0798ZfIomuwtMDmL0szHe0vclRFzbQ8JdWC2UhEr3Q3jy9RTTqIKY7IPEcgJ6OEO9NQsYT4dj7Uo-NTK3qhqI49UMryG0L-NkrdiE9XbsWdAQEQvGi_W6RxOCWyQRp1ar1i1R1SgdkVoQoTJECy5dVspqcIMYifH0phhCX-bY4JsxGMUKqNhhtm5o64tdgmOm4mNG7IUGzZNGS9rTRFLPuNfy9FSEtLtzDQ_OUoQObd-uwEA2Sx7ot6DAAjC15sYG1OXoch8uRkNilzeIXHQoUcWCO0dt5mBskSJt5DDQfj4qY8UOYl7W8o-K8jqsg&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D5&jk=7wyRr770IkYwQg72-W-ZveG8PbAO9ZfLsR94ynhz0CJjxuVzNqdtyA
+Job ID: 153
+Raw description:  5+ years of front-end development experience 2+ years of Angular development experience Strong JavaScript and TypeScript Angular 4+ frameworks HTML 5, CSS, AJAX and JSON jQuery Role: Angular JS / Front-end Developer Location: Toronto, ON Client: Banking Position: Contract Rate: $67/hr. Job Type: Contract Apply Now 
+            Please review all application instructions before applying to Softcom Systems Inc.. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();
+Filtered keywords:[]

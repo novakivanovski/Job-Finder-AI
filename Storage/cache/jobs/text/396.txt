@@ -1,0 +1,222 @@
+Job title: Software Developer
+Posting date: 7/18/2018
+Job Location: Toronto
+Company: Jobspring Partners
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=y36NeKDZBhUxtqQ7m0dzeY3bxC2nAYn_8_H3MnncgIuCYFyn0IR2foO6zdUXygJcRuVodD_j3vmIFlK_kI_uRJi5CAxx4RsZYzQMrKCo5wl6v0B4r3cPd_IMK-NmXLAKD7u9ymCvgNqpkg1PwJGKgGsiHr0jlsoU43gzAc9yww7QeiDkOhADXXeDxvYGXKQxEKizQg_kS7iOVsA7LLqy3Af1Eouh-Q8Rcc5mcKB9hrVZ6bIEfvD2Tw8RwepYhsbbuPUU3T2_Bilp-2-pVK0dRyWkFQCskpsog3fjxkbAm2Gn8kgQA4MC0q-vG1Vj2LS5BLhK54PUPpivR6p8RC2h50g6ld_s74k1t-NK7pGo8bM5E-5UsdcW5QIFaHc6nnsSE0unjfIdM0bkK7CcRHA7J0kutCbE1osdII70yqUGPpIPbj8A_-C55o9jxdcBS_ouRIyvdGXe9vAKgPrl4pWEt6pPHy6RvG_3wOvRh9_BE7deK-i4qCRh3Bg_nHj7fUg2f5L-FQGDxelod1ZJhRPLeSoe93n9GOD74jcAQPfwMpNk9lRyJAUa3U9maTLxXAwQPxPrPi6Y7-IV67l9mE-Bo_jD2Q&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D21&jk=6NABnFZSGKQYpFFZvGQDiYVNnZNzm0hsc8-8draHTL5DSVzN6mVnmg
+Job ID: 396
+Raw description:  About 
+  Locations  
+
+
+
+Atlanta
+
+
+
+
+Boston
+
+
+
+
+Chicago
+
+
+
+
+Los Angeles
+
+
+
+
+New York
+
+
+
+
+Orange County
+
+
+
+
+Philadelphia
+
+
+
+
+San Francisco
+
+
+
+
+Silicon Valley
+
+
+
+
+Toronto
+
+
+
+
+Washington DC
+
+
+
+ 
+
+Atlanta
+
+ 
+
+Boston
+
+ 
+
+Chicago
+
+ 
+
+Los Angeles
+
+ 
+
+New York
+
+ 
+
+Orange County
+
+ 
+
+Philadelphia
+
+ 
+
+San Francisco
+
+ 
+
+Silicon Valley
+
+ 
+
+Toronto
+
+ 
+
+Washington DC
+
+ Employers Tech in Motion Blog Work for Us Contact Modified:July 18, 2018 Compensation:$85-100K DOE City, State:Toronto, Ontario Technologies:C++ 
+Share on Facebook
+ 
+Share on Twitter
+ 
+Share on LinkedIn
+ 
+Email this job to a friend
+ 5+ years of C++ and QT development experience Experience in a Linux environment Experience with both application and embedded level development Ability to work in a fast paced, diverse team Experience with SaaS based platforms Bachelors or Master’s Degree in Computer Science or Engineering Strong written and oral communication Previous experience with R&D style environments Previous Mobile application development experience Computer Vision experience 80% C++ development 20% QT development 80% Hands On 10% Architecture and Design 10% Team Collaboration Competitive Salary: Up to $100K/year, DOE Statutory Vacation Holiday Pay Bonus program Fantastic work culture Working on cutting edge applications Matt Rehman Division Manager Jobspring Toronto - MWD Jobspring Partners 
+
+								Senior C++ Embedded Developer 
+$50-70/HR
+Contract
+Markham, Ontario 
+Jobspring Toronto
+ 
+
+								Software Developer 
+$85-100K
+Direct Hire
+Toronto, Ontario 
+Jobspring Toronto
+ 
+
+								C++ Imaging Developer 
+$50-90K
+Direct Hire
+Toronto, Ontario 
+Jobspring Toronto
+ Home About Employers Events Contractor Login Blog Work for Us Contact Help & Privacy Facebook Twitter LinkedIn YouTube 
+Comma Separated Job Title or Keyword
+
+ 
+
+
+
+
+All Locations
+ Atlanta
+Boston
+Chicago
+Los Angeles
+New York
+Orange County
+Philadelphia
+San Francisco
+Silicon Valley
+Toronto
+Washington DC
+
+
+ July 18, 2018 $85-100K DOE Toronto, Ontario C++ 
+A growing organization in the heart of downtown Toronto is looking to expand their development team with a Senior C++/QT Developer.  This company is looking to revolutionize the way people experience live events!  With a growing product base and an all-time high demand, they are looking to develop new applications that require skilled professional developers.
+This organization is looking for an Engineer with strong C++ skills in a Linux environment, ideally using QT. The ideal candidate will have experience with both embedded and application level development and have a strong desire to work on cutting edge and R&D style projects.
+Required Skills & Experience
+5+ years of C++ and QT development experience
+Experience in a Linux environment
+Experience with both application and embedded level development
+Ability to work in a fast paced, diverse team
+Experience with SaaS based platforms
+Bachelors or Master’s Degree in Computer Science or Engineering
+Strong written and oral communication
+Desired Skills & Experience
+Previous experience with R&D style environments
+Previous Mobile application development experience
+Computer Vision experience
+What You Will Be Doing
+Tech Breakdown
+80% C++ development
+20% QT development
+Daily Responsibilities
+80% Hands On
+10% Architecture and Design
+10% Team Collaboration
+The Offer
+Competitive Salary: Up to $100K/year, DOE
+You will receive the following benefits:
+Statutory Vacation
+Holiday Pay
+Bonus program
+Fantastic work culture
+Working on cutting edge applications
+ 
+Applicants must be currently authorized to work in Canada on a full-time basis now and in the future.
+This position does not offer sponsorship.
+ 
+Jobspring Partners, part of the Motion Recruitment network, provides IT Staffing Solutions (Contract, Contract-to-Hire, and Direct Hire) across 10 major North American markets. Our unique expertise in today’s highest demand tech skill sets, paired with our deep networks and knowledge of our local technology markets, results in an exemplary track record with candidates and clients.
+ A growing organization in the heart of downtown Toronto is looking to expand their development team with a Senior C++/QT Developer.  This company is looking to revolutionize the way people experience live events!  With a growing product base and an all-time high demand, they are looking to develop new applications that require skilled professional developers. This organization is looking for an Engineer with strong C++ skills in a Linux environment, ideally using QT. The ideal candidate will have experience with both embedded and application level development and have a strong desire to work on cutting edge and R&D style projects. Tech Breakdown Daily Responsibilities You will receive the following benefits:   Applicants must be currently authorized to work in Canada on a full-time basis now and in the future. This position does not offer sponsorship.   Jobspring Partners, part of the Motion Recruitment network, provides IT Staffing Solutions (Contract, Contract-to-Hire, and Direct Hire) across 10 major North American markets. Our unique expertise in today’s highest demand tech skill sets, paired with our deep networks and knowledge of our local technology markets, results in an exemplary track record with candidates and clients. Matt Rehman is leading the search for this position. Use the button below to send us your resume and let us know you’re interested in the job! Use this form to send me your resume, and my team and I will review it for this job: So you know, this isn't the only job like this we're working on. We'll review your resume for every relevant job that comes in! Apply for Software Developer  So you know, this isn't the only job like this we're working on. We'll review your resume for every relevant job that comes in! 
+First Name
+
+ 
+Last Name
+
+ 
+Your Email Address
+
+ 
+Phone (###) ### - ####
+
+ Attach your resume: One of our teams will give it a careful look for the Software Developer job, and for every other relevant position we’re working on right now, too. If it looks like we can help you out, you’ll hear from us shortly!  If you know someone who'd be interested in this job, send them a link so they can check it out. 
+Your Name
+
+ 
+Your Email
+
+ 
+Recipient's Email
+
+ 
+Your Message
+
+ Your note about the position number: 303988 has been sent to your friend Return to Search Results $50-70/HR Contract Markham, Ontario  Jobspring Toronto $85-100K Direct Hire Toronto, Ontario  Jobspring Toronto $50-90K Direct Hire Toronto, Ontario  Jobspring Toronto Jobspring Partners is proud to be a part of the Motion Recruitment network
+Filtered keywords:['software', 'engineer']

@@ -1,0 +1,21 @@
+Job title: JEE Developer
+Posting date: 7/18/2018
+Job Location: Toronto
+Company: Dawn InfoTek Inc.
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=wakNo1ZufA_H1mlEiutlOwhsAmJSeYbgQpIuvFv8-cBatZJnbFXc6GIoTOr0P7zPINCQQiayG4Kq4c_pQilnRNqryopItPEUNgJ743Ud_tmBnAkI_YbFeI1bYNTufJ8xUghVTmxLoREhfrwOwe47Mc0dBWXCUGHEDpCpI1bpUZA52J7xxWBsWnASdUxLD-iDSWoVwuCLkVDc_m6vDmzK3T8lzwFsMZ_8JwUI0ge9vrvfjiUXRBnkD5537zE5OUKPL7nhbtsHcEiZ5612Gxaf7-6EUvaTTXRLTeVzZn-8S4v27o2ApN_iTLgK6lLEY0IgjBd_45WysBPtzzofaCgtgvROizpwSd4DNbvzvDcuRIU3--w9sz8fJw8zr_TkjyWNn23ym_JmhWo7TkofO2RGXd6sPAaMiEnUK8Eilqc9yiboFTMuH1w1bWgnji6bh96PRsexB6BfOz3miS86odH9ZsotuC-vck6yrM8P5qklO0PX_QI8wJH6Uj2snncsSvv3Tr-93rYaKmf6bB12GcPHEExpvX0f6Myk6INMSSVUZx4dtbBNl9AZsV_KV6m47yz7CXq1zKNtJFrBA924_Em6dnHCJQ&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D21&jk=7HvBPAMOzNWaZccPnH4CTxhSXarwev-F0YtveBNbRxa_L6Bz5IhL2Q
+Job ID: 385
+Raw description:  Term: Permanent / Contract Location: Scarborough Work on the bank’s Java based online banking projects on front end and back end development. Participate in requirement walk-through with business analysts and QA testers. Development of Application Features Provide support to the Production environment. Be ready to take on new technologies currently employed in banking industry. Production support on-call 5+ years of JAVA/J2EE enterprise application development experience Experience with Online Banking/Mobile banking platforms Solid hands on experience with Cloud infrastructure Provide guidance and support for QA team Experience with the full SDLC including Bug fix and trouble-shooting Java Script, XML, XSL, UML, ClearCase is an asset Unix Shell Scripting is a must Ability to work on multiple project simultaneously Experience with Production Support is an asset Excellent problem solving and troubleshooting skills. Ability to work under pressure and tight timelines. Passion to learn, develop, focus and adopt new technology full stack quickly. Work experience in the Banking industry is an asset Understanding of Enterprise Security vulnerabilities is an asset Ability to work independently, seeks to resolve issues by research and hands on experimentation Enjoys stepping out of one’s comfort zone and overcoming challenges Bachelor’s degree in Computer Science (or related discipline) Banking Industry work: 1 year Java Development: 4 years Production Support: 2 years Toronto, ON Dawn InfoTek Inc. is a professional IT consulting team that partners with major financial institutions, investment firms and government sectors. We have been dedicated in delivering cutting-edge consulting services and recruiting all levels of IT positions for our clients. Job Description We are currently seeking competent individuals to fill the role of JEE Developer on our dynamic team. Key Responsibilities Skills and Qualifications Nice to have For an immediate consideration, please apply as soon as possible to this posting by submitting your Resume along with your Availability Date and Expected Salary / Hourly Rate. Referrals are more than welcome! We thank all applicants for your interest and referral. However, only qualified candidates selected for an interview will be contacted. For further information on our company, please visit: www.dawninfotek.com Job Types: Full-time, Contract Experience: Location: Apply Now 
+            Please review all application instructions before applying to Dawn InfoTek Inc.. 
+(function(){var a=window.indeed;
+            if(!a||!a.ia){
+            var b=window,
+                c=document.location,
+                e=document.getElementsByTagName("head")[0],
+                f=/^https:\/\//.test(c.href),
+                g=document.createElement("script"),
+                h=document.getElementById("indeed-apply-js").attributes["data-indeed-apply-qs"],
+                n=h&&h.value?h.value:"";
+            b.indeed=b.indeed||{};b.indeed.ia=b.indeed.ia||{};
+            g.src=(f?
+        "https://apply.indeed.com/indeedapply/env?https=1&iip=1&":"https://apply.indeed.com/indeedapply/env?iip=1&")+"ms="+ +new Date+(n?"&"+n:"");e.appendChild(g)};})();You can send this company applications via Indeed.
+Filtered keywords:[]

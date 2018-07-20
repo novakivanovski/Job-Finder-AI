@@ -1,0 +1,48 @@
+Job title: Qlikview Developer
+Posting date: 7/19/2018
+Job Location: Tiverton
+Company: Sierra systems
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=5Gf5KFGmnSrtapnDCgBcfd1860-uzgOHVYGldxw84Kt7dGTfE2c6D98WCbtRmX2B7Jxz8vkUhb2l1ra4ykCEZp6UZB3anrS6a8v5VDNeRbnxDFS9iZJbKfbULhVIFmKD9R-z1Bh-q0gNX8F7OJBq8OXrRarNfPubsgXNDtbnMa-69d_gNltJ-hG7gU5sZRWhoSaKObF8C0tlL_7n1FSml2hnJ_vGXUUIZ5ZMX4UmFQi-skEdY8jvSuYYyJ8P9nuZs08sdIWh3Ot97UcBoTwg_zNjclpUKdtDlDfoyBW_n_JpyPgdRQssECoJEDhAsm6Wtizt0UlHEFB6dE5fxWhuwWLt4AqbFJLjp3b2JMlrlps3ZScbeXqe3TlSCeFV4qDgZHwcA37VCu3meE6MDfyff3VG2LjlxcWJ6EhS7rBuZ84Bn2jduBNz511cpDgr6XwmDHEUVsDtIsdEZ2PywPVI9p-PB_PBQiDxekvpDrjADrULYTapuBcO5tRj4rV70tjuiSe9xC4Xb9kYgNk0IPMu941TLjPvGgTgel7NAhRRPoQrBdwqBpb1PV7gfoQ7u--RfycRaNAoMq7eosLvT-HykejSUw&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D13&jk=giXNmCsbdiU4n9GndsH6ZHKm1lsajHBcydy1ofVOjSdKOp-KgadNIQ
+Job ID: 292
+Raw description:  
+Designing and developing using Qlikview. 
+ 
+Creating new reports as well as converting existing reports to Qlikview. 
+ 
+2+ years’ dedicated experience with Qlikview.
+ 
+Qlikview Developer and Designer courses.
+ 
+Knowledge of Qliksense is also required.
+ 
+4 to 8 years’ experience generating research models and reports (scheduled and ad-hoc), report development using Informatica, SQL or Oracle.
+ 
+Report administration using Cognos and Informatica tools.QA.
+ 
+Proven troubleshooting and analytical experience.
+ 
+Experience building data marts in Informatica.
+ 
+Experience creating the back end in Qlikview to create and convert reports.
+ 
+Experience with Tables and table joins.
+ 
+Expertise in building the data visualizations like charts/tables.
+ 
+Experience in data modeling, analysis, design, testing, development and implementation.
+ 
+Experience with different types of loads in Qlikview and functions.
+ 
+Generate QVD files created by ETL logic to feed QlikView applications.
+ 
+Experience in optimizing existing QlikView reports with a focus on usability, performance, flexibility, testability, and standardization.
+ 
+Qlikview administration.
+ 
+Good communication skills as the position requires working with business closely.
+      
+ 
+ Qlikview Developer
+Reference No: 1213 This opportunity requires work to be delivered at the client site in Tiverton Ontario. Located on the shores of Lake Huron in scenic Bruce County, Tiverton is approximately 3 hours NW of Toronto. Our Toronto Branch is growing, and we are currently looking for a strong Qlikview Developer to join the team. The successful candidate will have at least 2 years of dedicated Qlikview experience. Key Areas of Responsibility Designing and developing using Qlikview.  Creating new reports as well as converting existing reports to Qlikview.  Professional Qualifications & Experience 2+ years’ dedicated experience with Qlikview. Qlikview Developer and Designer courses. Knowledge of Qliksense is also required. 4 to 8 years’ experience generating research models and reports (scheduled and ad-hoc), report development using Informatica, SQL or Oracle. Report administration using Cognos and Informatica tools.QA. Proven troubleshooting and analytical experience. Experience building data marts in Informatica. Experience creating the back end in Qlikview to create and convert reports. Experience with Tables and table joins. Expertise in building the data visualizations like charts/tables. Experience in data modeling, analysis, design, testing, development and implementation. Experience with different types of loads in Qlikview and functions. Generate QVD files created by ETL logic to feed QlikView applications. Experience in optimizing existing QlikView reports with a focus on usability, performance, flexibility, testability, and standardization. Qlikview administration. Good communication skills as the position requires working with business closely. _______________________
+Who we are Headquartered in Vancouver, British Columbia and founded in 1966, Sierra Systems is a top tier IT services and management consulting firm offering a full range of advisory services, systems integration, and managed application services. With approximately 800 professionals across Canada, Sierra Systems has developed deep expertise in its targeted industries and has earned a reputation for delivering superior solutions that strengthen organizations’ operational performance. Our unwavering commitment to our clients’ needs has allowed us to build long-term, trusting, and loyal relationships. It has given us the ability to set ambitious objectives for client projects and meet them time and time again with unparalleled speed and precision. We offer a full range of management consulting, systems integration and managed services tailored to the unique needs of each industry in which we have deep expertise – including: Canadian government, justice, health, energy, and the commercial sector. We focus on delivering a boutique experience backed by the resources, deep knowledge, and expertise our 50-year heritage provides to tackle large scale projects. What to expect Sierra Systems is committed to a working environment that fosters professional and personal progression, communication, and collaboration. We offer opportunities for personal growth and professional development at every career level. We are regularly recognized as a Top Employer, in part due to the compensation and benefits packages we offer which are just one of the many great reasons to join Sierra Systems. www.SierraSystems.com | Facebook | LinkedIn | Twitter | Glassdoor          
+Filtered keywords:[]

@@ -1,0 +1,261 @@
+Job title: Back End Developer
+Posting date: 7/18/2018
+Job Location: Toronto
+Company: Jobspring Partners
+Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=Ldj-HjRty2Gp0rsOw6-abNBCwsyE6GI_2-PRybQydCcgXPErNLkIVOYNtkzvE_R0fhzd23kE4zx1udanisYPAZoJk8r3Zja9FsaW4Jyx2rDfOhuBdbYPT4DpeG7yS0zFjC9nkQW-xOWv0jS6Ldl1jU4Fpp_EdvpIkRNPw1cI-xQ_ySJz20QDadBjGPQAjtar_biEwzzy6vvtwWOW2JcfvYNIFYdk4SEw7DcpnbX5nOBVYE7R9_sdg8M2cj_um6xtE4ZafI-TDOimuNDcUrmuQIn_IGxv7fdtbLy5HbhiBV-j4omT3MWitBHL3fd1alocuarnwt4LBWQMGM9KegCs8Qa9QIGusRM6dFPBMJDO_kt0QSvmlj-rFTaEQkYcC0u_wQbH42pgz5VAXasv1hswgjIj60ZNjJ_4uCVanrzg0i7fVQS3U5pycFSsyD1uRqDhtCZBn-AjS0NG-8Ka4cWYPyZtQLjU-QqkYtgm_3GdJcoydUgzr0csh5h5TKh-o_8lXk_qir1F4bfzNmrPVsDG4LIKIgVBbU3-VSQVBelt5F7GFzgL-34fUQtrIILOPUGTzZtesLelU4sMWG2BswZ6CjZwbg&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D21&jk=SPAk1m506MFMc92J3Abwmnmx08mLWeTKLAWMkP3uWzxbEKOQjLw7ZA
+Job ID: 398
+Raw description:  About 
+  Locations  
+
+
+
+Atlanta
+
+
+
+
+Boston
+
+
+
+
+Chicago
+
+
+
+
+Los Angeles
+
+
+
+
+New York
+
+
+
+
+Orange County
+
+
+
+
+Philadelphia
+
+
+
+
+San Francisco
+
+
+
+
+Silicon Valley
+
+
+
+
+Toronto
+
+
+
+
+Washington DC
+
+
+
+ 
+
+Atlanta
+
+ 
+
+Boston
+
+ 
+
+Chicago
+
+ 
+
+Los Angeles
+
+ 
+
+New York
+
+ 
+
+Orange County
+
+ 
+
+Philadelphia
+
+ 
+
+San Francisco
+
+ 
+
+Silicon Valley
+
+ 
+
+Toronto
+
+ 
+
+Washington DC
+
+ Employers Tech in Motion Blog Work for Us Contact Modified:July 18, 2018 Compensation:$55-60/HR DOE City, State:Toronto, ON Technologies:.Net 
+Share on Facebook
+ 
+Share on Twitter
+ 
+Share on LinkedIn
+ 
+Email this job to a friend
+ 5+ years of experience with C#/.NET Strong background in WPF, MVVM CI/CD Pipelines Great communicator Computer Science degree is a plus 100% Backend 80% Hands On 20% Team Collaboration Competitive Pay: Up to $60/hour, DOE Contract Duration: 8-12 Months Statutory Vacation Holiday Pay Hannah Cotton Recruiter Jobspring Toronto - MWD Jobspring Partners 
+
+								ASP.Net MVC Developer 
+$40-50/HR
+Contract
+toronto, Ontario 
+Jobspring Toronto
+ 
+
+								Back End Developer 
+$55-60/HR
+Contract
+Toronto, ON 
+Jobspring Toronto
+ 
+
+								Full Stack Web Developer 
+$80-90K
+Direct Hire
+Toronto, ON 
+Jobspring Toronto
+ 
+
+								C# Desktop Developer for a Hedge Fund 
+$120-150K
+Direct Hire
+Toronto, Ontario 
+Jobspring Toronto
+ 
+
+								Senior .NET Developer 
+$110-120K
+Direct Hire
+Toronto, ON 
+Jobspring Toronto
+ 
+
+								Web Application Analyst 
+$50-65K
+Direct Hire
+toronto, Ontario 
+Jobspring Toronto
+ 
+
+								Software Developer - .NET 
+$35-40/HR
+Contract
+Markham, Ontario 
+Jobspring Toronto
+ 
+
+								Full Stack .NET Engineer 
+$60-70/HR
+Contract
+Toronto, ON 
+Jobspring Toronto
+ 
+
+								Senior Desktop Developer 
+$100-120K
+Direct Hire
+Toronto, ON 
+Jobspring Toronto
+ 
+
+								Senior Full Stack Engineer (C#, .NET, Angular, SQL 
+$60-75/HR
+Contract
+Toronto, ON 
+Jobspring Toronto
+ Home About Employers Events Contractor Login Blog Work for Us Contact Help & Privacy Facebook Twitter LinkedIn YouTube 
+Comma Separated Job Title or Keyword
+
+ 
+
+
+
+
+All Locations
+ Atlanta
+Boston
+Chicago
+Los Angeles
+New York
+Orange County
+Philadelphia
+San Francisco
+Silicon Valley
+Toronto
+Washington DC
+
+
+ July 18, 2018 $55-60/HR DOE Toronto, ON .Net 
+A mass spectrometry company in the healthcare industry is looking to bring on a C# Desktop developer to join their team. The ideal candidate will get excited about using a software to  help create new drugs, analyze food and water quality, identify harmful chemical in the environment, and perform scientific tests. They are looking for an individual who has strong analytical thinking skills and knowledge of software architecture best practices. The ideal candidate will be ready to work individually and contribute as a part of a team.
+Required Skills & Experience
+5+ years of experience with C#/.NET
+Strong background in WPF, MVVM
+CI/CD Pipelines
+Great communicator
+Desired Skills & Experience
+Computer Science degree is a plus
+What You Will Be Doing
+Tech Breakdown
+100% Backend
+Daily Responsibilities
+80% Hands On
+20% Team Collaboration
+The Offer
+Competitive Pay: Up to $60/hour, DOE
+Contract Duration: 8-12 Months
+You will receive the following benefits:
+Statutory Vacation
+Holiday Pay
+ 
+Applicants must be currently authorized to work in Canada on a full-time basis now and in the future.
+This position does not offer sponsorship.
+ 
+Jobspring Partners, part of the Motion Recruitment network, provides IT Staffing Solutions (Contract, Contract-to-Hire, and Direct Hire) across 10 major North American markets. Our unique expertise in today’s highest demand tech skill sets, paired with our deep networks and knowledge of our local technology markets, results in an exemplary track record with candidates and clients.
+ A mass spectrometry company in the healthcare industry is looking to bring on a C# Desktop developer to join their team. The ideal candidate will get excited about using a software to  help create new drugs, analyze food and water quality, identify harmful chemical in the environment, and perform scientific tests. They are looking for an individual who has strong analytical thinking skills and knowledge of software architecture best practices. The ideal candidate will be ready to work individually and contribute as a part of a team. Tech Breakdown Daily Responsibilities You will receive the following benefits:   Applicants must be currently authorized to work in Canada on a full-time basis now and in the future. This position does not offer sponsorship.   Jobspring Partners, part of the Motion Recruitment network, provides IT Staffing Solutions (Contract, Contract-to-Hire, and Direct Hire) across 10 major North American markets. Our unique expertise in today’s highest demand tech skill sets, paired with our deep networks and knowledge of our local technology markets, results in an exemplary track record with candidates and clients. Hannah Cotton is leading the search for this position. Use the button below to send us your resume and let us know you’re interested in the job! Use this form to send me your resume, and my team and I will review it for this job: So you know, this isn't the only job like this we're working on. We'll review your resume for every relevant job that comes in! Apply for Back End Developer  So you know, this isn't the only job like this we're working on. We'll review your resume for every relevant job that comes in! 
+First Name
+
+ 
+Last Name
+
+ 
+Your Email Address
+
+ 
+Phone (###) ### - ####
+
+ Attach your resume: One of our teams will give it a careful look for the Back End Developer job, and for every other relevant position we’re working on right now, too. If it looks like we can help you out, you’ll hear from us shortly!  If you know someone who'd be interested in this job, send them a link so they can check it out. 
+Your Name
+
+ 
+Your Email
+
+ 
+Recipient's Email
+
+ 
+Your Message
+
+ Your note about the position number: 304483 has been sent to your friend Return to Search Results $40-50/HR Contract toronto, Ontario  Jobspring Toronto $55-60/HR Contract Toronto, ON  Jobspring Toronto $80-90K Direct Hire Toronto, ON  Jobspring Toronto $120-150K Direct Hire Toronto, Ontario  Jobspring Toronto $110-120K Direct Hire Toronto, ON  Jobspring Toronto $50-65K Direct Hire toronto, Ontario  Jobspring Toronto $35-40/HR Contract Markham, Ontario  Jobspring Toronto $60-70/HR Contract Toronto, ON  Jobspring Toronto $100-120K Direct Hire Toronto, ON  Jobspring Toronto $60-75/HR Contract Toronto, ON  Jobspring Toronto Jobspring Partners is proud to be a part of the Motion Recruitment network
+Filtered keywords:['software', 'engineer']
