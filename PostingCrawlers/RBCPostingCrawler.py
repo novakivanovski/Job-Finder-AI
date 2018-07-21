@@ -1,5 +1,6 @@
 from .BasePostingCrawler import BasePostingCrawler
 import json
+from bs4 import BeautifulSoup
 
 
 class RBCPostingCrawler(BasePostingCrawler):
@@ -14,7 +15,6 @@ class RBCPostingCrawler(BasePostingCrawler):
         end = raw.find(',"flashParams', start)
         json_data = json.loads(raw[start:end])
         posting_text = json_data['data']['posting']['description']
-        self.posting.set_text(posting_text)
-        soup = self.posting.get_soup()
+        soup = BeautifulSoup(posting_text, 'html.parser')
         raw = soup.get_text()
         return raw

@@ -12,8 +12,8 @@ class RecruitingInMotionPostingCrawler(BasePostingCrawler):
         posting_id = ParsingUtilities.get_value_between_strings(posting.url, 'b=', '&')
         url = 'https://www2.pcrecruiter.net/pcrbin/postingboard.aspx?action=detail&b=' + posting_id + \
               '&src=Indeed&utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed&referrer=&referrer='
-        response = NetworkUtilities.get_html(url, headers=self.headers)
-        posting.set_text(response.text)
+        page = NetworkUtilities.get_page(url, headers=self.headers)
+        posting.set_page(page)
         soup = posting.get_soup()
         attrs = {'property': 'og:description'}
         meta = soup.find('meta', attrs=attrs)

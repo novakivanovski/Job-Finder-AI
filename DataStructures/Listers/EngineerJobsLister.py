@@ -3,8 +3,8 @@ from DataStructures.Listers.BaseLister import BaseLister
 
 
 class EngineerJobsLister(BaseLister):
-    def __init__(self, listings_text):
-        super().__init__(listings_text, base_url='https://www.engineerjobs.com')
+    def __init__(self, base_url):
+        super().__init__(base_url)
 
     def get_listing_from_page(self, page):
         page_listings = []

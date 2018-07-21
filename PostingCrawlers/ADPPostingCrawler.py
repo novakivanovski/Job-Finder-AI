@@ -23,6 +23,6 @@ class ADPPostingCrawler(BasePostingCrawler):
         r = s.get(second_url)
         text = json.loads(r.text)['data']['description']
         page = Page(text, r.url)
-        posting.update_page(page)
+        posting.set_page(page)
         soup = posting.get_soup()
         return soup.get_text()

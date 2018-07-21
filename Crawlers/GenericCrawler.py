@@ -34,8 +34,8 @@ class GenericCrawler(BaseCrawler):
 
     def crawl_job_listing_page(self, page_number):
         url = self.get_page_url(page_number)
-        listing_html = NetworkUtilities.get_html(url)
-        return listing_html
+        listing_page = NetworkUtilities.get_page(url)
+        return listing_page
 
     def get_page_url(self, page_number):  # Override
         return ''
@@ -45,7 +45,7 @@ class GenericCrawler(BaseCrawler):
             entry_url = job.get_entry_url()
             response = NetworkUtilities.get(entry_url)
             response_url = response.url
-            job.set_description(response.text)
+            job.set_plaintext(response.text)
             job.set_url(response_url)
         except Exception as e:
             logging.error('No response crawling job posting ' + str(e))
@@ -59,8 +59,8 @@ class GenericCrawler(BaseCrawler):
 
         for page_num in range(self.num_pages):
             self.MultiThreader.add_thread(self.crawl_job_listing_page, page_num)
-        job_listings_queue = self.MultiThreader.schedule_threads()
-        return job_listings_queue
+        page_listings_queue = self.MultiThreader.schedule_threads()
+        return page_listings_queue
 
     def crawl_job_postings(self, jobs):
         num_jobs = len(jobs)
@@ -87,7 +87,7 @@ class GenericCrawler(BaseCrawler):
         try:
             if job.has_description():
                 description_crawler = self.description_crawler_factory.get(job)
-                raw_text = description_crawler.get_description()
+                raw_text = description_crawler.get_plaintext()
                 job.set_raw(raw_text)
             else:
                 logging.debug('Job has no description: ' + str(job.get_id()))

@@ -6,7 +6,7 @@ class TaleoPostingCrawler(BasePostingCrawler):
         super().__init__(posting)
 
     def get_description(self):
-        posting_text = self.posting.get_description()
+        posting_text = self.posting.get_text()
         search_string = "'descRequisition', "
         start = posting_text.find(search_string)
         if start != -1:  # taleo api

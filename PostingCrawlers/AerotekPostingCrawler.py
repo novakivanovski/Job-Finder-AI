@@ -20,7 +20,7 @@ class AerotekPostingCrawler(BasePostingCrawler):
                 page = NetworkUtilities.get_page(url, headers=self.headers)
             except Exception as e:
                 logging.error(e)
-        self.posting.update_page(page)
+        self.posting.set_page(page)
         soup = self.posting.get_soup()
         raw = soup.get_text()
         return raw

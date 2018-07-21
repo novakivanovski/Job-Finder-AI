@@ -5,16 +5,19 @@ class Posting:   # Acquired from PostingCrawler
     def __init__(self, listing_reference, page=None):
         self.page = page
         self.listing_reference = listing_reference
-        self.description = ''
+        self.plaintext = ''
 
     def get_soup(self):
         soup = BeautifulSoup(self.page.text, 'html.parser')
         return soup
 
-    def set_description(self, text):
-        self.description = text
+    def get_plaintext(self):
+        return self.plaintext
 
-    def update_page(self, page):
+    def set_plaintext(self, text):
+        self.plaintext = text
+
+    def set_page(self, page):
         self.page = page
 
     def get_url(self):
@@ -22,3 +25,4 @@ class Posting:   # Acquired from PostingCrawler
 
     def get_text(self):
         return self.page.text
+

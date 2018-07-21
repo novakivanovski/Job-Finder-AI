@@ -1,8 +1,0 @@
-Job title: Java/J2EE developers (Canada)
-Posting date: 7/18/2018
-Job Location: Kitchener
-Company: Diverse Lynx
-Entry point: https://www.engineerjobs.com/jobdetails.php?lnk=MBpgAck8Z_s-yHnp8_qlZJxCPjlXSKEWxroNVo0e0-oez4gxTAFrbp1vBahUF4xulnvn-iV1xepWiVUe_0rvtVA7dchMGg8BhUYhtHpud9hKTCnBX9zLVjPu9xdbEb48rHea11TEjzOZ7hFAsTzMmshSt0yPEf5D9luM6VHbdX7r12pxq80Bz3SRBPVqF6n64hS5OwX28pm03nKxB7s1EnDJfFPSoXGRM_yeG7HiwvfVNXw0u4z_p4_ODz60bk-lbz9HdkEFX3Jv6C29xZ13ZEyr9UQEheUNO6cCSDSHybEYbHatBbMswepAvzL7-TihylFrbjWP7kiqPNC_hFLp62_b3zReYRxFENhnAwN6AI5gwnjPjTJKzijqnGZrFEPLXEbhY7m2KiHzSzyqtRaZRz5SpC7MR3AeI2mnVu58_icIi1Onw1E7jzy5NGFZUz8xZzjN59L13OKXhKj6LiSx2YdO4zH0-W1u5ofd13LekGtQWRqYohfU9Ugsdt7hkl44lNvLUHu30z3h3DTWy4-YSqTzbOeoLaCdncWURKUcVv9PBugkJyVvGwpHCNOYGFX3_jCBqkziYQSmMFReAK9VtXX2Rw&isp=0&el=%2Fjobs%2Fsoftware-engineering%2Fcanada%2Fontario%2F%3Ff%3D1%26page%3D20&jk=RWNtfckcHTUUxrHm97xfZB3MHRL4LZ8SZ9l4HzBVty42x9MjgthSKw
-Job ID: 278
-Raw description:  they need Java/J2EE developers with Spring , MVC, Hibernate, Angular, HTML, webservices. If Dot net is there that will be a big plus but it is not a must experience level anything more than 5 years these candidates will be trained in PCF and other niche skills by the client
-Filtered keywords:[]

@@ -8,12 +8,11 @@ class EaglePostingCrawler(BasePostingCrawler):
         super().__init__(posting)
 
     def get_description(self):
-        posting_text = ''
+        page = None
         try:
             url = self.posting.get_url()
-            response = NetworkUtilities.get_html(url, headers=self.headers)
-            posting_text = response.text
+            page = NetworkUtilities.get_page(url, headers=self.headers)
         except Exception as e:
             logging.error(e)
-        self.posting.set_text(posting_text)
+        self.posting.set_page(page)
         return self.generic_search()

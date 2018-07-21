@@ -2,10 +2,16 @@ from abc import ABC, abstractmethod
 
 
 class BaseLister(ABC):
-    def __init__(self, pages, base_url=''):
-        self.pages = pages
+    def __init__(self, base_url):
+        self.pages = None
         self.base_url = base_url
-        self.listings = self.get_listings()
+
+    def add_pages(self, pages):
+        for page in pages:
+            self.add_page(page)
+
+    def add_page(self, page):
+        self.pages.append(page)
 
     def get_listings(self):
         total_listings = []

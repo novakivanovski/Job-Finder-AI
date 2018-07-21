@@ -1,35 +1,32 @@
-from DataStructures.Job import Job
-from Utilities import MultiThreader, QueueUnpacker, ParsingUtilities
+from Utilities import QueueUnpacker, ParsingUtilities
 import logging
-from DataStructures.Listers import ListerFactory
 from abc import ABC
+from DataStructures.Job import Job
 
 
 class BaseJobManager(ABC):
-    def __init__(self, crawler, listing_type):
+    def __init__(self, crawler, lister):
         self.jobs = []
         self.failed_jobs = []
         self.num_jobs = 0
         self.job_id = 0
         self.crawler = crawler
-        self.MultiThreader = MultiThreader.MultiThreader()
-        self.listing_type = listing_type  # (e.g. EngineerJobsListings)
+        self.lister = lister  # (e.g. EngineerJobsLister)
 
     def obtain_jobs(self): 
-        metadata = self.get_jobs_metadata()
-        jobs_with_metadata = self.make_jobs_from_metadata(metadata)
-        jobs_with_descriptions = self.update_jobs_with_descriptions(jobs_with_metadata)
-        logging.debug("Jobs with descriptions: " + str(len(jobs_with_descriptions)))
-        jobs = self.process_jobs(jobs_with_descriptions)
+        listings = self.get_job_listings()
+        postings = self.get_job_postings(listings)
+        logging.debug("Job postings with descriptions: " + str(len(postings)))
+        jobs = self.get_jobs_from_postings(postings)
         self.set_jobs(jobs)
         return jobs
 
-    def get_jobs_metadata(self):
-        job_listings_text_queue = self.crawler.crawl_job_listings()
-        job_listings_text = QueueUnpacker.unpack(job_listings_text_queue)
-        job_listings = ListerFactory.get(job_listings_text, self.listing_type)
-        jobs_metadata = job_listings.get_metadata()
-        return jobs_metadata
+    def get_job_listings(self):
+        page_listings_queue = self.crawler.crawl_job_listings()
+        page_listings = QueueUnpacker.unpack(page_listings_queue)
+        self.lister.add_pages(page_listings)
+        listings = self.lister.get_listings()
+        return listings
     
     def process_jobs(self, jobs):
         empty_jobs = ParsingUtilities.remove_and_get_empty(jobs)
@@ -39,19 +36,18 @@ class BaseJobManager(ABC):
             job.set_keywords(keywords)
         return jobs
             
-    def update_jobs_with_descriptions(self, jobs):
-        updated_job_queue = self.crawler.crawl_job_postings(jobs)
-        jobs_with_descriptions = QueueUnpacker.unpack(updated_job_queue)
-        updated_job_queue = self.crawler.crawl_job_descriptions(jobs_with_descriptions)
-        updated_jobs = QueueUnpacker.unpack(updated_job_queue)
-        return updated_jobs
+    def get_job_postings(self, listings):
+        posting_queue = self.crawler.crawl_job_postings(listings)
+        postings = QueueUnpacker.unpack(posting_queue)
+        postings_with_descriptions_queue = self.crawler.crawl_job_descriptions(postings)
+        postings_with_descriptions = QueueUnpacker.unpack(postings_with_descriptions_queue)
+        return postings_with_descriptions
 
-    def make_jobs_from_metadata(self, metadata):
+    @staticmethod
+    def get_jobs_from_postings(postings):
         jobs = []
-        for m in metadata:
-            job_id = self.generate_job_id()
-            m.set_id(job_id)
-            job = Job(m)
+        for posting in postings:
+            job = Job(posting)
             jobs.append(job)
         return jobs
 

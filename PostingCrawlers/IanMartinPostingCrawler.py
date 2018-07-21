@@ -15,8 +15,9 @@ class IanMartinPostingCrawler(BasePostingCrawler):
         url = base_url + 'start=0&count=1&where=id=' + posting_id +\
             '&fields=id,title,publishedCategory(id,name),address(city,state),employmentType,' \
             'dateLastPublished,publicDescription,isOpen,isPublic,isDeleted'
-        response = NetworkUtilities.get_html(url)
-        text = json.loads(response.text)['data'][0]['publicDescription']
-        self.posting.set_text(text)
+        page = NetworkUtilities.get_page(url)
+        text = json.loads(page.text)['data'][0]['publicDescription']
+        page.text = text
+        self.posting.set_page(page)
         raw = self.posting.get_soup().text
         return raw

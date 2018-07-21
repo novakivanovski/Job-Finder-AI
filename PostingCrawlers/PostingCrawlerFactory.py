@@ -1,15 +1,12 @@
 from Utilities import Loader
 import logging
+from PostingCrawlers.config import mapping
 
 
 class PostingCrawlerFactory:
     def __init__(self):
         self.indeed = 'ca.indeed.com'
-        self.crawlers = {'IndeedPostingCrawler': 'ca.indeed.com',
-                         'TalgroupPostingCrawler': 'talgroup.net',
-                         'WorkdayPostingCrawler': 'myworkdaypostings.com',
-                         'AerotekPostingCrawler': 'www.aplitrak.com',
-                         'GenericPostingCrawler': ''}
+        self.crawlers = mapping.crawler_map
         self.package_name = 'PostingCrawlers'
 
     def get(self, posting):
