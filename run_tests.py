@@ -1,3 +1,4 @@
+from Tests import database_test
 from Tests import system_test
 import logging
 
@@ -12,8 +13,11 @@ def setup_logger():
 
 
 if __name__ == '__main__':
+    run_system_test = False
     setup_logger()
-    system_test.run()
+    database_test.run()
+    if run_system_test:
+        system_test.run()
 
 
 
