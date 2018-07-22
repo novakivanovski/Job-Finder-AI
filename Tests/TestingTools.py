@@ -12,7 +12,6 @@ def assert_equal(actual, expected):
     logging.debug(assert_string)
     if not result:
         raise AssertionError
-    return result
 
 
 def get_test_job():

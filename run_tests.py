@@ -1,5 +1,6 @@
 from Tests import database_test
 from Tests import system_test
+from Tests import resume_test
 import logging
 import os
 
@@ -14,15 +15,24 @@ def setup_logger():
     logging.debug('Logger initialized.')
 
 
+def get_tests():
+    tests = {system_test.run: False,
+             database_test.run: False,
+             resume_test.run: True}
+    return tests
+
+
 if __name__ == '__main__':
-    run_system_test = False
+    test_results = "ALL TESTS PASSED"
     setup_logger()
+    run_test = get_tests()
     try:
-        database_test.run()
-        if run_system_test:
-            system_test.run()
-    except AssertionError as e:
-        print(e)
+        for test_function in run_test:
+            if run_test[test_function]:
+                test_function()
+    except AssertionError:
+        test_results = "TEST FAILURE"
+    logging.info('Results: ' + test_results)
 
 
 
