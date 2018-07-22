@@ -11,8 +11,9 @@ class ADPPostingCrawler(BasePostingCrawler):
     
     def get_description(self):
         posting = self.posting
-        posting_id = ParsingUtilities.get_value_between_strings(posting.url, 'postingId=', '&')
-        client = ParsingUtilities.get_value_between_strings(posting.url, 'client=', '&')
+        posting_url = posting.get_url()
+        posting_id = ParsingUtilities.get_value_between_strings(posting_url, 'postingId=', '&')
+        client = ParsingUtilities.get_value_between_strings(posting_url, 'client=', '&')
         first_url = 'https://workforcenow.adp.com/postings/apply/common/careercenter.faces?client=' + client + \
                     '&op=0&locale=en_US&mode=LIVE&access=E&postingId=' + posting_id + \
                     '6&source=IN&A=N&dojo.preventCache=0'

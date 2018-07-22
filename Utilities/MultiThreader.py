@@ -2,7 +2,7 @@ from multiprocessing import Manager
 from threading import Thread
 import logging
 from Utilities import QueueMonitor
-import traceback
+from Utilities.ApplicationExceptions import MultiThreaderError
 
 
 class MultiThreader:
@@ -22,18 +22,16 @@ class MultiThreader:
         try:
             thread = Thread(target=self.wrap_thread, args=args, kwargs=kwargs)
             self.inactive_threads.append(thread)
-        except Exception as e:
-            logging.error('Unable to create thread: ' + str(e))
+        except Exception:
+            raise MultiThreaderError('Unable to add thread to scheduler.')
 
     def wrap_thread(self, func, *args, **kwargs):
+        result = None
         try:
-            queue = self.queue
             result = func(*args, **kwargs)
-            if result:
-                queue.put(result)
         except Exception as e:
             logging.error('Error executing thread: ' + str(e))
-            logging.debug(logging.error(traceback.print_exc()))
+        self.queue.put(result)
 
     def schedule_threads(self):
         thread_chunks = self.chunk_threads()
@@ -54,20 +52,17 @@ class MultiThreader:
             self.join_threads(chunk)
 
     def run_thread(self, thread):
-        try:
-            self.inactive_threads.remove(thread)
-            self.active_threads.append(thread)
-            thread.start()
-        except Exception as e:
-            logging.error('Unable to start thread ' + str(e))
+        self.inactive_threads.remove(thread)
+        self.active_threads.append(thread)
+        thread.start()
 
     @staticmethod
     def join_threads(chunk):
         try:
             for thread in chunk:
                 thread.join()
-        except Exception as e:
-            logging.error('Unable to join thread ' + str(e))
+        except Exception:
+            raise MultiThreaderError('Unable to join threads.')
 
     def join_monitor(self):
         if self.monitor:
@@ -81,8 +76,8 @@ class MultiThreader:
         try:
             thread.stop()
             self.active_threads.remove(thread)
-        except Exception as e:
-            logging.error('Unable to kill thread: ' + str(e))
+        except Exception:
+            raise MultiThreaderError('Unable to kill thread.')
 
     def suspend_threads(self):
         for thread in self.active_threads:
@@ -93,35 +88,11 @@ class MultiThreader:
             thread.stop()
             self.inactive_threads.append(thread)
             self.active_threads.remove(thread)
-        except Exception as e:
-            logging.error('Error while trying to suspend thread: ' + str(e))
+        except Exception:
+            raise MultiThreaderError('Unable to suspend thread.')
 
     def clear_queue(self):
         self.queue.clear()
 
     def clear_inactive_threads(self):
         self.inactive_threads = []
-
-    def add_to_queue(self, item):
-        try:
-            self.queue.put(item)
-        except Exception as e:
-            logging.error('Unable to put item on queue:' + str(e))
-
-    def consume_queue(self):
-        queue_items = []
-        try:
-            while not self.queue.empty():
-                item = self.queue.get()
-                queue_items.append(item)
-        except Exception as e:
-            logging.error('Error while consuming queue' + str(e))
-        return queue_items
-
-    def get_from_queue(self):
-        item = None
-        try:
-            item = self.queue.get()
-        except Exception as e:
-            logging.error('Unable to retrieve item from queue: ' + str(e))
-        return item

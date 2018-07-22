@@ -12,3 +12,6 @@ class Listing:   # Acquired from Crawler - general info
 
     def get_url(self):
         return self.url
+
+    def get_id(self):
+        return self.job_id

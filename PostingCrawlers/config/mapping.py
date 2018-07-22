@@ -17,5 +17,6 @@ crawler_map = {
     "IanMartinPostingCrawler": "careers.ianmartin.com",
     "TeksystemsPostingCrawler": "www.teksystems.com",
     "HireGooglePostingCrawler": "hire.withgoogle.com",
-    "GooglePostingCrawler": "careers.google.com"
+    "GooglePostingCrawler": "careers.google.com",
+    "GenericPostingCrawler": ""
 }

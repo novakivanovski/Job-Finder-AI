@@ -1,6 +1,7 @@
 from nltk.tokenize import word_tokenize
 import logging
 
+
 with open('keywords.txt', 'r') as keywords_file:
     keywords_data = keywords_file.read()
     keywords = keywords_data.split('\n')
@@ -8,8 +9,15 @@ with open('keywords.txt', 'r') as keywords_file:
 logging.debug('Imported ParsingUtilities with keywords: ' + str(keywords))
 
 
+def update_keywords(jobs):
+    for job in jobs:
+        job_keywords = get_keywords(job)
+        job.set_keywords(job_keywords)
+    return jobs
+
+
 def get_keywords(job):
-    raw_text = job.get_raw() + ' ' + job.get_title()
+    raw_text = job.get_plaintext() + ' ' + job.get_title()
     unique_text_list = tokenize(raw_text)
     job_keywords = extract_keywords(unique_text_list)
     return job_keywords
@@ -24,6 +32,11 @@ def extract_keywords(text_list):
 
 
 def remove_and_get_empty(jobs):
+    pass
+
+
+'''''''''
+def remove_and_get_empty(jobs):
     empty_jobs = []
     for job in jobs:
         job_keywords = job.get_keywords()
@@ -31,7 +44,7 @@ def remove_and_get_empty(jobs):
             jobs.remove(job)
             empty_jobs.append(job)
     return empty_jobs
-
+'''''''''
 
 def get_value_between_strings(text, start_string, end_string):
     start = text.find(start_string) + len(start_string)

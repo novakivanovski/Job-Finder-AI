@@ -3,7 +3,6 @@ import pickle
 import logging
 from nltk import word_tokenize
 from enum import Enum
-from bs4 import BeautifulSoup
 
 
 class Path(Enum):
@@ -17,7 +16,6 @@ class Storage:
         self.base_dir = os.path.join(project_directory, 'Storage')
         self.cache_dir = os.path.join(self.base_dir, 'cache')
         self.jobs_dir = os.path.join(self.cache_dir, 'jobs')
-        self.job_text_dir = os.path.join(self.jobs_dir, 'text')
         self.listings_dir = os.path.join(self.cache_dir, 'listings')
 
         self.train_dir = os.path.join(self.jobs_dir, 'training')
@@ -33,21 +31,14 @@ class Storage:
         for job in jobs:
             self.store_job(job)
 
-    def store_job(self, original_job):
-        job = self.unsoup_job(original_job)
+    def store_job(self, job):
         job_id = str(job.get_id())
         job_txt = job_id + '.txt'
         job_pickle = job_id + '.pickle'
-        text_file_path = os.path.join(self.job_text_dir, job_txt)
+        listing_file_path = os.path.join(self.listings_dir, job_txt)
         object_file_path = os.path.join(self.jobs_dir, job_pickle)
-        self.store_job_text(text_file_path, job)
+        self.store_job_listing(listing_file_path, job)
         self.store_object(object_file_path, job)
-
-    @staticmethod
-    def unsoup_job(job):
-        job_copy = job
-        job_copy.description.soup = None
-        return job_copy
 
     @staticmethod
     def store_object(file_path, obj):
@@ -61,7 +52,7 @@ class Storage:
         pickle_paths = self.get_pickles_in_folder(self.jobs_dir)
         jobs = []
         for pickle_path in pickle_paths:
-            job = self.retrieve_job(pickle_path)
+            job = self.retrieve_object(pickle_path)
             jobs.append(job)
         return jobs
 
@@ -78,11 +69,6 @@ class Storage:
                 files_out.append(file)
         return files_out
 
-    def retrieve_job(self, pickle_path):
-        job = self.retrieve_object(pickle_path)
-        job.description.soup = BeautifulSoup(job.description.text, 'html.parser')
-        return job
-
     @staticmethod
     def retrieve_object(file_path):
         obj = None
@@ -93,25 +79,21 @@ class Storage:
                 logging.error('Error while retrieving object: ' + str(e))
         return obj
 
-    def store_job_text(self, file_path, job):
+    def store_job_listing(self, file_path, job):
         try:
             with open(file_path, 'w', encoding='utf-8') as file:
-                self.dump_job_text(file, job)
+                self.dump_job_listing(file, job.listing)
         except Exception as e:
-            logging.error('Error while storing text: ' + str(e))
+            logging.error('Error while storing listing: ' + str(e))
 
     @staticmethod
-    def dump_job_text(file, job):
-        metadata = job.metadata
-        description = job.description
-        file.write('Job title: ' + metadata.title + '\n')
-        file.write('Posting date: ' + metadata.date + '\n')
-        file.write('Job Location: ' + metadata.location + '\n')
-        file.write('Company: ' + metadata.company + '\n')
-        file.write('Entry point: ' + metadata.entry_url + '\n')
-        file.write('Job ID: ' + str(metadata.job_id) + '\n')
-        file.write('Raw description: ' + description.raw + '\n')
-        file.write('Filtered keywords:' + str(description.keywords) + '\n')
+    def dump_job_listing(file, listing):
+        file.write('Job title: ' + listing.title + '\n')
+        file.write('Posting date: ' + listing.date + '\n')
+        file.write('Job Location: ' + listing.location + '\n')
+        file.write('Company: ' + listing.company + '\n')
+        file.write('Listing URL: ' + listing.url + '\n')
+        file.write('Job ID: ' + str(listing.job_id) + '\n')
 
     @staticmethod
     def write_formatted_text(file, text, max_words_per_line=25):
@@ -132,7 +114,7 @@ class Storage:
 
     def clear_jobs(self):
         self.clear_files(self.jobs_dir)
-        self.clear_files(self.job_text_dir)
+        self.clear_files(self.listings_dir)
 
     def clear_directory(self, directory):
         files = self.get_items_from_path(directory, item_type=Path.ALL)
@@ -231,13 +213,3 @@ class Storage:
                 keywords_list.append(keywords)
         return keywords_list
 
-    def store_listings(self, text_list):
-        self.clear_files(self.listings_dir)
-        self.create_directory(self.listings_dir)
-        for i, text in enumerate(text_list):
-            file_path = os.path.join(self.listings_dir, str(i) + '.txt')
-            try:
-                with open(file_path, 'w', encoding='utf-8') as file:
-                    file.write(text)
-            except Exception as e:
-                logging.error('Error while storing text: ' + str(e))

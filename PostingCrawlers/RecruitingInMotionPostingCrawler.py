@@ -9,7 +9,7 @@ class RecruitingInMotionPostingCrawler(BasePostingCrawler):
     
     def get_description(self):
         posting = self.posting
-        posting_id = ParsingUtilities.get_value_between_strings(posting.url, 'b=', '&')
+        posting_id = ParsingUtilities.get_value_between_strings(posting.get_url(), 'b=', '&')
         url = 'https://www2.pcrecruiter.net/pcrbin/postingboard.aspx?action=detail&b=' + posting_id + \
               '&src=Indeed&utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed&referrer=&referrer='
         page = NetworkUtilities.get_page(url, headers=self.headers)

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import logging
 from DataStructures.Page import Page
+from Utilities.ApplicationExceptions import NetworkError
 
 
 def get_page(url, *args, **kwargs):
@@ -11,19 +11,16 @@ def get_page(url, *args, **kwargs):
 
 
 def get_html(url, *args, **kwargs):
-    html_text = ''
     response = get(url, *args, **kwargs)
-    if response:
-        html_text = response.text
+    html_text = response.text
     return html_text
 
 
 def get_session():
-    session = None
     try:
         session = requests.session()
-    except Exception as e:
-        logging.error('Unable to establish session: ' + str(e))
+    except Exception:
+        raise NetworkError('Error getting session.')
     return session
 
 
@@ -37,7 +34,6 @@ def get(url, *args, **kwargs):
     kwargs['timeout'] = 5
     try:
         response = requests.get(url, *args, **kwargs)
-    except Exception as e:
-        logging.error('Network error: ' + str(e))
-        raise
+    except Exception:
+        raise NetworkError('Error getting response.')
     return response

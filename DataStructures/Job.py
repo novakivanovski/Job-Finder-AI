@@ -2,9 +2,10 @@ class Job:
     def __init__(self, posting):
         self.posting = posting
         self.listing = posting.listing_reference
-        self.keywords = None
-        self.raw = None
-        self.pased = False
+        self.plaintext = ''
+        self.keywords = []
+        self.passed = False
+        self.score = 0
 
     def get_id(self):
         return self.listing.job_id
@@ -18,32 +19,30 @@ class Job:
     def get_posting_text(self):
         return self.posting.get_text()
 
-    def set_description(self, text):
-        self.posting.set_plaintext(text)
-
     def set_url(self, url):
-        self.posting.url = url
+        self.posting.page.url = url
 
     def get_entry_url(self):
-        return self.listing.url
+        return self.listing.get_url()
 
     def get_url(self):
-        return self.posting.url
+        return self.posting.get_url()
 
-    def get_raw(self):
-        return self.posting.plaintext
+    def get_plaintext(self):
+        return self.plaintext
 
     def get_title(self):
         return self.listing.title
 
     def get_keywords(self):
-        return self.posting.keywords
+        return self.keywords
 
     def set_keywords(self, keywords):
-        self.posting.keywords = keywords
+        self.keywords = keywords
 
-    def set_raw(self, text):
-        self.posting.plaintext = text
+    def set_plaintext(self, text):
+        self.plaintext = text
 
     def has_description(self):
-        return self.get_posting_text() is not ''
+        description = self.get_posting_text()
+        return description is not None and description is not ''
