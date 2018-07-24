@@ -5,7 +5,7 @@ import os
 
 def test_constructor(config_path):
     my_resume = ResumeConfig(config_path)
-    test_highlights =  ["Over 1 year of professional software engineering experience", "Excellent verbal and written communication skills, problem solving ability"]
+    test_highlights = ["Over 1 year of professional software engineering experience", "Excellent verbal and written communication skills, problem solving ability"]
     test_projects = ["Contributions to open source software development in Java and Python", "Software development in C++ for eye tracking robot design project"]
     test_experience = ["Software Verification Engineer", "Junior Engineer"]
     TestingTools.assert_equal(my_resume.title, 'Novak Ivanovski')
@@ -19,6 +19,6 @@ def test_constructor(config_path):
 
 
 def run():
-    config_path = os.path.join('Tests', 'resume_config.json')
+    config_path = os.path.join('config', 'resume_config.json')
     test_constructor(config_path)
 

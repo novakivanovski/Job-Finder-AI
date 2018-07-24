@@ -1,6 +1,7 @@
 from Tests import database_test
 from Tests import system_test
 from Tests import resume_test
+from Tests import stats_test
 import logging
 import os
 
@@ -18,7 +19,8 @@ def setup_logger():
 def get_tests():
     tests = {system_test.run: False,
              database_test.run: False,
-             resume_test.run: True}
+             resume_test.run: False,
+             stats_test.run: True}
     return tests
 
 
