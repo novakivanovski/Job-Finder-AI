@@ -19,7 +19,7 @@ class Stats:
     def load_keywords(self):
         keywords = []
         with open(self.keywords_path, 'r') as json_file:
-            keyword_map = json.loads(json_file.read())
+            keyword_map = json.load(json_file)
         for word, word_probability in keyword_map.items():
             k = Keyword(word, word_probability["passed"], word_probability["failed"])
             keywords.append(k)

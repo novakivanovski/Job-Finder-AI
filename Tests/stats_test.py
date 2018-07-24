@@ -17,3 +17,4 @@ def test_constructor(stats_instance):
 def run():
     stats_instance = Stats()
     test_constructor(stats_instance)
+
