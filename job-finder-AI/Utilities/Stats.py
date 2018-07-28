@@ -7,7 +7,7 @@ from DataStructures.Keyword import Keyword
 
 class Stats:
     def __init__(self):
-        self.keywords_path = os.path.join('config', 'keywords.json')
+        self.keywords_path = os.path.join('Storage', 'config', 'keywords.json')
         self.keywords = self.load_keywords()
         self.probability_pass = 0
         self.probability_fail = 1

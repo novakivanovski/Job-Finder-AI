@@ -19,7 +19,7 @@ class JobDB(Base):
 
 class Database:
     def __init__(self, project_path):
-        self.path = os.path.join(project_path, 'Storage', 'Database', 'database.db')
+        self.path = os.path.join(project_path, 'Storage', 'config', 'database.db')
         engine = self.get_engine(self.path)
         Base.metadata.create_all(engine)
         self.session = self.get_session(engine)

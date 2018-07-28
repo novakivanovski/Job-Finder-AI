@@ -28,6 +28,7 @@ class Storage:
     def store_jobs(self, jobs):
         self.clear_jobs()
         self.create_directory(self.jobs_dir)
+        self.create_directory(self.listings_dir)
         for job in jobs:
             self.store_job(job)
 

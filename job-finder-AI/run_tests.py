@@ -17,10 +17,10 @@ def setup_logger():
 
 
 def get_tests():
-    tests = {system_test.run: False,
+    tests = {system_test.run: True,
              database_test.run: False,
              resume_test.run: False,
-             stats_test.run: True}
+             stats_test.run: False}
     return tests
 
 

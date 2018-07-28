@@ -1,4 +1,4 @@
-from Utilities import QueueUnpacker, ParsingUtilities
+from Utilities import QueueUnpacker, ParseUtility
 import logging
 from DataStructures.Job import Job
 
@@ -11,6 +11,7 @@ class JobManager:
         self.job_id = 0
         self.crawler = crawler
         self.lister = lister
+        self.parse_utility = ParseUtility.ParseUtility()
 
     def get_jobs(self):
         listings = self.get_job_listings()
@@ -29,9 +30,9 @@ class JobManager:
         return listings
 
     def update_jobs_with_keywords(self, jobs):
-        self.failed_jobs = ParsingUtilities.remove_and_get_empty(jobs)
+        self.failed_jobs = self.parse_utility.remove_and_get_empty(jobs)
         logging.debug('Failed jobs: ' + str(self.failed_jobs))
-        jobs_with_keywords = ParsingUtilities.update_keywords(jobs)
+        jobs_with_keywords = self.parse_utility.update_keywords(jobs)
         return jobs_with_keywords
 
     def get_job_postings(self, listings):
