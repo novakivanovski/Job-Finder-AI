@@ -10,9 +10,9 @@ def setup_logger():
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     logging_file = os.path.join('Tests', 'test.log')
-    fh = logging.FileHandler(logging_file, 'w')
-    fh.setLevel(logging.DEBUG)
-    logger.addHandler(fh)
+    file_handle = logging.FileHandler(logging_file, 'w')
+    file_handle.setLevel(logging.DEBUG)
+    logger.addHandler(file_handle)
     logging.debug('Logger initialized.')
 
 
