@@ -1,6 +1,6 @@
 from time import time
 from JobManager import JobManager
-from Storage.Storage import Storage
+from Storage.LocalStorage import LocalStorage
 from Crawlers import EngineerJobsCrawler
 from DataStructures.Listers import EngineerJobsLister
 import os
@@ -9,7 +9,7 @@ import os
 def run():
     start = time()
     project_path = os.getcwd()
-    storage = Storage(project_path)
+    storage = LocalStorage(project_path)
     crawler = EngineerJobsCrawler.EngineerJobsCrawler()
     lister = EngineerJobsLister.EngineerJobsLister()
     manager = JobManager(crawler, lister)

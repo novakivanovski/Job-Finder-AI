@@ -3,7 +3,7 @@ import pickle
 import logging
 from nltk import word_tokenize
 from enum import Enum
-
+import json
 
 class Path(Enum):
     FILE = 0
@@ -11,7 +11,7 @@ class Path(Enum):
     ALL = 2
 
 
-class Storage:
+class LocalStorage:
     def __init__(self, project_directory):
         self.base_dir = os.path.join(project_directory, 'Storage')
         self.cache_dir = os.path.join(self.base_dir, 'cache')
@@ -213,4 +213,18 @@ class Storage:
                     keywords.remove(',')
                 keywords_list.append(keywords)
         return keywords_list
+
+    @staticmethod
+    def get_json_data(json_path):
+        with open(json_path, 'r') as json_file:
+            data = json.load(json_file)
+        return data
+
+    @staticmethod
+    def store_json_data(json_path, data):
+        with open(json_path, 'w') as json_file:
+            json.dump(json_file, data)
+
+
+
 

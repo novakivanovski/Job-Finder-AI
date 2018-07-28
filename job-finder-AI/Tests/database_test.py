@@ -4,13 +4,13 @@ from Tests import TestingTools
 
 
 def delete_db(project_path):
-    database_path = os.path.join(project_path, 'Storage', 'Database', 'database.db')
+    database_path = os.path.join(project_path, 'Storage', 'config', 'database.db')
     if os.path.isfile(database_path):
         os.unlink(database_path)
 
 
 def test_constructor(database):
-    expected_path = r'C:\Users\Novak\projects\Job-Finder-AI\Storage\Database\database.db'
+    expected_path = r'C:\Users\n\projects\job-finder-AI\Storage\config\database.db'
     TestingTools.assert_equal(database.path, expected_path)
 
 

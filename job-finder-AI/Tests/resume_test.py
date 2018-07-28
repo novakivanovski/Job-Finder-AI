@@ -19,6 +19,6 @@ def test_constructor(config_path):
 
 
 def run():
-    config_path = os.path.join('config', 'resume_config.json')
+    config_path = os.path.join('Storage', 'config', 'resume_data.json')
     test_constructor(config_path)
 
