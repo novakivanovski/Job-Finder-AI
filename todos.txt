@@ -1,0 +1,2 @@
+More comprehensive Stats testing - need to show math is correct
+Resume development - implement code from laptop
