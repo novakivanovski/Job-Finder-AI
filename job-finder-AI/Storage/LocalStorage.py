@@ -4,6 +4,7 @@ import logging
 from nltk import word_tokenize
 from enum import Enum
 import json
+from Utilities.ApplicationExceptions import StorageError
 
 class Path(Enum):
     FILE = 0
@@ -224,6 +225,14 @@ class LocalStorage:
     def store_json_data(json_path, data):
         with open(json_path, 'w') as json_file:
             json.dump(json_file, data)
+
+    @staticmethod
+    def get_config(file_name):
+        file_path = os.path.join(os.getcwd(), 'Storage', 'config', file_name)
+        if not os.path.isfile(file_path):
+            raise StorageError('File path does not exist: ' + file_path)
+        return file_path
+
 
 
 

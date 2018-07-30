@@ -1,10 +1,10 @@
-from DataStructures.ResumeConfig import ResumeConfig
+from DataStructures.Resume import ResumeConfig
+from Utilities.ResumeParser import ResumeParser
 from Tests import TestingTools
-import os
 
 
-def test_constructor(config_path):
-    my_resume = ResumeConfig(config_path)
+def test_constructor():
+    my_resume = ResumeConfig()
     test_highlights = ["Over 1 year of professional software engineering experience", "Excellent verbal and written communication skills, problem solving ability"]
     test_projects = ["Contributions to open source software development in Java and Python", "Software development in C++ for eye tracking robot design project"]
     test_experience = ["Software Verification Engineer", "Junior Engineer"]
@@ -19,6 +19,9 @@ def test_constructor(config_path):
 
 
 def run():
-    config_path = os.path.join('Storage', 'config', 'resume_data.json')
-    test_constructor(config_path)
+    r = ResumeParser()
+    education = r.get_section_data('Education')
+    print(education)
+    experience = r.get_section_data('Experience')
+    print(experience)
 

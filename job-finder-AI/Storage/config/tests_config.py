@@ -5,8 +5,8 @@ import Tests.system_test
 
 run_test = {
   'Database': False,
-  'Resume': False,
-  'Stats': True,
+  'Resume': True,
+  'Stats': False,
   'System': False
 }
 

@@ -1,2 +1,21 @@
 More comprehensive Stats testing - need to show math is correct
-Resume development - implement code from laptop
+
+
+Resume parsing
+------------------------
+Common section names:
+- Objective
+- Qualifications
+- Education
+- Experience
+- Volunteer Experience
+- Activities
+- Awards
+- Skills
+
+Links to lists of section headers:
+https://jobmob.co.il/blog/resume-section-headings-titles/
+https://www.uwsuper.edu/career/students/upload/Resume-Section-Headings.pdf
+https://zety.com/blog/resume-sections
+
+

@@ -53,31 +53,24 @@ class Stats:
 
         for job in jobs:
             self.number_jobs += 1
-            number_keywords = len(job.keywords)
-            
             if job.passed:
                 self.number_jobs_passed += 1
-                self.number_keywords_passed += number_keywords
             else:
                 self.number_jobs_failed += 1
-                self.number_keywords_failed += number_keywords
 
             for keyword in self.keywords:
                 keyword.pass_count += self.keyword_passed(job, keyword)
                 keyword.fail_count += self.keyword_failed(job, keyword)
 
-        for keyword in self.keywords:  # divide by number_total words to get prob
-            if self.number_keywords_passed > 0:
-                keyword.set_pass_probability(self.number_keywords_passed)
-            if self.number_keywords_failed > 0:
-                keyword.set_fail_probability(self.number_keywords_failed)
+        if not self.number_jobs or not self.number_jobs_failed or not self.number_jobs_passed:
+            raise StatsError('Insufficient training data supplied.')
 
-        if not self.number_jobs:
-            raise StatsError('No training data supplied.')
+        for keyword in self.keywords:
+            keyword.set_pass_probability(self.number_jobs_passed)
+            keyword.set_fail_probability(self.number_jobs_failed)
 
         self.job_pass_probability = self.number_jobs_passed / self.number_jobs
         self.job_fail_probability = self.number_jobs_failed / self.number_jobs
-
         self.save_training_data()
 
     def classify(self, job):

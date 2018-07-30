@@ -1,3 +1,26 @@
+import os
+from Storage.LocalStorage import LocalStorage
+
+
+class ResumeConfig:
+    def __init__(self):
+        config_file_path = os.path.join('Storage', 'config', 'resume_data.json')
+        config = self.load_config(config_file_path)
+        self.title = config['Title']
+        self.email = config['Email']
+        self.phone_number = config['Phone']
+        self.website = config['Website']
+        self.highlights = config['Highlights']
+        self.education = config['Education']
+        self.projects = config['Projects']
+        self.experience = config['Experience']
+
+    @staticmethod
+    def load_config(config_file_path):
+        resume_config = LocalStorage.get_json_data(config_file_path)
+        return resume_config
+
+
 class Item:
     def __init__(self, text, font_size=12):
         self.text = text
