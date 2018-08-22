@@ -10,9 +10,12 @@ class ParseUtility:
 
     @staticmethod
     def load_keywords(path):
-        keywords_path = os.path.join(path, 'keywords.json')
+        keywords_path = os.path.join(path, 'keyword_data.json')
+        keywords = []
         with open(keywords_path, 'r') as keywords_file:
-            keywords = json.load(keywords_file)
+            keyword_data = json.load(keywords_file)
+        for keyword in keyword_data:
+            keywords.append(keyword)
         return keywords
 
     def update_keywords(self, jobs):

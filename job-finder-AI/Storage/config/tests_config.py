@@ -2,12 +2,14 @@ import Tests.database_test
 import Tests.resume_test
 import Tests.stats_test
 import Tests.system_test
+import Tests.gui_test
 
 run_test = {
   'Database': False,
   'Resume': True,
   'Stats': False,
-  'System': False
+  'System': False,
+  'GUI': False
 }
 
 
@@ -15,7 +17,8 @@ test_entry_function = {
   'Database': Tests.database_test.run,
   'Resume': Tests.resume_test.run,
   'Stats': Tests.stats_test.run,
-  'System': Tests.system_test.run
+  'System': Tests.system_test.run,
+  'GUI': Tests.gui_test.run
 }
 
 

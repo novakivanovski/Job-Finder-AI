@@ -7,6 +7,7 @@ class QueueMonitor:
         self.queue = queue
         self.total_size = total_size
         self.max_stale_time = 30
+        self.completed = False
 
     def run(self):
         current_size = self.queue.qsize()
@@ -17,6 +18,7 @@ class QueueMonitor:
             last_update_time = self.get_last_update_time(last_update_time, previous_size, current_size)
             logging.debug('Queue status: ' + str(current_size) + '/' + str(self.total_size))
             sleep(1)
+        self.completed = True
 
     @staticmethod
     def get_last_update_time(last_update_time, previous_size, current_size):
@@ -32,6 +34,13 @@ class QueueMonitor:
             logging.error('Queue is stale for ' + str(current_stale_time) + 'seconds')
         return is_stale
 
+    def percent_complete(self):
+        current_size = self.queue.qsize()
+        total_size = self.total_size
+        return round(current_size / total_size, 2)
+
+    def is_completed(self):
+        return self.completed
 
 
 

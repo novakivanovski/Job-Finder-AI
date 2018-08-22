@@ -3,13 +3,11 @@ from JobManager import JobManager
 from Storage.LocalStorage import LocalStorage
 from Crawlers import EngineerJobsCrawler
 from DataStructures.Listers import EngineerJobsLister
-import os
 
 
 def run():
     start = time()
-    project_path = os.getcwd()
-    storage = LocalStorage(project_path)
+    storage = LocalStorage()
     crawler = EngineerJobsCrawler.EngineerJobsCrawler()
     lister = EngineerJobsLister.EngineerJobsLister()
     manager = JobManager(crawler, lister)

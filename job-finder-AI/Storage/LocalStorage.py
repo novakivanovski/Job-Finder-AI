@@ -6,6 +6,7 @@ from enum import Enum
 import json
 from Utilities.ApplicationExceptions import StorageError
 
+
 class Path(Enum):
     FILE = 0
     FOLDER = 1
@@ -13,8 +14,8 @@ class Path(Enum):
 
 
 class LocalStorage:
-    def __init__(self, project_directory):
-        self.base_dir = os.path.join(project_directory, 'Storage')
+    def __init__(self):
+        self.base_dir = os.path.join('Storage')
         self.cache_dir = os.path.join(self.base_dir, 'cache')
         self.jobs_dir = os.path.join(self.cache_dir, 'jobs')
         self.listings_dir = os.path.join(self.cache_dir, 'listings')
@@ -27,7 +28,7 @@ class LocalStorage:
         self.job_object_name = 'job.pickle'
 
     def store_jobs(self, jobs):
-        self.clear_jobs()
+        self.clear_cache()
         self.create_directory(self.jobs_dir)
         self.create_directory(self.listings_dir)
         for job in jobs:
@@ -113,10 +114,6 @@ class LocalStorage:
         except Exception as e:
             logging.error('Error while retrieving text file: ' + str(e))
         return text
-
-    def clear_jobs(self):
-        self.clear_files(self.jobs_dir)
-        self.clear_files(self.listings_dir)
 
     def clear_directory(self, directory):
         files = self.get_items_from_path(directory, item_type=Path.ALL)
@@ -204,15 +201,15 @@ class LocalStorage:
     def get_jobs(directory, f):
         keywords_list = []
         for file in os.listdir(directory):
-                file_path = os.path.join(directory, file)
-                file = open(file_path, 'r', encoding='utf-8')
-                keywords_text = file.readlines()[1]
-                keywords = word_tokenize(keywords_text)
-                f.find_csharp(keywords)
-                keywords = list(set(keywords))
-                if len(keywords):
-                    keywords.remove(',')
-                keywords_list.append(keywords)
+            file_path = os.path.join(directory, file)
+            file = open(file_path, 'r', encoding='utf-8')
+            keywords_text = file.readlines()[1]
+            keywords = word_tokenize(keywords_text)
+            f.find_csharp(keywords)
+            keywords = list(set(keywords))
+            if len(keywords):
+                keywords.remove(',')
+            keywords_list.append(keywords)
         return keywords_list
 
     @staticmethod
@@ -224,14 +221,35 @@ class LocalStorage:
     @staticmethod
     def store_json_data(json_path, data):
         with open(json_path, 'w') as json_file:
-            json.dump(json_file, data)
+            json.dump(data, json_file)
 
     @staticmethod
-    def get_config(file_name):
+    def get_config_file_text(file_name):
+        file_path = LocalStorage.get_config_file_path(file_name)
+        text = LocalStorage.retrieve_text(file_path)
+        return text
+
+    @staticmethod
+    def get_config_file_path(file_name):
         file_path = os.path.join(os.getcwd(), 'Storage', 'config', file_name)
         if not os.path.isfile(file_path):
             raise StorageError('File path does not exist: ' + file_path)
         return file_path
+
+    @staticmethod
+    def store_json_config(file_name, data):
+        file_path = os.path.join(os.getcwd(), 'Storage', 'config', file_name)
+        LocalStorage.store_json_data(file_path, data)
+
+    @staticmethod
+    def read_json_config(file_name):
+        file_path = LocalStorage.get_config_file_path(file_name)
+        data = LocalStorage.get_json_data(file_path)
+        return data
+
+    def clear_cache(self):
+        self.clear_files(self.jobs_dir)
+        self.clear_files(self.listings_dir)
 
 
 

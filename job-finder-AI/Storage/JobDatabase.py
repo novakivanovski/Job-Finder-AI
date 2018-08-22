@@ -7,6 +7,13 @@ from sqlalchemy.orm import sessionmaker
 Base = declarative_base()
 
 
+class UserProfile(Base):
+    __tablename__ = 'UserProfile'
+    username = Column(String(12), primary_key=True)
+    password = Column(String(16), nullable=False)
+    settings = Column(String, nullable=True)
+
+
 class JobDB(Base):
     __tablename__ = 'Job'
     job_id = Column(Integer, primary_key=True)

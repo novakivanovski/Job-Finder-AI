@@ -91,6 +91,11 @@ class GenericCrawler(BaseCrawler):
             logging.error('Error crawling job description: ' + str(e))
         return job
 
+    def get_percent_complete(self):
+        if not self.MultiThreader.monitor:
+            return 0
+        return self.MultiThreader.monitor.percent_complete()
+
 
 
 

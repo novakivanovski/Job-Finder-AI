@@ -1,5 +1,5 @@
 More comprehensive Stats testing - need to show math is correct
-
+Currently working on implemeting resume data structure and json conversion
 
 Resume parsing
 ------------------------
