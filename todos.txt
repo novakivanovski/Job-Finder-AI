@@ -1,5 +1,6 @@
 More comprehensive Stats testing - need to show math is correct
-Currently working on implemeting resume data structure and json conversion
+
+* Convert json to Resume data structure. Use hardcoded section names. Try to think of better implementation?
 
 Resume parsing
 ------------------------

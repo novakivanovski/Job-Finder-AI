@@ -9,8 +9,8 @@ class ResumeParser:
         self.text = self.extract_text(self.resume_path)
         self.section_whitelist = self.load_section_whitelist()
         self.section_names = self.get_section_names(self.section_whitelist)
-        self.section_names_to_text = self.get_section_names_to_text(self.section_names)
         self.header = self.get_header()
+        self.resume_config = self.get_resume_config(self.section_names)
 
     @staticmethod
     def extract_text(docx_path):
@@ -44,19 +44,23 @@ class ResumeParser:
     def is_last_section(self, section_index):
         return section_index == len(self.section_names) - 1
 
-    def get_section_names_to_text(self, section_names):
-        section_data = {}
+    def get_resume_config(self, section_names):
+        resume_config = {}
         for section_name in section_names:
             section_text = self.get_section_text(section_name)
-            section_data[section_name] = section_text
-        return section_data
+            resume_config[section_name] = section_text
+        resume_config['Header'] = {}
+        resume_config['Header']['Email'] = self.get_email()
+        resume_config['Header']['Phone'] = self.get_phone()
+        resume_config['Header']['Name'] = self.get_name()
+        resume_config['Header']['Website'] = self.get_website()
+        return resume_config
 
-    @staticmethod
-    def dump_to_json(section_names_to_text):
-        LocalStorage.store_json_config('resume_config.json', section_names_to_text)
+    def store_resume_config(self):
+        LocalStorage.store_json_config('resume_config.json', self.resume_config)
 
     def get_resume_map(self):
-        return self.section_names_to_text
+        return self.resume_config
 
     def get_header(self):
         end = self.get_first_section_index()
@@ -89,7 +93,11 @@ class ResumeParser:
                      '|www\.[a-zA-Z0-9]\.[^\s]{2,})'
         website_matches = re.findall(website_regex, self.header)
         return website_matches[0]
-        pass
+
+    @staticmethod
+    def read_resume_config():
+        resume_config = LocalStorage.read_json_config('resume_config.json')
+        return resume_config
 
 
 
