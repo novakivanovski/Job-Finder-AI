@@ -1,8 +1,7 @@
 More comprehensive Stats testing - need to show math is correct
 
-* Convert json to Resume data structure. Use hardcoded section names. Try to think of better implementation?
+* Parse resume config and translate into Resume data structure.
 
-Resume parsing
 ------------------------
 Common section names:
 - Objective

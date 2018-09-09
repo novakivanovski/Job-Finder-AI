@@ -10,7 +10,7 @@ def setup_logger():
     file_handle = logging.FileHandler(logging_file, 'w')
     file_handle.setLevel(logging.DEBUG)
     logger.addHandler(file_handle)
-    logging.debug('Logger initialized.')
+    logging.debug('------- START OF TEST -------\n')
 
 
 def get_tests():
