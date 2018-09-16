@@ -1,6 +1,7 @@
 from DataStructures.Resume import Resume
 from Tests import TestingTools
 from Utilities.ResumeParser import ResumeParser
+from Utilities.ResumeWriter import ResumeWriter
 
 
 def test_header(resume):
@@ -60,6 +61,11 @@ def test_experience(resume):
     TestingTools.assert_equal(job_locations, ["Mississauga, Ontario"] * 2)
 
 
+def test_writer(resume):
+    resume_writer = ResumeWriter(resume)
+    resume_writer.write()
+
+
 def run():
     resume_parser = ResumeParser()
     resume = Resume()
@@ -68,3 +74,4 @@ def run():
     test_highlights(resume)
     test_projects(resume)
     test_experience(resume)
+    test_writer(resume)

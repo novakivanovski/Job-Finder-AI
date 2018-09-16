@@ -149,9 +149,9 @@ class ResumeParser:
         job_dates = self.get_job_dates(text)
         job_tasks = self.get_job_tasks(lines, job_locations, job_titles)
         experience_data = dict(Titles=job_titles,
-                              Locations=job_locations,
-                              Dates=job_dates,
-                              Tasks=job_tasks)
+                               Locations=job_locations,
+                               Dates=job_dates,
+                               Tasks=job_tasks)
         return experience_data
 
     @staticmethod
@@ -203,15 +203,5 @@ class ResumeParser:
         newline_split_list = newline_string.split('\n')
         nonempty_list = [item for item in newline_split_list if item]
         return nonempty_list
-
-    def get_education(self):
-        education_data = dict(Alma_Mater=self.get_alma_mater(),
-                              Degree=self.get_degree(),
-                              Year=self.get_graduation_year(),
-                              Awards=self.get_awards())
-        return education_data
-
-
-
 
 

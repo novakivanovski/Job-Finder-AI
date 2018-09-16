@@ -40,6 +40,9 @@ class ExperienceSection:
         self.job_locations = experience_data['Locations']
         self.job_dates = experience_data['Dates']
         self.job_tasks = experience_data['Tasks']
+        self.job_titles_to_dates = dict(zip(self.job_titles, self.job_dates))
+        self.job_titles_to_locations = dict(zip(self.job_titles, self.job_locations))
+        self.job_titles_to_tasks = dict(zip(self.job_titles, self.job_tasks))
 
 
 class GenericSection:
