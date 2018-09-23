@@ -43,6 +43,9 @@ class Job:
     def set_plaintext(self, text):
         self.plaintext = text
 
+    def set_passed(self, job_passed):
+        self.passed = job_passed
+
     def has_description(self):
         description = self.get_posting_text()
         return description is not None and description is not ''

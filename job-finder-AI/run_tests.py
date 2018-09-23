@@ -1,6 +1,7 @@
 from Storage.config import tests_config
 import logging
 import os
+from UI.CLI import CLI
 
 
 def setup_logger():
@@ -28,6 +29,8 @@ if __name__ == '__main__':
         test_results = "TEST FAILURE"
     logging.info('Results: ' + test_results)
     print(test_results)
+
+    interface = CLI()
 
 
 

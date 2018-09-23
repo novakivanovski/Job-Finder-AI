@@ -6,7 +6,7 @@ import Tests.gui_test
 
 run_test = {
   'Database': False,
-  'Resume': True,
+  'Resume': False,
   'Stats': False,
   'System': False,
   'GUI': False
