@@ -3,9 +3,9 @@ from JobManager import JobManager
 from Storage.LocalStorage import LocalStorage
 from Crawlers import EngineerJobsCrawler
 from DataStructures.Listers import EngineerJobsLister
-from Utilities.Stats import Stats
 from Utilities import TextFormatter
 from Utilities.KeywordManager import KeywordManager
+
 
 class CLI:
     def __init__(self):
@@ -30,7 +30,6 @@ class CLI:
 
     def bootstrap(self):
         kw_manager = KeywordManager()
-
 
     def classify(self):
         print('Classifying jobs...')
