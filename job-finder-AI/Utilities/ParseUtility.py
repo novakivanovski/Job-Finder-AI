@@ -1,49 +1,35 @@
 from nltk.tokenize import word_tokenize
-import os
-import json
+from Storage.LocalStorage import LocalStorage
 
 
 class ParseUtility:
     def __init__(self):
-        self.config_path = os.path.join('Storage', 'config')
-        self.keywords = self.load_keywords(self.config_path)
-
-    @staticmethod
-    def load_keywords(path):
-        keywords_path = os.path.join(path, 'keyword_data.json')
-        keywords = []
-        with open(keywords_path, 'r') as keywords_file:
-            keyword_data = json.load(keywords_file)
-        for keyword in keyword_data:
-            keywords.append(keyword)
-        return keywords
+        self.keyword_names = LocalStorage.get_keyword_names()
 
     def update_keywords(self, jobs):
         for job in jobs:
-            job_keywords = self.get_keywords(job)
-            job.set_keywords(job_keywords)
+            keyword_names = self.extract_keyword_names(job)
+            job.set_keyword_names(keyword_names)
         return jobs
 
-    def get_keywords(self, job):
-        raw_text = job.get_plaintext() + ' ' + job.get_title()
-        unique_text_list = word_tokenize(raw_text)
-        job_keywords = self.extract_keywords(unique_text_list)
-        return job_keywords
-
-    def extract_keywords(self, text_list):
-        job_keywords = []
-        for word in text_list:
-            if word in self.keywords:
-                job_keywords.append(word)
-        return job_keywords
+    def extract_keyword_names(self, job):
+        text = job.get_plaintext() + ' ' + job.get_title()
+        unique_text_list = self.tokenize(text)
+        job_keyword_names = self.in_both(unique_text_list, self.keyword_names)
+        return job_keyword_names
 
     @staticmethod
-    def remove_and_get_empty(jobs):
+    def in_both(list_a, list_b):
+        result = set(list_a) & set(list_b)
+        return list(result)
+
+    @staticmethod
+    def pop_empty(jobs):
         empty_jobs = []
-        override_disabled = False  # for testing - to not remove the entire list of jobs
+        override_enabled = True  # for testing - to not remove all jobs
         for job in jobs:
-            job_keywords = job.get_keywords()
-            if not job_keywords and override_disabled:
+            job_keywords = job.get_keyword_names()
+            if not job_keywords and not override_enabled:
                 jobs.remove(job)
                 empty_jobs.append(job)
         return empty_jobs

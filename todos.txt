@@ -1,7 +1,6 @@
-More comprehensive Stats testing - need to show math is correct
-
-* Parse resume config and translate into Resume data structure.
-
+* Work on CLI to test machine learning algorithm
+* Figure out why some of the keywords aren't being picked up(capitalization, root word, punctuation)
+-> need to update parsing of raw text
 ------------------------
 Common section names:
 - Objective

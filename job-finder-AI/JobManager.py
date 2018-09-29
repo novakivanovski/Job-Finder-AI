@@ -30,7 +30,7 @@ class JobManager:
         return listings
 
     def update_jobs_with_keywords(self, jobs):
-        self.failed_jobs = self.parse_utility.remove_and_get_empty(jobs)
+        self.failed_jobs = self.parse_utility.pop_empty(jobs)
         logging.debug('Failed jobs: ' + str(self.failed_jobs))
         jobs_with_keywords = self.parse_utility.update_keywords(jobs)
         return jobs_with_keywords

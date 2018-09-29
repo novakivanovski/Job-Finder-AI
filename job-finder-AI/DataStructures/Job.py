@@ -3,7 +3,7 @@ class Job:
         self.posting = posting
         self.listing = posting.listing_reference
         self.plaintext = ''
-        self.keywords = []
+        self.keyword_names = []
         self.passed = False
         self.score = 0
 
@@ -34,11 +34,11 @@ class Job:
     def get_title(self):
         return self.listing.title
 
-    def get_keywords(self):
-        return self.keywords
+    def get_keyword_names(self):
+        return self.keyword_names
 
     def set_keywords(self, keywords):
-        self.keywords = keywords
+        self.keyword_names = keywords
 
     def set_plaintext(self, text):
         self.plaintext = text

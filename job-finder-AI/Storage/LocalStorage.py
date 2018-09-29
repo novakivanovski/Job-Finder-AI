@@ -82,21 +82,20 @@ class LocalStorage:
                 logging.error('Error while retrieving object: ' + str(e))
         return obj
 
-    def store_job_listing(self, file_path, job):
+    @staticmethod
+    def store_job_listing(file_path, job):
         try:
             with open(file_path, 'w', encoding='utf-8') as file:
-                self.dump_job_listing(file, job.listing)
+                listing = job.listing
+                file.write('Job title: ' + listing.title + '\n')
+                file.write('Posting date: ' + listing.date + '\n')
+                file.write('Job Location: ' + listing.location + '\n')
+                file.write('Company: ' + listing.company + '\n')
+                file.write('Listing URL: ' + listing.url + '\n')
+                file.write('Job ID: ' + str(listing.job_id) + '\n')
+                file.write('Description: ' + job.get_plaintext() + '\n')
         except Exception as e:
             logging.error('Error while storing listing: ' + str(e))
-
-    @staticmethod
-    def dump_job_listing(file, listing):
-        file.write('Job title: ' + listing.title + '\n')
-        file.write('Posting date: ' + listing.date + '\n')
-        file.write('Job Location: ' + listing.location + '\n')
-        file.write('Company: ' + listing.company + '\n')
-        file.write('Listing URL: ' + listing.url + '\n')
-        file.write('Job ID: ' + str(listing.job_id) + '\n')
 
     @staticmethod
     def write_formatted_text(file, text, max_words_per_line=25):
@@ -250,6 +249,13 @@ class LocalStorage:
     def clear_cache(self):
         self.clear_files(self.jobs_dir)
         self.clear_files(self.listings_dir)
+
+    @staticmethod
+    def get_keyword_names():
+        keywords_text = LocalStorage.get_config_file_text('keywords/keyword_list.txt')
+        keyword_names = keywords_text.split('\n')
+        keyword_names = [k.lower() for k in keyword_names]
+        return keyword_names
 
 
 

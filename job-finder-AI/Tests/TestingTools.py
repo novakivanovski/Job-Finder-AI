@@ -14,6 +14,12 @@ def assert_equal(actual, expected):
         raise AssertionError
 
 
+def assert_approx(actual, expected):
+    float_tolerance = 1e-6
+    difference = abs(actual - expected)
+    assert_equal(difference < float_tolerance, True)
+
+
 def get_test_job():
     test_posting = get_test_posting()
     test_job = Job(test_posting)
