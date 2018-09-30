@@ -7,7 +7,7 @@ from docx.shared import Pt
 class ResumeWriter:
     def __init__(self, resume):
         self.resume = resume
-        self.path = os.path.join('Storage', 'generated_resume.docx')
+        self.path = os.path.join('Storage', 'config', 'resume', 'generated_resume.docx')
         self.document = Document()
         self.setup_document_style()
 

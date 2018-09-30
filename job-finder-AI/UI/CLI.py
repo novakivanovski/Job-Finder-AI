@@ -32,7 +32,6 @@ class CLI:
     def classify(self):
         print('Classifying jobs...')
         jobs = self.storage.retrieve_jobs()
-        self.stats.train(jobs)  # sets keyword probabilities
         for job in jobs:
             score = self.stats.classify(job)
             if score > 1.0:

@@ -12,7 +12,7 @@ class Resume:
 
     @staticmethod
     def load_resume_config():
-        return LocalStorage.read_json_config('resume_config.json')
+        return LocalStorage.read_json_config('resume/resume_config.json')
 
 
 class HeaderSection:

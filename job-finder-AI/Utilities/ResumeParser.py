@@ -6,7 +6,7 @@ import re
 class ResumeParser:
     def __init__(self):
         self.header = ''
-        self.resume_path = LocalStorage.get_config_file_path('Resume.docx')
+        self.resume_path = LocalStorage.get_config_file_path('resume/Resume.docx')
         self.text = self.extract_text(self.resume_path)
         self.section_whitelist = self.load_section_whitelist()
         self.section_names = self.get_section_names(self.section_whitelist)
@@ -30,7 +30,7 @@ class ResumeParser:
 
     @staticmethod
     def load_section_whitelist():
-        section_names = LocalStorage.get_config_file_text('resume_sections.txt')
+        section_names = LocalStorage.get_config_file_text('resume/resume_sections.txt')
         return section_names.split('\n')
 
     def get_section_names(self, section_whitelist):
@@ -64,7 +64,7 @@ class ResumeParser:
         return resume_config
 
     def store_resume_config(self):
-        LocalStorage.store_json_config('resume_config.json', self.resume_config)
+        LocalStorage.store_json_config('resume/resume_config.json', self.resume_config)
 
     def get_header(self):
         end = self.get_first_section_index()
@@ -134,7 +134,7 @@ class ResumeParser:
 
     @staticmethod
     def read_resume_config():
-        resume_config = LocalStorage.read_json_config('resume_config.json')
+        resume_config = LocalStorage.read_json_config('resume/resume_config.json')
         return resume_config
 
     def get_highlights(self):
@@ -174,7 +174,8 @@ class ResumeParser:
     def get_job_tasks(self, lines, job_locations, job_titles):
         current_job = 0
         job_tasks = []
-        [job_tasks.append([]) for location in job_locations]
+        for location in job_locations:
+            job_tasks.append([])
 
         for line in lines:
             if job_titles[current_job] in line or job_locations[current_job] in line or not line:
