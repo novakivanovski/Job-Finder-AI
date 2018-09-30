@@ -27,15 +27,14 @@ class CLI:
             if argument_provided:
                 run_function = self.args_to_functions[argument]
                 run_function()
-        self.stats.train(self.storage.retrieve_jobs())
 
     def classify(self):
         print('Classifying jobs...')
         jobs = self.storage.retrieve_jobs()
         for job in jobs:
             score = self.stats.classify(job)
-            if score > 1.0:
-                print('Job Title: ' + job.get_title() + ' Score: ' + str(score))
+            job.set_score(score)
+            self.print_classify_info(job)
 
     def crawl(self):
         print('Crawling job postings...')
@@ -54,39 +53,25 @@ class CLI:
         exit_condition = False
         while not exit_condition:
             job = jobs[current_job]
-            self.print_job_training_information(job)
-            self.print_job_training_information(job)
+            self.print_training_info(job)
             user_exit = self.process_job_passed(job)
             exit_condition = user_exit or current_job == num_jobs - 1
             current_job += 1
         self.storage.store_jobs(jobs)
 
-    def print_job_training_information(self, job):
-        job_description = job.get_plaintext()
-        job_title = job.get_title()
-        job_keywords = job.get_keyword_names()
-        self.print_job_title(job_title)
-        self.print_job_description(job_description)
-        self.print_job_keywords(job_keywords)
+    @staticmethod
+    def print_training_info(job):
+        job_description = TextFormatter.format_job_description(job.get_plaintext())
+        job_title = TextFormatter.format_job_title(job.get_title())
+        job_keywords = TextFormatter.format_job_keywords(job.get_keyword_names())
+        TextFormatter.multi_print(job_title, job_description, job_keywords)
 
     @staticmethod
-    def print_job_description(job_description):
-        header_text = TextFormatter.format_header('Job Description')
-        description_text = TextFormatter.reformat_text(job_description)
-        print(header_text)
-        print(description_text)
-
-    @staticmethod
-    def print_job_title(job_title):
-        header_text = 'Job Title: ' + job_title
-        header_text = TextFormatter.format_header(header_text)
-        print(header_text)
-
-    @staticmethod
-    def print_job_keywords(job_keywords):
-        header_text = 'Job Keywords: ' + str(job_keywords)
-        header_text = TextFormatter.format_header(header_text)
-        print(header_text)
+    def print_classify_info(job):
+        job_title = TextFormatter.format_job_title(job.get_title())
+        job_keywords = TextFormatter.format_job_keywords(job.get_keyword_names())
+        job_score = TextFormatter.format_job_score(job.get_score())
+        TextFormatter.multi_print(job_title, job_keywords, job_score)
 
     @staticmethod
     def process_job_passed(job):

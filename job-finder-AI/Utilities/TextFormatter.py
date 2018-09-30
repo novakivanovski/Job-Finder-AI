@@ -2,6 +2,31 @@ import re
 from nltk.tokenize import WhitespaceTokenizer
 
 
+def multi_print(*args):
+    for arg in args:
+        print(arg)
+
+
+def format_job_keywords(job_keywords):
+    keywords_text = 'Job keywords: ' + str(job_keywords)
+    return reformat_text(keywords_text)
+
+
+def format_job_score(job_score):
+    score_text = 'Job score: ' + str(job_score)
+    return score_text
+
+
+def format_job_description(job_description):
+    description_text = 'Job description: ' + job_description
+    return reformat_text(description_text) + '\n'
+
+
+def format_job_title(job_title):
+    title_text = 'Job Title: ' + job_title
+    return format_header(title_text)
+
+
 def reformat_text(text, max_line_length=100):
     line_length = 0
     text_output = ''
@@ -67,7 +92,7 @@ def remove_spaces(text):
 
 def format_header(text):
     text = reformat_text(text)
-    sep = '\n' + '=' * 25 + '\n'
-    header = sep + text + sep
+    sep = '\n' + '=' * 25
+    header = sep + '\n' + text + sep
     return header
 

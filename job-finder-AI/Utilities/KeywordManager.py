@@ -81,10 +81,10 @@ class KeywordManager:
         return self.get_total_jobs_failed() / self.get_total_jobs()
 
     def set_total_jobs_passed(self, total):
-        self.totals['jobs']['passed'] = total
+        self.totals['passed'] = total
 
     def set_total_jobs_failed(self, total):
-        self.totals['jobs']['failed'] = total
+        self.totals['failed'] = total
 
     def set_keyword_probabilities(self):
         number_jobs_passed = self.get_total_jobs_failed()
