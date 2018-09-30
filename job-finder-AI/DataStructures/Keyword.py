@@ -6,11 +6,6 @@ class Keyword:
         self.pass_probability = 0
         self.fail_probability = 0
 
-    def get_json_encoding(self):
-        json_data = {self.name: {'passed': self.pass_count,
-                                 'failed': self.fail_count}}
-        return json_data
-
     def clear_data(self):
         self.pass_count = 0
         self.fail_count = 0

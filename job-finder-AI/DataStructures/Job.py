@@ -37,7 +37,7 @@ class Job:
     def get_keyword_names(self):
         return self.keyword_names
 
-    def set_keywords(self, keywords):
+    def set_keyword_names(self, keywords):
         self.keyword_names = keywords
 
     def set_plaintext(self, text):

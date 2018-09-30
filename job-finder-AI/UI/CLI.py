@@ -4,8 +4,7 @@ from Storage.LocalStorage import LocalStorage
 from Crawlers import EngineerJobsCrawler
 from DataStructures.Listers import EngineerJobsLister
 from Utilities import TextFormatter
-from Utilities.KeywordManager import KeywordManager
-
+from Utilities.Stats import Stats
 
 class CLI:
     def __init__(self):
@@ -13,13 +12,13 @@ class CLI:
         parser.add_argument('-clean', help='Clean local job cache.', action='store_true')
         parser.add_argument('-crawl', help='Crawl job postings and save them locally.', action='store_true')
         parser.add_argument('-train', help='Train the AI by classifying jobs as passed/failed.', action='store_true')
-        parser.add_argument('classify', help='Show results of classification applied to cache.', action='store_true')
+        parser.add_argument('-classify', help='Show results of classification applied to cache.', action='store_true')
         args = parser.parse_args()
         self.args_to_values = vars(args)
         self.storage = LocalStorage()
+        self.stats = Stats()
         self.args_to_functions = {'crawl': self.crawl, 'train': self.train, 'clean': self.clean, 'classify': self.classify}
         self.execute()
-        self.bootstrap()
 
     def execute(self):
         for argument in self.args_to_values:
@@ -27,15 +26,18 @@ class CLI:
             if argument_provided:
                 run_function = self.args_to_functions[argument]
                 run_function()
-
-    def bootstrap(self):
-        kw_manager = KeywordManager()
+        self.stats.train(self.storage.retrieve_jobs())
 
     def classify(self):
         print('Classifying jobs...')
         jobs = self.storage.retrieve_jobs()
         for job in jobs:
-            print(job.passed)
+            is_good = self.stats.classify(job)
+            if is_good:
+                print('Job passed classification: ' + job.get_title())
+                print('Job keywords: ' + str(job.get_keyword_names))
+            else:
+                print('Job failed classification: ' + job.get_title())
 
     def crawl(self):
         print('Crawling job postings...')
@@ -48,7 +50,7 @@ class CLI:
     def train(self):
         print('Starting training session...')
         print('Enter exit to quit.')
-        jobs = self.storage.retrieve_jobs()
+        jobs = self.storage.retrieve_jobs()  # TODO: this is far too slow, need to move to database
         num_jobs = len(jobs)
         current_job = 0
         exit_condition = False
@@ -64,7 +66,7 @@ class CLI:
     def print_job_training_information(self, job):
         job_description = job.get_plaintext()
         job_title = job.get_title()
-        job_keywords = job.extract_keyword_names()
+        job_keywords = job.get_keyword_names()
         self.print_job_title(job_title)
         self.print_job_description(job_description)
         self.print_job_keywords(job_keywords)

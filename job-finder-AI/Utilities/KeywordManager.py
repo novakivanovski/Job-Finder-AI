@@ -10,15 +10,14 @@ class KeywordManager:
         self.totals = self.load_totals()
         self.keywords = self.load_keywords()
 
+
     def load_keywords(self):
-        keyword_data_path = os.path.join(self.keywords_path, 'keyword_data.json')
-        keyword_data = LocalStorage.get_json_data(keyword_data_path)
+        keyword_dict_path = os.path.join(self.keywords_path, 'keyword_dict.json')
+        keyword_dict = LocalStorage.get_json_data(keyword_dict_path)
         keywords = []
-        for keyword_name in keyword_data:
-            print(keyword_name)
-            print(keyword_data[keyword_name])   # TODO: refactor so this is not a list
-            passed_count = keyword_data[keyword_name]['passed']
-            failed_count = keyword_data[keyword_name]['failed']
+        for keyword_name in self.keyword_names:
+            passed_count = keyword_dict[keyword_name]['passed']
+            failed_count = keyword_dict[keyword_name]['failed']
             keyword = Keyword(keyword_name, passed_count, failed_count)
             keywords.append(keyword)
         return keywords
@@ -31,32 +30,32 @@ class KeywordManager:
     def get_keywords(self):
         return self.keywords
 
-    def save_data(self, jobs_passed, jobs_failed, keywords_passed, keywords_failed):
+    def save_data(self, jobs_passed, jobs_failed):
         self.save_keywords()
-        self.save_totals(jobs_passed, jobs_failed, keywords_passed, keywords_failed)
+        self.save_totals(jobs_passed, jobs_failed)
 
     def save_keywords(self):
-        keywords_path = os.path.join(self.keywords_path, 'keyword_data.json')
-        json_data = self.get_keywords_as_json()
-        LocalStorage.store_json_data(keywords_path, json_data)
+        keywords_path = os.path.join(self.keywords_path, 'keyword_dict.json')
+        keyword_dict = self.encode_keywords_to_dict()
+        LocalStorage.store_json_data(keywords_path, keyword_dict)
 
-    def save_totals(self, jobs_passed, jobs_failed, keywords_passed, keywords_failed):
-        self.totals['jobs']['passed'] = jobs_passed
-        self.totals['jobs']['failed'] = jobs_failed
-        self.totals['keywords']['passed'] = keywords_passed
-        self.totals['keywords']['failed'] = keywords_failed
+    def save_totals(self, jobs_passed, jobs_failed):
+        self.totals['passed'] = jobs_passed
+        self.totals['failed'] = jobs_failed
         totals_path = os.path.join(self.keywords_path, 'totals.json')
         LocalStorage.store_json_data(totals_path, self.totals)
 
-    def get_keywords_as_json(self):
-        json_data = []
+    def encode_keywords_to_dict(self):
+        keyword_dict = {}
         for keyword in self.keywords:
-            keyword_json = keyword.get_json_encoding()
-            json_data.append(keyword_json)
-        return json_data
+            name = keyword.get_name()
+            keyword_dict[name] = {}
+            keyword_dict[name]['passed'] =  keyword.get_pass_count()
+            keyword_dict[name]['failed'] = keyword.get_fail_count()
+        return keyword_dict
 
     def clear_keyword_probabilities(self):
-        for keyword in self.keyword_names:
+        for keyword in self.keywords:
             keyword.clear_data()
         self.save_keywords()
 
@@ -64,10 +63,10 @@ class KeywordManager:
         return self.keyword_names
 
     def get_total_jobs_passed(self):
-        return self.totals['jobs']['passed']
+        return self.totals['passed']
 
     def get_total_jobs_failed(self):
-        return self.totals['jobs']['failed']
+        return self.totals['failed']
 
     def get_total_jobs(self):
         return self.get_total_jobs_passed() + self.get_total_jobs_failed()
