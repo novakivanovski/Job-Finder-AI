@@ -6,6 +6,7 @@ from DataStructures.Listers import EngineerJobsLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
 
+
 class CLI:
     def __init__(self):
         parser = argparse.ArgumentParser(description='Command line interface for job searcher AI.')
@@ -31,13 +32,11 @@ class CLI:
     def classify(self):
         print('Classifying jobs...')
         jobs = self.storage.retrieve_jobs()
+        self.stats.train(jobs)  # sets keyword probabilities
         for job in jobs:
-            is_good = self.stats.classify(job)
-            if is_good:
-                print('Job passed classification: ' + job.get_title())
-                print('Job keywords: ' + str(job.get_keyword_names))
-            else:
-                print('Job failed classification: ' + job.get_title())
+            score = self.stats.classify(job)
+            if score > 1.0:
+                print('Job Title: ' + job.get_title() + ' Score: ' + str(score))
 
     def crawl(self):
         print('Crawling job postings...')

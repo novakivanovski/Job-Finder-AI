@@ -10,7 +10,6 @@ class KeywordManager:
         self.totals = self.load_totals()
         self.keywords = self.load_keywords()
 
-
     def load_keywords(self):
         keyword_dict_path = os.path.join(self.keywords_path, 'keyword_dict.json')
         keyword_dict = LocalStorage.get_json_data(keyword_dict_path)

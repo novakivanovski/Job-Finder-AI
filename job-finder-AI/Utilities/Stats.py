@@ -78,5 +78,5 @@ class Stats:
         fail_probability *= self.job_fail_probability
         pass_probability += alpha
         fail_probability += alpha
-        return pass_probability/fail_probability > 1
+        return pass_probability/fail_probability
 

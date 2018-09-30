@@ -46,6 +46,12 @@ class Job:
     def set_passed(self, job_passed):
         self.passed = job_passed
 
+    def set_score(self, score):
+        self.score = score
+
+    def get_score(self):
+        return self.score
+
     def has_description(self):
         description = self.get_posting_text()
         return description is not None and description is not ''
