@@ -18,7 +18,8 @@ class CLI:
         self.args_to_values = vars(args)
         self.storage = LocalStorage()
         self.stats = Stats()
-        self.args_to_functions = {'crawl': self.crawl, 'train': self.train, 'clean': self.clean, 'classify': self.classify}
+        self.args_to_functions = {'crawl': self.crawl, 'train': self.train,
+                                  'clean': self.clean, 'classify': self.classify}
         self.execute()
 
     def execute(self):
@@ -34,7 +35,8 @@ class CLI:
         for job in jobs:
             score = self.stats.classify(job)
             job.set_score(score)
-            self.print_classify_info(job)
+            if score > 1.0:
+                self.print_classify_info(job)
 
     def crawl(self):
         print('Crawling job postings...')

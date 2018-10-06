@@ -43,7 +43,7 @@ class Stats:
         job_fail_probability = self.keyword_manager.get_job_fail_probability()
         pass_probability = 1
         fail_probability = 1
-        alpha = pow(10, -55)  # laplace smoothing factor 1e-55
+        alpha = pow(10, -50)  # laplace smoothing factor 1e-50
         for keyword in keywords:
             if keyword.get_name() in job.keyword_names:
                 pass_probability *= keyword.get_pass_probability()
