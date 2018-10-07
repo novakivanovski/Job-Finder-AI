@@ -5,27 +5,20 @@ from DataStructures.Keyword import Keyword
 
 class KeywordManager:
     def __init__(self):
-        self.keywords_path = os.path.join('Storage', 'config', 'keywords')
+        self.keyword_folder = os.path.join('Storage', 'config', 'keywords')
+        self.data_path = os.path.join(self.keyword_folder, 'keyword_data.json')
+        self.totals_path = os.path.join(self.keyword_folder, 'totals.json')
         self.keyword_names = LocalStorage.get_keyword_names()
         self.totals = self.load_totals()
         self.keywords = self.load_keywords()
 
     def load_keywords(self):
-        keyword_dict_path = os.path.join(self.keywords_path, 'keyword_dict.json')
-        keyword_dict = LocalStorage.get_json_data(keyword_dict_path)
-        keywords = []
-        total_jobs_passed = self.get_total_jobs_passed()
-        total_jobs_failed = self.get_total_jobs_failed()
-        for keyword_name in self.keyword_names:
-            passed_count = keyword_dict[keyword_name]['passed']
-            failed_count = keyword_dict[keyword_name]['failed']
-            keyword = Keyword(keyword_name, passed_count, failed_count, total_jobs_passed, total_jobs_failed)
-            keywords.append(keyword)
+        keyword_dict = LocalStorage.get_json_data(self.data_path)
+        keywords = self.encode_dict_to_keywords(keyword_dict)
         return keywords
 
     def load_totals(self):
-        totals_path = os.path.join(self.keywords_path, 'totals.json')
-        totals = LocalStorage.get_json_data(totals_path)
+        totals = LocalStorage.get_json_data(self.totals_path)
         return totals
 
     def get_keywords(self):
@@ -38,11 +31,9 @@ class KeywordManager:
         self.save_data()
 
     def save_data(self):
-        keywords_path = os.path.join(self.keywords_path, 'keyword_dict.json')
         keyword_dict = self.encode_keywords_to_dict()
-        LocalStorage.store_json_data(keywords_path, keyword_dict)
-        totals_path = os.path.join(self.keywords_path, 'totals.json')
-        LocalStorage.store_json_data(totals_path, self.totals)
+        LocalStorage.store_json_data(self.data_path, keyword_dict)
+        LocalStorage.store_json_data(self.totals_path, self.totals)
 
     def encode_keywords_to_dict(self):
         keyword_dict = {}
@@ -52,6 +43,17 @@ class KeywordManager:
             keyword_dict[name]['passed'] = keyword.get_pass_count()
             keyword_dict[name]['failed'] = keyword.get_fail_count()
         return keyword_dict
+
+    def encode_dict_to_keywords(self, keyword_dict):
+        keywords = []
+        total_jobs_passed = self.get_total_jobs_passed()
+        total_jobs_failed = self.get_total_jobs_failed()
+        for keyword_name in self.keyword_names:
+            passed_count = keyword_dict[keyword_name]['passed']
+            failed_count = keyword_dict[keyword_name]['failed']
+            keyword = Keyword(keyword_name, passed_count, failed_count, total_jobs_passed, total_jobs_failed)
+            keywords.append(keyword)
+        return keywords
 
     def clear_data(self):
         self.clear_totals()

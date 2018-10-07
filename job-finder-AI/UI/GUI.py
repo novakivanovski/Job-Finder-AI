@@ -106,7 +106,7 @@ class GUI:
             if training_data:
                 self.storage.clear_directory(self.classify_pass)
                 self.storage.clear_directory(self.classify_fail)
-                self.jobs = self.storage.retrieve_jobs()
+                self.jobs = self.storage.get_jobs_from_cache()
                 self.stats.clear_training_data()
                 self.stats.train(self.jobs)
                 for job in self.spider.jobs:

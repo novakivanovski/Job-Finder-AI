@@ -24,12 +24,12 @@ class JobDB(Base):
     plaintext = Column(String)
 
 
-class Database:
-    def __init__(self, project_path):
-        self.path = os.path.join(project_path, 'Storage', 'config', 'database.db')
-        engine = self.get_engine(self.path)
-        Base.metadata.create_all(engine)
-        self.session = self.get_session(engine)
+class JobDatabase:
+    def __init__(self):
+        self.path = os.path.join('Storage', 'config', 'database.db')
+        self.engine = self.get_engine(self.path)
+        Base.metadata.create_all(self.engine)
+        self.session = self.get_session(self.engine)
         self.session.commit()
 
     @staticmethod
@@ -57,5 +57,11 @@ class Database:
     def get_jobs(self):
         jobs = self.session.query(JobDB)
         return jobs
+
+    def get_last_id(self):
+        statement = 'SELECT MAX(job_id) FROM Job'
+        result = self.session.execute(statement)
+        last_id = result.fetchone()[0]
+        return last_id if last_id else 0
 
 

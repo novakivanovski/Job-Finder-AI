@@ -5,6 +5,7 @@ from nltk import word_tokenize
 from enum import Enum
 import json
 from Utilities.ApplicationExceptions import StorageError
+from Storage.JobDatabase import JobDatabase
 
 
 class Path(Enum):
@@ -19,13 +20,15 @@ class LocalStorage:
         self.cache_dir = os.path.join(self.base_dir, 'cache')
         self.jobs_dir = os.path.join(self.cache_dir, 'jobs')
         self.listings_dir = os.path.join(self.cache_dir, 'listings')
-
+        self.config_dir = os.path.join(self.base_dir, 'config')
+        self.database_path = os.path.join(self.config_dir, 'database.db')
         self.train_dir = os.path.join(self.jobs_dir, 'training')
         self.train_pass_dir = os.path.join(self.train_dir, 'pass')
         self.train_fail_dir = os.path.join(self.train_dir, 'fail')
         self.classify_dir = os.path.join(self.jobs_dir, 'classify')
         self.job_file_name = 'job.txt'
         self.job_object_name = 'job.pickle'
+        self.database = JobDatabase()
 
     def store_jobs(self, jobs):
         self.clear_cache()
@@ -51,7 +54,10 @@ class LocalStorage:
         except Exception as e:
             logging.error('Error while pickling: ' + str(e))
 
-    def retrieve_jobs(self):
+    def get_jobs_from_database(self):
+        return self.database.get_jobs()
+
+    def get_jobs_from_cache(self):
         pickle_paths = self.get_pickles_in_folder(self.jobs_dir)
         jobs = []
         for pickle_path in pickle_paths:
@@ -197,21 +203,6 @@ class LocalStorage:
             file.close()
 
     @staticmethod
-    def get_jobs(directory, f):
-        keywords_list = []
-        for file in os.listdir(directory):
-            file_path = os.path.join(directory, file)
-            file = open(file_path, 'r', encoding='utf-8')
-            keywords_text = file.readlines()[1]
-            keywords = word_tokenize(keywords_text)
-            f.find_csharp(keywords)
-            keywords = list(set(keywords))
-            if len(keywords):
-                keywords.remove(',')
-            keywords_list.append(keywords)
-        return keywords_list
-
-    @staticmethod
     def get_json_data(json_path):
         with open(json_path, 'r') as json_file:
             data = json.load(json_file)
@@ -230,7 +221,7 @@ class LocalStorage:
 
     @staticmethod
     def get_config_file_path(file_name):
-        file_path = os.path.join(os.getcwd(), 'Storage', 'config', file_name)
+        file_path = os.path.join('Storage', 'config', file_name)
         if not os.path.isfile(file_path):
             raise StorageError('File path does not exist: ' + file_path)
         return file_path
@@ -249,6 +240,11 @@ class LocalStorage:
     def clear_cache(self):
         self.clear_files(self.jobs_dir)
         self.clear_files(self.listings_dir)
+
+    def clear_database(self):
+        if not os.path.isfile(self.database_path):
+            raise StorageError('Database path does not point to file: ' + self.database_path)
+        os.unlink(self.database_path)
 
     @staticmethod
     def get_keyword_names():

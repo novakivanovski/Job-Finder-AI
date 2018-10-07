@@ -27,7 +27,7 @@ def test_add_jobs(database):
                                     company=test_company, location=test_location, plaintext=test_plaintext)
     test_jobs.append(test_job1)
     database.add_jobs(test_jobs)
-    database_jobs = database.get_jobs()
+    database_jobs = database.get_jobs_from_cache()
     for test_job, database_job in zip(test_jobs, database_jobs):
         TestingTools.assert_equal(test_job.listing.title, database_job.title)
         TestingTools.assert_equal(test_job.listing.date, database_job.date)
@@ -40,6 +40,6 @@ def test_add_jobs(database):
 def run():
     project_path = os.getcwd()
     delete_db(project_path)
-    database = JobDatabase.Database(project_path)
+    database = JobDatabase.JobDatabase(project_path)
     test_constructor(database)
     test_add_jobs(database)

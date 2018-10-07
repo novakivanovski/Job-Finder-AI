@@ -1,14 +1,15 @@
 from Utilities import QueueUnpacker, ParseUtility
 import logging
 from DataStructures.Job import Job
+from Storage.JobDatabase import JobDatabase
 
 
 class JobManager:
     def __init__(self, crawler, lister):
         self.jobs = []
         self.failed_jobs = []
-        self.num_jobs = 0
-        self.job_id = 0
+        self.database = JobDatabase()
+        self.job_id = self.database.get_last_id() + 1
         self.crawler = crawler
         self.lister = lister
         self.parse_utility = ParseUtility.ParseUtility()
@@ -19,8 +20,8 @@ class JobManager:
         logging.debug("Job postings with descriptions: " + str(len(postings)))
         jobs = self.get_jobs_from_postings(postings)
         jobs_with_keywords = self.update_jobs_with_keywords(jobs)
-        self.set_jobs(jobs_with_keywords)
-        return jobs_with_keywords
+        self.jobs = jobs_with_keywords
+        return self.jobs
 
     def get_job_listings(self):
         page_listings_queue = self.crawler.crawl_job_listings()
@@ -55,10 +56,9 @@ class JobManager:
 
     def set_jobs(self, jobs):
         self.jobs = jobs
-        self.num_jobs = len(jobs)
 
     def get_num_jobs(self):
-        return self.num_jobs
+        return self.job_id
 
     def clear_jobs(self):
         self.jobs = []

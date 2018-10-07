@@ -8,8 +8,8 @@ from Utilities.ApplicationExceptions import CrawlerError
 
 
 class GenericCrawler(BaseCrawler):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, days=1):
+        super().__init__(days)
 
     def get_listings(self):  # Override
         pass
@@ -19,7 +19,7 @@ class GenericCrawler(BaseCrawler):
 
     def get_number_of_jobs(self, html_text):
         try:
-            search_result = re.search(self.jobs_regex, html_text)[0]
+            search_result = re.search(self.jobs_regex, html_text).group(1)
             number_of_jobs = self.extract_number_of_jobs(search_result)
             logging.debug('Number of jobs: ' + str(number_of_jobs))
         except Exception:

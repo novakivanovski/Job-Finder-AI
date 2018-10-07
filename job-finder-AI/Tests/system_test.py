@@ -13,7 +13,7 @@ def run():
     manager = JobManager(crawler, lister)
     jobs = manager.get_jobs()
     storage.store_jobs(jobs)
-    retrieved_jobs = storage.retrieve_jobs()
+    retrieved_jobs = storage.get_jobs_from_cache()
     for job in retrieved_jobs:
         print(job.get_title())
     elapsed = round((time() - start), 2)

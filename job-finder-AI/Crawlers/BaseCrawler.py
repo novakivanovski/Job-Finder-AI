@@ -4,7 +4,8 @@ from PostingCrawlers.PostingCrawlerFactory import PostingCrawlerFactory
 
 
 class BaseCrawler(ABC):
-    def __init__(self):
+    def __init__(self, days=1):
+        self.days = days
         self.jobs = []
         self.details = []
         self.num_jobs = None
