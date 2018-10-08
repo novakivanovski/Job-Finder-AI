@@ -36,15 +36,16 @@ class LocalStorage:
         self.create_directory(self.listings_dir)
         for job in jobs:
             self.store_job(job)
+        self.store_jobs_in_database(jobs)
 
     def store_job(self, job):
         job_id = str(job.get_id())
         job_txt = job_id + '.txt'
         job_pickle = job_id + '.pickle'
         listing_file_path = os.path.join(self.listings_dir, job_txt)
-        object_file_path = os.path.join(self.jobs_dir, job_pickle)
-        self.store_job_listing(listing_file_path, job)
-        self.store_object(object_file_path, job)
+        job_pickle_path = os.path.join(self.jobs_dir, job_pickle)
+        self.store_job_listing_data(listing_file_path, job)
+        self.store_object(job_pickle_path, job)
 
     @staticmethod
     def store_object(file_path, obj):
@@ -89,7 +90,7 @@ class LocalStorage:
         return obj
 
     @staticmethod
-    def store_job_listing(file_path, job):
+    def store_job_listing_data(file_path, job):
         try:
             with open(file_path, 'w', encoding='utf-8') as file:
                 listing = job.listing
@@ -246,12 +247,18 @@ class LocalStorage:
             raise StorageError('Database path does not point to file: ' + self.database_path)
         os.unlink(self.database_path)
 
+    def store_jobs_in_database(self, jobs):
+        self.database.add_jobs(jobs)
+
     @staticmethod
     def get_keyword_names():
         keywords_text = LocalStorage.get_config_file_text('keywords/keyword_list.txt')
         keyword_names = keywords_text.split('\n')
         keyword_names = [k.lower() for k in keyword_names]
         return keyword_names
+
+    def get_free_job_id(self):
+        return self.database.get_last_id() + 1
 
 
 

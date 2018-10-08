@@ -1,9 +1,8 @@
 import argparse
 from JobManager import JobManager
 from Storage.LocalStorage import LocalStorage
-from Storage.JobDatabase import JobDatabase
-from Crawlers import EngineerJobsCrawler
-from DataStructures.Listers import EngineerJobsLister
+from Crawlers import EngineerJobsCrawler, IndeedCrawler
+from DataStructures.Listers import EngineerJobsLister, IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
 
@@ -19,12 +18,11 @@ class CLI:
         parser.add_argument('-time', help='Specify how many days to crawl')
         parser.add_argument('-store', help='Store jobs in database.', action='store_true')
         args = parser.parse_args()
-        self.args_to_values = vars(args)
         self.storage = LocalStorage()
+        self.args_to_values = vars(args)
         self.stats = Stats()
         self.args_to_functions = {'clear_cache': self.clear_cache, 'clear_database': self.clear_database,
-                                  'crawl': self.crawl, 'train': self.train, 'classify': self.classify,
-                                  'store': self.store}
+                                  'crawl': self.crawl, 'train': self.train, 'classify': self.classify}
         self.execute()
 
     def execute(self):
@@ -33,13 +31,6 @@ class CLI:
             if argument_provided:
                 run_function = self.args_to_functions[argument]
                 run_function()
-
-    def store(self):
-        jobs = self.storage.get_jobs_from_cache()
-        db = JobDatabase()
-        db.add_jobs(jobs)
-        num_jobs = db.get_last_id()
-        print('Total number of jobs in database ' + str(num_jobs))
 
     def classify(self):
         print('Classifying jobs...')
@@ -52,10 +43,13 @@ class CLI:
 
     def crawl(self):
         print('Crawling job postings...')
+        starting_job_id = self.storage.get_free_job_id()
         time = int(self.args_to_values['time']) if self.args_to_values['time'] else 1
         print('Number of days to crawl: ' + str(time))
-        crawler = EngineerJobsCrawler.EngineerJobsCrawler(time)
-        lister = EngineerJobsLister.EngineerJobsLister()
+        #  crawler = EngineerJobsCrawler.EngineerJobsCrawler(time)
+        #  lister = EngineerJobsLister.EngineerJobsLister(starting_job_id)
+        crawler = IndeedCrawler.IndeedCrawler(time)
+        lister = IndeedLister.IndeedLister(starting_job_id)
         manager = JobManager(crawler, lister)
         jobs = manager.get_jobs()
         print('Saving ' + str(len(jobs)) + ' jobs...')
@@ -75,7 +69,7 @@ class CLI:
             user_exit = self.process_job_passed(job)
             exit_condition = user_exit or current_job == num_jobs - 1
             current_job += 1
-        self.storage.store_jobs(jobs)
+        self.stats.train(jobs)
 
     @staticmethod
     def print_training_info(job):

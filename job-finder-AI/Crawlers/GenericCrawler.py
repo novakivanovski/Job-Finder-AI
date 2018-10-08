@@ -22,8 +22,8 @@ class GenericCrawler(BaseCrawler):
             search_result = re.search(self.jobs_regex, html_text).group(1)
             number_of_jobs = self.extract_number_of_jobs(search_result)
             logging.debug('Number of jobs: ' + str(number_of_jobs))
-        except Exception:
-            raise CrawlerError('Unable to get number of jobs.')
+        except Exception as e:
+            raise CrawlerError('Unable to get number of jobs: ' + str(e))
         return number_of_jobs
 
     def extract_number_of_jobs(self, search_result):  # Override
@@ -88,7 +88,8 @@ class GenericCrawler(BaseCrawler):
             raw_text = description_crawler.get_description()
             job.set_plaintext(raw_text)
         except Exception as e:
-            logging.error('Error crawling job description: ' + str(e))
+            print(e)
+            raise CrawlerError('Error crawling job description: ' + str(e))
         return job
 
     def get_percent_complete(self):

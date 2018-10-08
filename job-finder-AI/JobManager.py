@@ -1,15 +1,15 @@
 from Utilities import QueueUnpacker, ParseUtility
 import logging
 from DataStructures.Job import Job
-from Storage.JobDatabase import JobDatabase
+from Storage.LocalStorage import LocalStorage
 
 
 class JobManager:
-    def __init__(self, crawler, lister):
+    def __init__(self, crawler=None, lister=None):
         self.jobs = []
         self.failed_jobs = []
-        self.database = JobDatabase()
-        self.job_id = self.database.get_last_id() + 1
+        self.storage = LocalStorage()
+        self.job_id = self.storage.get_free_job_id()
         self.crawler = crawler
         self.lister = lister
         self.parse_utility = ParseUtility.ParseUtility()
@@ -62,4 +62,9 @@ class JobManager:
 
     def clear_jobs(self):
         self.jobs = []
+
+    def store(self):
+        self.storage.store_jobs(self.jobs)
+
+
 

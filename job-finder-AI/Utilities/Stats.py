@@ -1,12 +1,12 @@
 # P(A)*P(B|A) > P(¬A)*P(B|¬A)
 from math import pow
 from Utilities.ApplicationExceptions import StatsError
-from Utilities.KeywordManager import KeywordManager
+from Utilities.StatsData import StatsData
 
 
 class Stats:
     def __init__(self):
-        self.keyword_manager = KeywordManager()
+        self.stats_data = StatsData()
 
     @staticmethod
     def keyword_passed(job, keyword):
@@ -17,11 +17,9 @@ class Stats:
         return int(not job.passed and keyword.name in job.keyword_names)
 
     def train(self, jobs):
-        self.keyword_manager.clear_data()
-        keywords = self.keyword_manager.get_keywords()
-
-        number_jobs_passed = 0
-        number_jobs_failed = 0
+        keywords = self.stats_data.get_keywords()
+        number_jobs_passed = self.stats_data.get_total_jobs_passed()
+        number_jobs_failed = self.stats_data.get_total_jobs_failed()
 
         for job in jobs:
             if job.passed:
@@ -35,12 +33,12 @@ class Stats:
 
         if not number_jobs_failed or not number_jobs_passed:
             raise StatsError('Insufficient training data supplied.')
-        self.keyword_manager.update_data(keywords, number_jobs_passed, number_jobs_failed)
+        self.stats_data.update_data(keywords, number_jobs_passed, number_jobs_failed)
 
     def classify(self, job):
-        keywords = self.keyword_manager.get_keywords()
-        job_pass_probability = self.keyword_manager.get_job_pass_probability()
-        job_fail_probability = self.keyword_manager.get_job_fail_probability()
+        keywords = self.stats_data.get_keywords()
+        job_pass_probability = self.stats_data.get_job_pass_probability()
+        job_fail_probability = self.stats_data.get_job_fail_probability()
         pass_probability = 1
         fail_probability = 1
         alpha = pow(10, -50)  # laplace smoothing factor 1e-50

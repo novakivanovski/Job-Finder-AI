@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 
 
 class Posting:   # Acquired from Crawler
@@ -7,8 +6,7 @@ class Posting:   # Acquired from Crawler
         self.listing_reference = listing_reference
 
     def get_soup(self):
-        soup = BeautifulSoup(self.page.text, 'html.parser')
-        return soup
+        return self.page.get_soup()
 
     def set_page(self, page):
         self.page = page
@@ -21,4 +19,7 @@ class Posting:   # Acquired from Crawler
 
     def get_id(self):
         return self.listing_reference.get_id()
+
+    def get_listing(self):
+        return self.listing_reference
 

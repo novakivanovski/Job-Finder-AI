@@ -9,18 +9,18 @@ class PostingCrawlerFactory:
         self.crawlers = mapping.crawler_map
         self.package_name = 'PostingCrawlers'
 
-    def get(self, posting):
+    def get(self, job):
         crawler_instance = None
         try:
-            url = posting.get_url()
+            url = job.get_posting_url()
             for crawler_class in self.crawlers:
                 posting_site = self.crawlers[crawler_class]
                 if self.is_match(url, posting_site):
                     logging.debug('Match found: ' + url + ' with ' + posting_site)
-                    crawler_instance = Loader.load(self.package_name, crawler_class, posting)
+                    crawler_instance = Loader.load(self.package_name, crawler_class, job.posting)
         except Exception as e:
             logging.error('Unable to retrieve a crawler instance: ' + str(e))
-            raise
+            raise e
         return crawler_instance
 
     @staticmethod

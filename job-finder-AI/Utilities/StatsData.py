@@ -3,7 +3,7 @@ from Storage.LocalStorage import LocalStorage
 from DataStructures.Keyword import Keyword
 
 
-class KeywordManager:
+class StatsData:
     def __init__(self):
         self.keyword_folder = os.path.join('Storage', 'config', 'keywords')
         self.data_path = os.path.join(self.keyword_folder, 'keyword_data.json')
@@ -59,6 +59,7 @@ class KeywordManager:
         self.clear_totals()
         for keyword in self.keywords:
             keyword.clear_data()
+        self.save_data()
 
     def clear_totals(self):
         self.set_total_jobs_passed(0)

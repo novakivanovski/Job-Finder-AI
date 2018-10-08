@@ -50,3 +50,7 @@ class MultiThreaderError(ApplicationException):
     pass
 
 
+class DatabaseError(ApplicationException):
+    pass
+
+

@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class BaseLister(ABC):
-    def __init__(self, base_url):
+    def __init__(self, job_id, base_url=''):
         self.pages = []
         self.base_url = base_url
-        self.job_id = 0
+        self.job_id = job_id
 
     def get_job_id(self):
         self.job_id += 1

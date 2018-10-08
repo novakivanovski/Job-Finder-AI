@@ -22,10 +22,10 @@ class Job:
     def set_url(self, url):
         self.posting.page.url = url
 
-    def get_entry_url(self):
+    def get_listing_url(self):
         return self.listing.get_url()
 
-    def get_url(self):
+    def get_posting_url(self):
         return self.posting.get_url()
 
     def get_plaintext(self):
@@ -55,3 +55,14 @@ class Job:
     def has_description(self):
         description = self.get_posting_text()
         return description is not None and description is not ''
+
+    def get_location(self):
+        return self.listing.location
+
+    def get_company(self):
+        return self.listing.company
+
+    def get_date(self):
+        return self.listing.date
+
+
