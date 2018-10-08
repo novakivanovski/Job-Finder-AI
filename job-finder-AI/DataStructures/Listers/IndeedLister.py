@@ -10,21 +10,17 @@ class IndeedLister(BaseLister):
 
     def get_listings_from_page(self, page):
         page_listings = []
-        with open('data.html', 'w') as file:
-            file.write(page.text)
         page_soup = page.get_soup()
         for job_entry in page_soup.find_all('h2', class_='jobtitle'):
             job_data = job_entry.find(class_='turnstileLink')
             posting_url = self.base_url + job_data.get('href')
             job_title = job_data.get('title')
-            listing = Listing(job_title, url=posting_url)
-            page_listings.append(listing)
             jobmap_item = re.findall(self.jobmap_regex, str(job_entry))[0]
             jobmap_data_regex = re.escape(jobmap_item) + '= (.+);'
             jobmap_data = re.search(jobmap_data_regex, page.text).group(1)
             location = re.search("loc:(.+)',country", jobmap_data).group(1).replace("'", '')
             company = re.search("cmp:(.+)',cmpesc", jobmap_data).group(1).replace("'", '')
-            listing = Listing(title=job_title, company=company, location=location, job_id=self.get_job_id())
+            listing = Listing(url=posting_url, title=job_title, company=company,
+                              location=location, job_id=self.get_job_id())
             page_listings.append(listing)
-            print(listing.get_id())
         return page_listings

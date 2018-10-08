@@ -1,5 +1,6 @@
+
 crawler_map = {
-    "IndeedPostingCrawler": "ca.indeed.com",
+    "IndeedPostingCrawler": "indeed",
     "TalgroupPostingCrawler": "talgroup.net",
     "WorkdayPostingCrawler": "myworkdaypostings.com",
     "AerotekPostingCrawler": "www.aplitrak.com",
@@ -13,7 +14,7 @@ crawler_map = {
     "JobDivaPostingCrawler": "postingdiva.com",
     "RecruitingInMotionPostingCrawler": "recruitinginmotion.com",
     "WebConnectPostingCrawler": "webconnect.sendouts.net",
-    "AkamaiPostingCrawler": "https: //www.akamai.com",
+    "AkamaiPostingCrawler": "https://www.akamai.com",
     "IanMartinPostingCrawler": "careers.ianmartin.com",
     "TeksystemsPostingCrawler": "www.teksystems.com",
     "HireGooglePostingCrawler": "hire.withgoogle.com",

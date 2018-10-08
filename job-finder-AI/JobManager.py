@@ -9,7 +9,6 @@ class JobManager:
         self.jobs = []
         self.failed_jobs = []
         self.storage = LocalStorage()
-        self.job_id = self.storage.get_free_job_id()
         self.crawler = crawler
         self.lister = lister
         self.parse_utility = ParseUtility.ParseUtility()
@@ -58,13 +57,17 @@ class JobManager:
         self.jobs = jobs
 
     def get_num_jobs(self):
-        return self.job_id
+        return len(self.jobs)
 
     def clear_jobs(self):
         self.jobs = []
 
     def store(self):
         self.storage.store_jobs(self.jobs)
+
+    def get_last_job_id(self):
+        last_id = self.storage.get_free_job_id() - 1
+        return last_id
 
 
 

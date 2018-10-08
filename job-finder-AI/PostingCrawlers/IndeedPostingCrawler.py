@@ -6,8 +6,6 @@ class IndeedPostingCrawler(BasePostingCrawler):
         super().__init__(posting)
 
     def get_description(self):
-        raw = 'Indeed placeholder text'
         soup = self.posting.get_soup()
-        if soup:
-            raw = soup.find(id="posting_summary").get_text()
+        raw = soup.find(class_="jobsearch-JobComponent-description icl-u-xs-mt--md").text
         return raw

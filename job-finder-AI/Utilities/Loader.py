@@ -1,6 +1,7 @@
 from importlib import import_module
 from Utilities.ApplicationExceptions import LoaderError
 
+
 def load(package_name, class_name, *args, **kwargs):
     try:
         module_name = package_name + '.' + class_name

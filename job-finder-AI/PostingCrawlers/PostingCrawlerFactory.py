@@ -1,21 +1,25 @@
 from Utilities import Loader
 import logging
 from PostingCrawlers.config import mapping
+from collections import OrderedDict
 
 
 class PostingCrawlerFactory:
     def __init__(self):
-        self.indeed = 'ca.indeed.com'
-        self.crawlers = mapping.crawler_map
+        self.crawlers = OrderedDict(mapping.crawler_map)
         self.package_name = 'PostingCrawlers'
 
     def get(self, job):
         crawler_instance = None
         try:
             url = job.get_posting_url()
+            match_found = False
             for crawler_class in self.crawlers:
+                if match_found:
+                    continue
                 posting_site = self.crawlers[crawler_class]
-                if self.is_match(url, posting_site):
+                match_found = self.is_match(url, posting_site)
+                if match_found:
                     logging.debug('Match found: ' + url + ' with ' + posting_site)
                     crawler_instance = Loader.load(self.package_name, crawler_class, job.posting)
         except Exception as e:
