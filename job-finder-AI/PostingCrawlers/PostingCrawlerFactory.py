@@ -13,15 +13,13 @@ class PostingCrawlerFactory:
         crawler_instance = None
         try:
             url = job.get_posting_url()
-            match_found = False
             for crawler_class in self.crawlers:
-                if match_found:
-                    continue
                 posting_site = self.crawlers[crawler_class]
                 match_found = self.is_match(url, posting_site)
                 if match_found:
                     logging.debug('Match found: ' + url + ' with ' + posting_site)
                     crawler_instance = Loader.load(self.package_name, crawler_class, job.posting)
+                    break
         except Exception as e:
             logging.error('Unable to retrieve a crawler instance: ' + str(e))
             raise e

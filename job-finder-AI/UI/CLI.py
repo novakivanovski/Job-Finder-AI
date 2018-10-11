@@ -78,10 +78,10 @@ class CLI:
         job_title = TextFormatter.format_job_title(job.get_title())
         job_keywords = TextFormatter.format_job_keywords(job.get_keyword_names())
         job_score = TextFormatter.format_job_score(job.get_score())
-        TextFormatter.multi_print(job_title, job_keywords, job_score)
+        job_url = TextFormatter.format_job_url(job.get_posting_url())
+        TextFormatter.multi_print(job_title, job_keywords, job_score, job_url)
 
-    @staticmethod
-    def process_job_passed(job):
+    def process_job_passed(self, job):
         user_exit = False
         job_passed = input('Job passed? y/n ')
         if job_passed == 'y':
@@ -91,6 +91,7 @@ class CLI:
         else:
             print('Exiting...')
             user_exit = True
+        self.storage.update_job_in_database(job)
         return user_exit
 
     def clear(self):
