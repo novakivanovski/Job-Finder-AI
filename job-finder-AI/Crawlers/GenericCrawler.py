@@ -88,8 +88,8 @@ class GenericCrawler(BaseCrawler):
             raw_text = description_crawler.get_description()
             job.set_plaintext(raw_text)
         except Exception as e:
-            print(e)
-            raise CrawlerError('Error crawling job description: ' + str(e))
+            logging.error('Error crawling job description: ' + str(e))
+            raise CrawlerError(e)
         return job
 
     def get_percent_complete(self):

@@ -260,6 +260,9 @@ class LocalStorage:
     def get_free_job_id(self):
         return self.database.get_last_id() + 1
 
+    def update_job_in_database(self, job):
+        self.database.update_entry(job)
+
 
 
 

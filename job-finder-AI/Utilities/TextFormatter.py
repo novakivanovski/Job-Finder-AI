@@ -7,6 +7,11 @@ def multi_print(*args):
         print(arg)
 
 
+def format_job_url(job_url):
+    url_text = 'Link: ' + str(job_url)
+    return reformat_text(url_text)
+
+
 def format_job_keywords(job_keywords):
     keywords_text = 'Job keywords: ' + str(job_keywords)
     return reformat_text(keywords_text)

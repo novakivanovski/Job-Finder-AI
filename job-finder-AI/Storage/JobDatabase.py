@@ -34,6 +34,7 @@ class JobDatabase:
         Base.metadata.create_all(self.engine)
         self.session = self.get_session(self.engine)
         self.session.commit()
+        self.job_table = self.session.query(JobTable)
 
     @staticmethod
     def get_session(engine):
@@ -60,9 +61,8 @@ class JobDatabase:
         self.session.add(job_entry)
 
     def get_jobs(self):
-        job_table = self.session.query(JobTable)
         jobs = []
-        for job_entry in job_table:
+        for job_entry in self.job_table:
             job = self.convert_entry_to_job(job_entry)
             jobs.append(job)
         return jobs
@@ -87,5 +87,13 @@ class JobDatabase:
         result = self.session.execute(statement)
         last_id = result.fetchone()[0]
         return last_id if last_id else 0
+
+    def update_entry(self, job):
+        job_entry = self.session.query(JobTable).filter_by(job_id=job.get_id()).first()
+        job_entry.passed = job.get_passed()
+        self.session.commit()
+
+
+
 
 

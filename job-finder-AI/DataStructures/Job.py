@@ -65,4 +65,7 @@ class Job:
     def get_date(self):
         return self.listing.date
 
+    def get_passed(self):
+        return self.passed
+
 
