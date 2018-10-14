@@ -35,6 +35,9 @@ class Stats:
             raise StatsError('Insufficient training data supplied.')
         self.stats_data.update_data(keywords, number_jobs_passed, number_jobs_failed)
 
+    def clear_data(self):
+        self.stats_data.clear_data()
+
     def classify(self, job):
         keywords = self.stats_data.get_keywords()
         job_pass_probability = self.stats_data.get_job_pass_probability()

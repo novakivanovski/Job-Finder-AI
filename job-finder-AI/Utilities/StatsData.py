@@ -62,8 +62,8 @@ class StatsData:
         self.save_data()
 
     def clear_totals(self):
-        self.set_total_jobs_passed(0)
-        self.set_total_jobs_failed(0)
+        self.set_total_jobs_passed(1)
+        self.set_total_jobs_failed(1)
 
     def get_keyword_names(self):
         return self.keyword_names

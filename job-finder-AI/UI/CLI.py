@@ -1,10 +1,10 @@
 import argparse
 from JobManager import JobManager
-from Crawlers import EngineerJobsCrawler, IndeedCrawler
-from DataStructures.Listers import EngineerJobsLister, IndeedLister
+from Crawlers import IndeedCrawler
+from DataStructures.Listers import IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
-from Utilities.StatsData import StatsData
+
 
 class CLI:
     def __init__(self):
@@ -48,7 +48,7 @@ class CLI:
         self.job_manager.lister = IndeedLister.IndeedLister(self.job_manager.get_last_job_id())
         jobs = self.job_manager.get_jobs()
         print('Saving ' + str(len(jobs)) + ' jobs...')
-        self.storage.store_jobs(jobs)
+        self.storage.store_jobs_in_database(jobs)
 
     def train(self):
         print('Starting training session...')
@@ -98,6 +98,8 @@ class CLI:
         print('Clearing local cache and database...')
         self.storage.clear_cache()
         self.storage.clear_database()
+        self.stats.clear_data()
+
 
 
 
