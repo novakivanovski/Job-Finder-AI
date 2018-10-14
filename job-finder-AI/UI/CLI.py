@@ -4,7 +4,7 @@ from Crawlers import EngineerJobsCrawler, IndeedCrawler
 from DataStructures.Listers import EngineerJobsLister, IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
-
+from Utilities.StatsData import StatsData
 
 class CLI:
     def __init__(self):
