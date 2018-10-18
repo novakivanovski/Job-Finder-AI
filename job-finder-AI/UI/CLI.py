@@ -4,6 +4,7 @@ from Crawlers import IndeedCrawler
 from DataStructures.Listers import IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
+import logging
 
 
 class CLI:
@@ -33,7 +34,7 @@ class CLI:
 
     def classify(self):
         print('Classifying jobs...')
-        jobs = self.storage.get_jobs_from_cache()
+        jobs = self.storage.get_jobs_from_database()
         for job in jobs:
             score = self.stats.classify(job)
             job.set_score(score)
@@ -80,6 +81,10 @@ class CLI:
         job_score = TextFormatter.format_job_score(job.get_score())
         job_url = TextFormatter.format_job_url(job.get_posting_url())
         TextFormatter.multi_print(job_title, job_keywords, job_score, job_url)
+        logging.info(job_title)
+        logging.info(job_keywords)
+        logging.info(job_score)
+        logging.info(job_url)
 
     def process_job_passed(self, job):
         user_exit = False
@@ -88,9 +93,12 @@ class CLI:
             job.set_passed(True)
         elif job_passed == 'n':
             job.set_passed(False)
-        else:
+        elif job_passed == 'exit':
             print('Exiting...')
-            user_exit = True
+            user_exit = Truere
+        else:
+            print('Invalid input. Try again.')
+            self.process_job_passed(job)
         self.storage.update_job_in_database(job)
         return user_exit
 
@@ -98,8 +106,6 @@ class CLI:
         print('Clearing local cache and database...')
         self.storage.clear_cache()
         self.storage.clear_database()
-        self.stats.clear_data()
-
 
 
 
