@@ -38,8 +38,7 @@ class CLI:
         for job in jobs:
             score = self.stats.classify(job)
             job.set_score(score)
-            if score > 1.0:
-                self.print_classify_info(job)
+            self.print_classify_info(job)
 
     def crawl(self):
         print('Crawling job postings...')
@@ -80,7 +79,8 @@ class CLI:
         job_keywords = TextFormatter.format_job_keywords(job.get_keyword_names())
         job_score = TextFormatter.format_job_score(job.get_score())
         job_url = TextFormatter.format_job_url(job.get_posting_url())
-        TextFormatter.multi_print(job_title, job_keywords, job_score, job_url)
+        if job.score > 1.0:
+            TextFormatter.multi_print(job_title, job_keywords, job_score, job_url)
         logging.info(job_title)
         logging.info(job_keywords)
         logging.info(job_score)
@@ -95,7 +95,7 @@ class CLI:
             job.set_passed(False)
         elif job_passed == 'exit':
             print('Exiting...')
-            user_exit = Truere
+            user_exit = True
         else:
             print('Invalid input. Try again.')
             self.process_job_passed(job)
