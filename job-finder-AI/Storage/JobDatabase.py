@@ -86,6 +86,7 @@ class JobDatabase:
         statement = 'SELECT MAX(job_id) FROM JobTable'
         result = self.session.execute(statement)
         last_id = result.fetchone()[0]
+        self.session.commit()
         return last_id if last_id else 0
 
     def update_entry(self, job):
@@ -93,6 +94,8 @@ class JobDatabase:
         job_entry.passed = job.get_passed()
         self.session.commit()
 
+    def close(self):
+        self.session.close()
 
 
 

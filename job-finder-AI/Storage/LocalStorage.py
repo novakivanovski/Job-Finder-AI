@@ -272,6 +272,9 @@ class LocalStorage:
                 key = key_file.read()
         return key
 
+    def close_database(self):
+        self.database.close()
+
 
 
 
