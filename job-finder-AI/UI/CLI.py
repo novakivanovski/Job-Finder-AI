@@ -1,9 +1,10 @@
 import argparse
 from JobManager import JobManager
-from Crawlers import EngineerJobsCrawler, IndeedCrawler
-from DataStructures.Listers import EngineerJobsLister, IndeedLister
+from Crawlers import IndeedCrawler
+from DataStructures.Listers import IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
+import logging
 
 
 class CLI:
@@ -33,12 +34,11 @@ class CLI:
 
     def classify(self):
         print('Classifying jobs...')
-        jobs = self.storage.get_jobs_from_cache()
+        jobs = self.storage.get_jobs_from_database()
         for job in jobs:
             score = self.stats.classify(job)
             job.set_score(score)
-            if score > 1.0:
-                self.print_classify_info(job)
+            self.print_classify_info(job)
 
     def crawl(self):
         print('Crawling job postings...')
@@ -48,7 +48,7 @@ class CLI:
         self.job_manager.lister = IndeedLister.IndeedLister(self.job_manager.get_last_job_id())
         jobs = self.job_manager.get_jobs()
         print('Saving ' + str(len(jobs)) + ' jobs...')
-        self.storage.store_jobs(jobs)
+        self.storage.store_jobs_in_database(jobs)
 
     def train(self):
         print('Starting training session...')
@@ -79,7 +79,12 @@ class CLI:
         job_keywords = TextFormatter.format_job_keywords(job.get_keyword_names())
         job_score = TextFormatter.format_job_score(job.get_score())
         job_url = TextFormatter.format_job_url(job.get_posting_url())
-        TextFormatter.multi_print(job_title, job_keywords, job_score, job_url)
+        if job.score > 1.0:
+            TextFormatter.multi_print(job_title, job_keywords, job_score, job_url)
+        logging.info(job_title)
+        logging.info(job_keywords)
+        logging.info(job_score)
+        logging.info(job_url)
 
     def process_job_passed(self, job):
         user_exit = False
@@ -88,9 +93,12 @@ class CLI:
             job.set_passed(True)
         elif job_passed == 'n':
             job.set_passed(False)
-        else:
+        elif job_passed == 'exit':
             print('Exiting...')
             user_exit = True
+        else:
+            print('Invalid input. Try again.')
+            self.process_job_passed(job)
         self.storage.update_job_in_database(job)
         return user_exit
 
