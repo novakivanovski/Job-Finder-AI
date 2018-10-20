@@ -1,7 +1,7 @@
 import argparse
-from JobManager import JobManager
+from JobManagers.JobManager import JobManager
 from Crawlers import IndeedCrawler
-from DataStructures.Listers import IndeedLister
+from Listers import IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
 import logging

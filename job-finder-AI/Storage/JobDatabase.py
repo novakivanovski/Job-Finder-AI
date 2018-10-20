@@ -33,8 +33,8 @@ class JobDatabase:
         self.engine = self.get_engine(self.path)
         Base.metadata.create_all(self.engine)
         self.session = self.get_session(self.engine)
-        self.session.commit()
         self.job_table = self.session.query(JobTable)
+        self.session.commit()
 
     @staticmethod
     def get_session(engine):

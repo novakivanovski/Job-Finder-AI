@@ -1,10 +1,10 @@
 from appJar import gui
 from Crawlers.EngineerJobsCrawler import EngineerJobsCrawler
-from DataStructures.Listers.EngineerJobsLister import EngineerJobsLister
+from Listers.EngineerJobsLister import EngineerJobsLister
 from Utilities.Stats import Stats
 from time import sleep
 import os
-from JobManager import JobManager
+from JobManagers.JobManager import JobManager
 from Storage.LocalStorage import LocalStorage
 
 

@@ -1,18 +1,38 @@
-from Storage.config import tests_config, logging_config
-from UI.CLI import CLI
+from Storage.config import logging_config
+from Tests import tests_config
+
+tests_to_enable = {
+    'Database': False,
+    'Resume': False,
+    'Stats': False,
+    'System': False,
+    'GUI': False,
+    'Security': True
+}
+
+
+def get_test_run_functions():
+    run_functions = []
+    for test_name in tests_to_enable:
+        test_enabled = tests_to_enable[test_name]
+        if test_enabled:
+            test_function = tests_config.get_test_function(test_name)
+            run_functions.append(test_function)
+    return run_functions
 
 
 if __name__ == '__main__':
-    test_results = "ALL TESTS PASSED"
     logger = logging_config.setup_logger('test_results.log')
-    tests_to_run = tests_config.get_tests_to_run()
+    test_run_functions = get_test_run_functions()
+    test_result = "TEST SUCCESS"
     try:
-        for run_test_func in tests_to_run:
-            run_test_func()
+        for test_run_function in test_run_functions:
+            logger.info('Running test: ' + test_run_function.__module__)
+            test_run_function()
     except AssertionError:
-        test_results = "TEST FAILURE"
-    logger.info('Results: ' + test_results)
-    print(test_results)
+        test_result = "TEST FAILURE"
+    logger.info(test_result)
+    print(test_result)
 
 
 

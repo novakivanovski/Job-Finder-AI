@@ -263,6 +263,17 @@ class LocalStorage:
     def update_job_in_database(self, job):
         self.database.update_entry(job)
 
+    @staticmethod
+    def get_key():
+        key = None
+        key_path = LocalStorage.get_config_file_path('key')
+        if os.path.isfile(key_path):
+            with open(key_path, 'rb') as key_file:
+                key = key_file.read()
+        return key
+
+
+
 
 
 

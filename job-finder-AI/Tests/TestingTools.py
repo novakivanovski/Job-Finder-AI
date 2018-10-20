@@ -43,7 +43,7 @@ def get_test_page():
     return test_page
 
 
-def set_job_parameters(job, job_id=0, title='', date ='', company='', location='', plaintext=''):
+def set_job_parameters(job, job_id=0, title='', date='', company='', location='', plaintext=''):
     job.set_id(job_id)
     job.listing.title = title
     job.listing.date = date

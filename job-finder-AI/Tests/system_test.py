@@ -1,16 +1,11 @@
 from time import time
-from JobManager import JobManager
-from Storage.LocalStorage import LocalStorage
-from Crawlers import EngineerJobsCrawler
-from DataStructures.Listers import EngineerJobsLister
+from JobManagers.Managers import EngineerJobsManager
 
 
 def run():
     start = time()
-    storage = LocalStorage()
-    crawler = EngineerJobsCrawler.EngineerJobsCrawler()
-    lister = EngineerJobsLister.EngineerJobsLister()
-    manager = JobManager(crawler, lister)
+    manager = EngineerJobsManager()
+    storage = manager.storage
     jobs = manager.get_jobs()
     storage.store_jobs(jobs)
     retrieved_jobs = storage.get_jobs_from_cache()
