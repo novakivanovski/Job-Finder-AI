@@ -1,11 +1,12 @@
 import os
 import pickle
 import logging
-from nltk import word_tokenize
 from enum import Enum
 import json
 from Utilities.ApplicationExceptions import StorageError
 from Storage.JobDatabase import JobDatabase
+import zipfile
+from Utilities import TextFormatter
 
 
 class Path(Enum):
@@ -21,11 +22,8 @@ class LocalStorage:
         self.jobs_dir = os.path.join(self.cache_dir, 'jobs')
         self.listings_dir = os.path.join(self.cache_dir, 'listings')
         self.config_dir = os.path.join(self.base_dir, 'config')
+        self.backup_dir = os.path.join(self.base_dir, 'backup')
         self.database_path = os.path.join(self.config_dir, 'database.db')
-        self.train_dir = os.path.join(self.jobs_dir, 'training')
-        self.train_pass_dir = os.path.join(self.train_dir, 'pass')
-        self.train_fail_dir = os.path.join(self.train_dir, 'fail')
-        self.classify_dir = os.path.join(self.jobs_dir, 'classify')
         self.job_file_name = 'job.txt'
         self.job_object_name = 'job.pickle'
         self.database = JobDatabase()
@@ -178,32 +176,6 @@ class LocalStorage:
         return match
 
     @staticmethod
-    def write_training_data(self, jobs):
-        jobs_dir = self.jobs_dir
-        for i, job in enumerate(jobs):
-            if job.passed:
-                pass
-            else:
-                pass
-            file = open(jobs_dir, 'w', encoding='utf-8')
-            file.write(job.title + '\n')
-
-            for keyword in job.keywords:
-                file.write(keyword + ", ")
-            file.write('\n')
-            file.write(job.url + '\n')
-            file.write(job.location + '\n')
-            file.write(job.company + '\n')
-            file.write(job.date + '\n')
-            file.write('\n\n')
-            raw_txt = word_tokenize(job.raw)
-            for j, word in enumerate(raw_txt):
-                file.write(word + ' ')
-                if (j % 25) == 0:
-                    file.write('\n')
-            file.close()
-
-    @staticmethod
     def get_json_data(json_path):
         with open(json_path, 'r') as json_file:
             data = json.load(json_file)
@@ -275,9 +247,14 @@ class LocalStorage:
     def close_database(self):
         self.database.close()
 
-
-
-
-
-
-
+    def create_backup(self):
+        file_name = TextFormatter.get_backup_name()
+        zip_path = os.path.join(self.backup_dir, file_name)
+        zip_file = zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED)
+        for folder, subfolders, files in os.walk(self.config_dir):
+            for file in files:
+                if not file.endswith('.py') and not file.endswith('.pyc') and not file.endswith('.log'):
+                    path = os.path.join(folder, file)
+                    logging.info('Compressing file: {} -> {}'.format(path, zip_path))
+                    zip_file.write(path)
+        zip_file.close()

@@ -1,6 +1,6 @@
 import re
 from nltk.tokenize import WhitespaceTokenizer
-
+import datetime
 
 def multi_print(*args):
     for arg in args:
@@ -101,3 +101,8 @@ def format_header(text):
     header = sep + '\n' + text + sep
     return header
 
+
+def get_backup_name():
+    now = datetime.datetime.now()
+    timestamp = now.strftime('%Y-%m-%d')
+    return timestamp + '.zip'
