@@ -5,10 +5,10 @@ tests_to_enable = {
     'Database': False,
     'Resume': False,
     'Stats': False,
-    'System': False,
+    'System': True,
     'GUI': False,
     'Security': False,
-    'Sandbox': True
+    'Sandbox': False
 }
 
 
