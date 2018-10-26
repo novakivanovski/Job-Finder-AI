@@ -1,10 +1,10 @@
 import argparse
-from JobManagers.JobManager import JobManager
 from Crawlers import IndeedCrawler
 from Listers import IndeedLister
 from Utilities import TextFormatter
 from Utilities.Stats import Stats
 import logging
+from Utilities import Loader
 
 
 class CLI:
@@ -16,10 +16,11 @@ class CLI:
         parser.add_argument('-classify', help='Show results of classification applied to cache.', action='store_true')
         parser.add_argument('-time', help='Specify how many days to crawl')
         parser.add_argument('-store', help='Store jobs in database.', action='store_true')
+        parser.add_argument('-site', help='Specify site: indeed or engineerjobs currently supported.')
         args = parser.parse_args()
         self.args_to_values = vars(args)
         self.stats = Stats()
-        self.job_manager = JobManager()
+        self.job_manager = self.get_manager()
         self.storage = self.job_manager.storage
         self.args_to_functions = {'clear': self.clear, 'crawl': self.crawl,
                                   'train': self.train, 'classify': self.classify}
@@ -65,6 +66,14 @@ class CLI:
             exit_condition = user_exit or current_job == num_jobs - 1
             current_job += 1
         self.stats.train(jobs)
+
+    def get_manager(self):
+        site = self.args_to_values['site']
+        site_to_manager = {'engineerjobs': 'EngineerJobsManager',
+                           'indeed': 'IndeedManager',
+                           'linkedin': 'LinkedInManager'}
+        manager_name = 'IndeedManager' if site not in site_to_manager else site_to_manager[site]
+        return Loader.load_class('JobManagers', 'Managers', manager_name)
 
     @staticmethod
     def print_training_info(job):
