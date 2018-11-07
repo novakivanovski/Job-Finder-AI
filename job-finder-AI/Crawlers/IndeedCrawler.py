@@ -7,7 +7,7 @@ class IndeedCrawler(GenericCrawler):
 
     def configure(self):
         self.jobs_per_page = 50
-        self.jobs_regex = 'Jobs .+ of ((\d|,)+)'
+        self.jobs_regex = '1( to 50)? of ((\d|,)+)'
         self.page_addend = '&start='
         self.base_url = 'https://www.indeed.ca'
         self.entry_url = self.base_url + '/jobs?as_and=software+engineer&as_phr=&as_any=&as_not=&as_ttl=&as_cmp=&' \
@@ -15,7 +15,8 @@ class IndeedCrawler(GenericCrawler):
                                          + str(self.days) + '&limit=50&sort=&psf=advsrch'
 
     def extract_number_of_jobs(self, search_result):
-        number_of_jobs = search_result.replace(",", "")
+        second_group = search_result.group(2)
+        number_of_jobs = second_group.replace(",", "")
         return int(number_of_jobs)
 
     def get_page_url(self, page_number):

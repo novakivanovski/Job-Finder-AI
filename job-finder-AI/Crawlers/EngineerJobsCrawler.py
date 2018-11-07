@@ -13,7 +13,8 @@ class EngineerJobsCrawler(GenericCrawler):
         self.entry_url = self.base_url + '/jobs/software-engineering/canada/ontario/?f=' + str(self.days)
 
     def extract_number_of_jobs(self, search_result):
-        number_of_jobs = search_result.replace(',', '')
+        first_group = search_result.group(1)
+        number_of_jobs = first_group.replace(',', '')
         return int(number_of_jobs)
 
     def get_page_url(self, page_number):

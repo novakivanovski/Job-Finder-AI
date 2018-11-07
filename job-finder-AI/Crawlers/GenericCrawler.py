@@ -19,7 +19,9 @@ class GenericCrawler(BaseCrawler):
 
     def get_number_of_jobs(self, html_text):
         try:
-            search_result = re.search(self.jobs_regex, html_text).group(1)
+            with open('site.html', 'w', encoding='utf-8') as html_dump:
+                html_dump.write(html_text)
+            search_result = re.search(self.jobs_regex, html_text)
             number_of_jobs = self.extract_number_of_jobs(search_result)
             logging.debug('Number of jobs: ' + str(number_of_jobs))
         except Exception as e:
@@ -27,7 +29,7 @@ class GenericCrawler(BaseCrawler):
         return number_of_jobs
 
     def extract_number_of_jobs(self, search_result):  # Override
-        return 0
+        return search_result.group(1)
 
     def get_num_pages(self, num_jobs):
         num_pages = ceil(num_jobs / self.jobs_per_page)
