@@ -5,7 +5,7 @@ tests_to_enable = {
     'Database': False,
     'Resume': False,
     'Stats': False,
-    'System': True,
+    'System': False,
     'GUI': False,
     'Security': False,
     'Sandbox': False
@@ -34,7 +34,3 @@ if __name__ == '__main__':
         test_result = "TEST FAILURE"
     logger.info(test_result)
     print(test_result)
-
-
-
-
