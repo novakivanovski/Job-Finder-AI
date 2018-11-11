@@ -12,8 +12,8 @@ test_name_to_entry_function = {
   'Stats': Tests.stats_test.run,
   'System': Tests.system_test.run,
   'GUI': Tests.gui_test.run,
-    'Security': Tests.security_test.run,
-    'Sandbox': Tests.sandbox_test.run
+  'Security': Tests.security_test.run,
+  'Sandbox': Tests.sandbox_test.run
 }
 
 
@@ -21,6 +21,7 @@ def get_test_function(test_name):
     if test_name not in test_name_to_entry_function:
         raise KeyError('Invalid test specified: ' + test_name)
     return test_name_to_entry_function[test_name]
+
 
 
 

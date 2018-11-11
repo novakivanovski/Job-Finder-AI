@@ -1,9 +1,7 @@
 from multiprocessing import Manager
 from threading import Thread
-import logging
 from Utilities import QueueMonitor
 from Utilities.ApplicationExceptions import MultiThreaderError
-import traceback
 
 
 class MultiThreader:
@@ -27,13 +25,7 @@ class MultiThreader:
             raise MultiThreaderError('Unable to add thread to scheduler.')
 
     def wrap_thread(self, func, *args, **kwargs):
-        result = None
-        try:
-            result = func(*args, **kwargs)
-        except Exception as e:
-            logging.error('Error executing thread: ' + str(e))
-            tb = traceback.format_exc()
-            logging.error(tb)
+        result = func(*args, **kwargs)
         self.queue.put(result)
 
     def schedule_threads(self):

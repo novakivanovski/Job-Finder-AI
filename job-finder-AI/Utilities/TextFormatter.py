@@ -2,6 +2,7 @@ import re
 from nltk.tokenize import WhitespaceTokenizer
 import datetime
 
+
 def multi_print(*args):
     for arg in args:
         print(arg)

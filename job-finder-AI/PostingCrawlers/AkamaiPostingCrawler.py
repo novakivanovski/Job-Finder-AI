@@ -1,5 +1,5 @@
 from .BasePostingCrawler import BasePostingCrawler
-from Utilities import NetworkUtilities
+from Utilities import Network
 
 
 class AkamaiPostingCrawler(BasePostingCrawler):
@@ -10,9 +10,9 @@ class AkamaiPostingCrawler(BasePostingCrawler):
         raw = ''
         link = self.posting.get_url()
         for i in range(4):
-            response = NetworkUtilities.get_html(link, allow_redirects=False)
+            response = Network.get_html(link, allow_redirects=False)
             link = response.headers['Location']
-        page = NetworkUtilities.get_page(link)
+        page = Network.get_page(link)
         self.posting.set_page(page)
         soup = self.posting.get_soup()
         tags = soup.find_all('p', style="margin-top:0px;margin-bottom:0px")

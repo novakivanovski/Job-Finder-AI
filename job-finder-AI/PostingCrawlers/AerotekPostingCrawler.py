@@ -1,4 +1,4 @@
-from Utilities import NetworkUtilities
+from Utilities import Network
 import logging
 from .BasePostingCrawler import BasePostingCrawler
 
@@ -17,7 +17,7 @@ class AerotekPostingCrawler(BasePostingCrawler):
                 start = text.find("'")
                 end = text.find("'", start + 1)
                 url = text[start + 1: end - 1]
-                page = NetworkUtilities.get_page(url, headers=self.headers)
+                page = Network.get_page(url, headers=self.headers)
             except Exception as e:
                 logging.error(e)
         self.posting.set_page(page)

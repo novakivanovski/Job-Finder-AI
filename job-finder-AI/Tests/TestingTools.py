@@ -50,3 +50,15 @@ def set_job_parameters(job, job_id=0, title='', date='', company='', location=''
     job.listing.company = company
     job.listing.location = location
     job.set_plaintext(plaintext)
+
+
+def debug(func):
+    def wrapper(*args, **kwargs):
+        logging.debug('=' * 25)
+        logging.debug('Enter function ' + func.__name__)
+        logging.debug('Positional arguments: ' + str(args))
+        logging.debug('Keyword arguments: ' + str(kwargs))
+        func(*args, **kwargs)
+        logging.debug('Exit function ' + func.__name__)
+        logging.debug('=' * 25 + '\n')
+    return wrapper

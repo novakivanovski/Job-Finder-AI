@@ -1,6 +1,6 @@
 from .BasePostingCrawler import BasePostingCrawler
 from Utilities.ParseUtility import ParseUtility
-from Utilities import NetworkUtilities
+from Utilities import Network
 
 
 class RecruitingInMotionPostingCrawler(BasePostingCrawler):
@@ -12,7 +12,7 @@ class RecruitingInMotionPostingCrawler(BasePostingCrawler):
         posting_id = ParseUtility.get_value_between_strings(posting.get_url(), 'b=', '&')
         url = 'https://www2.pcrecruiter.net/pcrbin/postingboard.aspx?action=detail&b=' + posting_id + \
               '&src=Indeed&utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed&referrer=&referrer='
-        page = NetworkUtilities.get_page(url, headers=self.headers)
+        page = Network.get_page(url, headers=self.headers)
         posting.set_page(page)
         soup = posting.get_soup()
         attrs = {'property': 'og:description'}
