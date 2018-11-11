@@ -3,6 +3,7 @@ import os
 from Tests import TestingTools
 
 
+@TestingTools.timer
 def run():
     security = Security()
     test_file_path = os.path.join('Storage', 'LocalStorage.py')

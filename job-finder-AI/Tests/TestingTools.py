@@ -2,7 +2,9 @@ from DataStructures.Job import Job
 from DataStructures.Listing import Listing
 from DataStructures.Posting import Posting
 from DataStructures.Page import Page
+from Storage import LocalStorage
 import logging
+import os
 import time
 
 
@@ -74,3 +76,15 @@ def timer(func):
         print('{} elapsed run time: {}s'.format(func.__module__, elapsed))
     return wrapper
 
+
+@debug
+def delete_db():
+    database_path = os.path.join('Storage', 'config', 'database.db')
+    if os.path.isfile(database_path):
+        os.unlink(database_path)
+
+
+def reset_db():
+    delete_db()
+    storage = LocalStorage.LocalStorage()
+    return storage.database

@@ -5,6 +5,7 @@ import Tests.system_test
 import Tests.gui_test
 import Tests.security_test
 import Tests.sandbox_test
+import Tests.site_test
 
 test_name_to_entry_function = {
   'Database': Tests.database_test.run,
@@ -13,7 +14,8 @@ test_name_to_entry_function = {
   'System': Tests.system_test.run,
   'GUI': Tests.gui_test.run,
   'Security': Tests.security_test.run,
-  'Sandbox': Tests.sandbox_test.run
+  'Sandbox': Tests.sandbox_test.run,
+  'Site': Tests.site_test.run
 }
 
 

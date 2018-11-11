@@ -1,13 +1,5 @@
 from Storage import JobDatabase
-import os
 from Tests import TestingTools
-
-
-@TestingTools.debug
-def delete_db(project_path):
-    database_path = os.path.join(project_path, 'Storage', 'config', 'database.db')
-    if os.path.isfile(database_path):
-        os.unlink(database_path)
 
 
 @TestingTools.debug
@@ -40,10 +32,8 @@ def test_add_jobs(database):
         TestingTools.assert_equal(test_job.plaintext, database_job.plaintext)
 
 
-@TestingTools.debug
+@TestingTools.timer
 def run():
-    project_path = os.getcwd()
-    delete_db(project_path)
-    database = JobDatabase.JobDatabase()
+    database = TestingTools.reset_db()
     test_constructor(database)
     test_add_jobs(database)

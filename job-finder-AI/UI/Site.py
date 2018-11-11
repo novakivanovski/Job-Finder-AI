@@ -1,6 +1,5 @@
 from flask import Flask
 
-
 app = Flask(__name__)
 
 
@@ -17,4 +16,3 @@ def about():
 @app.route('/login')
 def login():
     return 'Login page'
-

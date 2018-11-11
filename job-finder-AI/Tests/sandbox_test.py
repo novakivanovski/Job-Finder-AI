@@ -1,6 +1,10 @@
-from Storage.LocalStorage import LocalStorage
+from Tests import TestingTools
 
 
+@TestingTools.timer
 def run():
-    storage = LocalStorage()
-    storage.create_backup()
+    sandbox()
+
+
+def sandbox():
+    pass

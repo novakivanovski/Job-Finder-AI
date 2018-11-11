@@ -55,3 +55,5 @@ class Stats:
         fail_probability += alpha
         return pass_probability/fail_probability
 
+    def get_keywords(self):
+        return self.stats_data.get_keywords()

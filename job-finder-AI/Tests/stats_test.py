@@ -7,12 +7,15 @@ def sort_by_name(values):
     values.sort(key=lambda x: x.name)
 
 
+@TestingTools.timer
 def run():
+    TestingTools.reset_db()
     stats = Stats()
-    sort_by_name(stats.keywords)
-    expected_keywords = [Keyword('engineer', 1, 2), Keyword('software', 20, 4)]
+    keywords = stats.get_keywords()
+    sort_by_name(keywords)
+    expected_keywords = [Keyword('engineer', 1, 2, 40, 80), Keyword('software', 20, 4, 40, 80)]
     sort_by_name(expected_keywords)
-    for actual, expected in zip(stats.keywords, expected_keywords):
+    for actual, expected in zip(keywords, expected_keywords):
         TestingTools.assert_equal(actual.pass_count, expected.pass_count)
         TestingTools.assert_equal(actual.fail_count,  expected.fail_count)
 
