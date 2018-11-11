@@ -3,7 +3,7 @@ import pickle
 import logging
 from enum import Enum
 import json
-from Utilities.ApplicationExceptions import StorageError
+from Utilities.ApplicationExceptions import storage_error
 from Storage.JobDatabase import JobDatabase
 import zipfile
 from Utilities import TextFormatter
@@ -28,6 +28,7 @@ class LocalStorage:
         self.job_object_name = 'job.pickle'
         self.database = JobDatabase()
 
+    @storage_error()
     def store_jobs(self, jobs):
         self.clear_cache()
         self.create_directory(self.jobs_dir)
@@ -47,15 +48,13 @@ class LocalStorage:
 
     @staticmethod
     def store_object(file_path, obj):
-        try:
-            with open(file_path, 'wb') as file:
-                pickle.dump(obj, file)
-        except Exception as e:
-            logging.error('Error while pickling: ' + str(e))
+        with open(file_path, 'wb') as file:
+            pickle.dump(obj, file)
 
     def get_jobs_from_database(self):
         return self.database.get_jobs()
 
+    @storage_error()
     def get_jobs_from_cache(self):
         pickle_paths = self.get_pickles_in_folder(self.jobs_dir)
         jobs = []
@@ -79,28 +78,21 @@ class LocalStorage:
 
     @staticmethod
     def retrieve_object(file_path):
-        obj = None
-        try:
-            with open(file_path, 'rb') as file:
-                obj = pickle.load(file)
-        except Exception as e:
-                logging.error('Error while retrieving object: ' + str(e))
+        with open(file_path, 'rb') as file:
+            obj = pickle.load(file)
         return obj
 
     @staticmethod
     def store_job_listing_data(file_path, job):
-        try:
-            with open(file_path, 'w', encoding='utf-8') as file:
-                listing = job.listing
-                file.write('Job title: ' + listing.title + '\n')
-                file.write('Posting date: ' + listing.date + '\n')
-                file.write('Job Location: ' + listing.location + '\n')
-                file.write('Company: ' + listing.company + '\n')
-                file.write('Listing URL: ' + listing.url + '\n')
-                file.write('Job ID: ' + str(listing.job_id) + '\n')
-                file.write('Description: ' + job.get_plaintext() + '\n')
-        except Exception as e:
-            logging.error('Error while storing listing: ' + str(e))
+        with open(file_path, 'w', encoding='utf-8') as file:
+            listing = job.listing
+            file.write('Job title: ' + listing.title + '\n')
+            file.write('Posting date: ' + listing.date + '\n')
+            file.write('Job Location: ' + listing.location + '\n')
+            file.write('Company: ' + listing.company + '\n')
+            file.write('Listing URL: ' + listing.url + '\n')
+            file.write('Job ID: ' + str(listing.job_id) + '\n')
+            file.write('Description: ' + job.get_plaintext() + '\n')
 
     @staticmethod
     def write_formatted_text(file, text, max_words_per_line=25):
@@ -111,12 +103,8 @@ class LocalStorage:
 
     @staticmethod
     def retrieve_text(file_path):
-        text = ''
-        try:
-            with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
                 text = file.read()
-        except Exception as e:
-            logging.error('Error while retrieving text file: ' + str(e))
         return text
 
     def clear_directory(self, directory):
@@ -187,16 +175,18 @@ class LocalStorage:
             json.dump(data, json_file)
 
     @staticmethod
+    @storage_error()
     def get_config_file_text(file_name):
         file_path = LocalStorage.get_config_file_path(file_name)
         text = LocalStorage.retrieve_text(file_path)
         return text
 
     @staticmethod
+    @storage_error()
     def get_config_file_path(file_name):
         file_path = os.path.join('Storage', 'config', file_name)
         if not os.path.isfile(file_path):
-            raise StorageError('File path does not exist: ' + file_path)
+            raise ('File path does not exist: ' + file_path)
         return file_path
 
     @staticmethod
@@ -214,9 +204,10 @@ class LocalStorage:
         self.clear_files(self.jobs_dir)
         self.clear_files(self.listings_dir)
 
+    @storage_error()
     def clear_database(self):
         if not os.path.isfile(self.database_path):
-            raise StorageError('Database path does not point to file: ' + self.database_path)
+            raise ('Database path does not point to file: ' + self.database_path)
         os.unlink(self.database_path)
 
     def store_jobs_in_database(self, jobs):
@@ -237,11 +228,9 @@ class LocalStorage:
 
     @staticmethod
     def get_key():
-        key = None
         key_path = LocalStorage.get_config_file_path('key')
-        if os.path.isfile(key_path):
-            with open(key_path, 'rb') as key_file:
-                key = key_file.read()
+        with open(key_path, 'rb') as key_file:
+            key = key_file.read()
         return key
 
     def close_database(self):
@@ -253,8 +242,12 @@ class LocalStorage:
         zip_file = zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED)
         for folder, subfolders, files in os.walk(self.config_dir):
             for file in files:
-                if not file.endswith('.py') and not file.endswith('.pyc') and not file.endswith('.log'):
+                if not self.is_src_file(file):
                     path = os.path.join(folder, file)
                     logging.info('Compressing file: {} -> {}'.format(path, zip_path))
                     zip_file.write(path)
         zip_file.close()
+
+    @staticmethod
+    def is_src_file(file):
+        return file.endswith('.py') or file.endswith('.pyc') or file.endswith('.log')

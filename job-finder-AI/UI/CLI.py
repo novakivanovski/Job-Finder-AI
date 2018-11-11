@@ -5,6 +5,7 @@ from Utilities import TextFormatter
 from Utilities.Stats import Stats
 import logging
 from Utilities import Loader
+from UI import InputProcessors
 
 
 class CLI:
@@ -73,6 +74,7 @@ class CLI:
                            'indeed': 'IndeedManager',
                            'linkedin': 'LinkedInManager'}
         manager_name = 'IndeedManager' if site not in site_to_manager else site_to_manager[site]
+        print('Creating instance of ' + manager_name)
         return Loader.load_class('JobManagers', 'Managers', manager_name)
 
     @staticmethod
@@ -96,18 +98,9 @@ class CLI:
         logging.info(job_url)
 
     def process_job_passed(self, job):
-        user_exit = False
-        job_passed = input('Job passed? y/n ')
-        if job_passed == 'y':
-            job.set_passed(True)
-        elif job_passed == 'n':
-            job.set_passed(False)
-        elif job_passed == 'exit':
-            print('Exiting...')
-            user_exit = True
-        else:
-            print('Invalid input. Try again.')
-            self.process_job_passed(job)
+        user_input = input('Job passed? y/n ').lower()
+        input_processor = InputProcessors.get_processor(user_input, job, self.process_job_passed)
+        user_exit = input_processor.process()
         self.storage.update_job_in_database(job)
         return user_exit
 

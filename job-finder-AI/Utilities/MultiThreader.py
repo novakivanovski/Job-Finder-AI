@@ -1,7 +1,7 @@
 from multiprocessing import Manager
 from threading import Thread
 from Utilities import QueueMonitor
-from Utilities.ApplicationExceptions import MultiThreaderError
+from Utilities.ApplicationExceptions import thread_error
 
 
 class MultiThreader:
@@ -17,12 +17,10 @@ class MultiThreader:
         self.monitor = Thread(target=monitor.run)
         self.monitor.start()
 
+    @thread_error()
     def add_thread(self, *args, **kwargs):
-        try:
-            thread = Thread(target=self.wrap_thread, args=args, kwargs=kwargs)
-            self.inactive_threads.append(thread)
-        except Exception:
-            raise MultiThreaderError('Unable to add thread to scheduler.')
+        thread = Thread(target=self.wrap_thread, args=args, kwargs=kwargs)
+        self.inactive_threads.append(thread)
 
     def wrap_thread(self, func, *args, **kwargs):
         result = func(*args, **kwargs)
@@ -53,11 +51,8 @@ class MultiThreader:
 
     @staticmethod
     def join_threads(chunk):
-        try:
-            for thread in chunk:
-                thread.join()
-        except Exception:
-            raise MultiThreaderError('Unable to join threads.')
+        for thread in chunk:
+            thread.join()
 
     def join_monitor(self):
         if self.monitor:
@@ -67,24 +62,20 @@ class MultiThreader:
         for thread in self.active_threads:
             self.kill_thread(thread)
 
+    @thread_error()
     def kill_thread(self, thread):
-        try:
-            thread.stop()
-            self.active_threads.remove(thread)
-        except Exception:
-            raise MultiThreaderError('Unable to kill thread.')
+        thread.stop()
+        self.active_threads.remove(thread)
 
     def suspend_threads(self):
         for thread in self.active_threads:
             self.suspend_thread(thread)
 
+    @thread_error()
     def suspend_thread(self, thread):
-        try:
-            thread.stop()
-            self.inactive_threads.append(thread)
-            self.active_threads.remove(thread)
-        except Exception:
-            raise MultiThreaderError('Unable to suspend thread.')
+        thread.stop()
+        self.inactive_threads.append(thread)
+        self.active_threads.remove(thread)
 
     def clear_queue(self):
         self.queue.clear()

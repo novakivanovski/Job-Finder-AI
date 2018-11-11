@@ -57,6 +57,18 @@ class DatabaseError(ApplicationException):
     pass
 
 
+def storage_error():
+    return error(StorageError)
+
+
+def thread_error():
+    return error(MultiThreaderError)
+
+
+def unpack_error():
+    return error(UnpackingError)
+
+
 def network_error():
     return error(NetworkError)
 

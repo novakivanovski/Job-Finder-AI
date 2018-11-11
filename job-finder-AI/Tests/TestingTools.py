@@ -3,6 +3,7 @@ from DataStructures.Listing import Listing
 from DataStructures.Posting import Posting
 from DataStructures.Page import Page
 import logging
+import time
 
 
 def assert_equal(actual, expected):
@@ -62,3 +63,14 @@ def debug(func):
         logging.debug('Exit function ' + func.__name__)
         logging.debug('=' * 25 + '\n')
     return wrapper
+
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        func(*args, **kwargs)
+        end = time.time()
+        elapsed = int(end-start)
+        print('{} elapsed run time: {}s'.format(func.__module__, elapsed))
+    return wrapper
+
