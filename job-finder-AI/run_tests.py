@@ -4,12 +4,12 @@ from Tests import tests_config
 tests_to_enable = {
     'Database': False,
     'Resume': False,
-    'Stats': True,
+    'Stats': False,
     'System': False,
     'GUI': False,
     'Security': False,
     'Sandbox': False,
-    'Site': False
+    'Site': True
 }
 
 
