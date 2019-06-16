@@ -7,9 +7,9 @@ tests_to_enable = {
     'Stats': False,
     'System': False,
     'GUI': False,
-    'Security': False,
+    'Security': True,
     'Sandbox': False,
-    'Site': True
+    'Site': False
 }
 
 
