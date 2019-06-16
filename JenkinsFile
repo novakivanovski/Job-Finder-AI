@@ -2,10 +2,13 @@ pipeline {
 	agent any
 	stages {
 		stage('test') {
-			steps {
-				bat 'cd ./src'
-				bat 'python ./run_tests.py'
+				steps {
+					dir("src") {
+						bat 'cd ./src'
+						bat 'python ./run_tests.py'
+						}
+					}
 				}
-			}
 		}
 	}
+	
