@@ -10,7 +10,7 @@ docker image rm $images
 read -p "Build/run new instance? [y/n] " run_app
 if [$run_app = y]
 then
-	docker build -t jobfinder .
+	docker build --name jobfinder .
 	docker run -d -p 5000:5000 jobfinder
 fi
 
