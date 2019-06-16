@@ -9,7 +9,7 @@ def setup_logger(logger_name):
     logger_path = os.path.join(logs_folder, logger_name)
     
     if not os.path.isdir(logs_folder):
-        os.mkdirs(logs_folder)
+        os.mkdir(logs_folder)
                              
     with open(logger_path, 'w') as log_file:
         pass
