@@ -8,19 +8,10 @@ import os
 import time
 
 
-def assert_equal(actual, expected):
-    result = actual == expected
-    assert_fmt = "{} == {} ? {}"
-    assert_string = assert_fmt.format(actual, expected, result)
-    logging.debug(assert_string)
-    if not result:
-        raise AssertionError
-
-
 def assert_approx(actual, expected):
     float_tolerance = 1e-6
     difference = abs(actual - expected)
-    assert_equal(difference < float_tolerance, True)
+    assert difference < float_tolerance
 
 
 def get_test_job():
