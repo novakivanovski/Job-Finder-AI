@@ -4,7 +4,7 @@ pipeline {
 		stage('test') {
 				steps {
 					dir("src") {
-						bat 'python ./run_tests.py'
+						echo 'Sample'
 						}
 					}
 				}
