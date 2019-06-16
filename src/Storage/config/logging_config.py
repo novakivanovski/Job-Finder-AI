@@ -6,6 +6,9 @@ logger = None
 
 def setup_logger(logger_name):
     logger_path = os.path.join('Storage', 'logs', logger_name)
+    with open(logger_path, 'w') as log_file:
+        pass
+    
     global logger
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
