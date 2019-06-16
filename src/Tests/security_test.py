@@ -4,7 +4,7 @@ from Tests import TestingTools
 
 
 @TestingTools.timer
-def run():
+def test_run():
     security = Security()
     test_file_path = os.path.join('Storage', 'LocalStorage.py')
     with open(test_file_path, 'rb') as test_file:

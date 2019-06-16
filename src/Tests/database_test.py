@@ -1,15 +1,14 @@
-from Storage import JobDatabase
 from Tests import TestingTools
 
 
 @TestingTools.debug
-def test_constructor(database):
+def construct(database):
     expected_path = r'Storage\config\database.db'
     TestingTools.assert_equal(database.path, expected_path)
 
 
 @TestingTools.debug
-def test_add_jobs(database):
+def add_jobs(database):
     test_jobs = []
     test_id = 1337
     test_title = 'Software Engineer'
@@ -35,5 +34,5 @@ def test_add_jobs(database):
 @TestingTools.timer
 def run():
     database = TestingTools.reset_db()
-    test_constructor(database)
-    test_add_jobs(database)
+    construct(database)
+    add_jobs(database)

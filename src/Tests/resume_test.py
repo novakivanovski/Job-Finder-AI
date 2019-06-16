@@ -1,10 +1,9 @@
 from DataStructures.Resume import Resume
 from Tests import TestingTools
-from Utilities.ResumeParser import ResumeParser
 from Utilities.ResumeWriter import ResumeWriter
 
 
-def test_header(resume):
+def header_(resume):
     header = resume.header
     email = header.email
     phone_number = header.phone_number
@@ -18,7 +17,7 @@ def test_header(resume):
     TestingTools.assert_equal(website, 'https://github.com/novakivanovski')
 
 
-def test_education(resume):
+def education_(resume):
     education = resume.education
     alma_mater = education.alma_mater
     degree = education.degree
@@ -30,7 +29,7 @@ def test_education(resume):
     TestingTools.assert_equal(awards, "Awarded Dean’s Honour list for high level of academic achievement")
 
 
-def test_highlights(resume):
+def highlights_(resume):
     highlights = resume.highlights
     name = highlights.name
     TestingTools.assert_equal(name, "Highlights")
@@ -40,7 +39,7 @@ def test_highlights(resume):
                                            'Well rounded individual adept at many programming languages and technologies'])
 
 
-def test_projects(resume):
+def projects_(resume):
     projects = resume.projects
     name = projects.name
     TestingTools.assert_equal(name, "Projects")
@@ -49,7 +48,7 @@ def test_projects(resume):
                                                'Contributions to open source software development in Java and Python'])
 
 
-def test_experience(resume):
+def experience_(resume):
     experience = resume.experience
     name = experience.name
     job_titles = experience.job_titles
@@ -61,17 +60,16 @@ def test_experience(resume):
     TestingTools.assert_equal(job_locations, ["Mississauga, Ontario"] * 2)
 
 
-def test_writer(resume):
+def writer_(resume):
     resume_writer = ResumeWriter(resume)
     resume_writer.write()
 
 
 def run():
-    resume_parser = ResumeParser()
     resume = Resume()
-    test_header(resume)
-    test_education(resume)
-    test_highlights(resume)
-    test_projects(resume)
-    test_experience(resume)
-    test_writer(resume)
+    header_(resume)
+    education_(resume)
+    highlights_(resume)
+    projects_(resume)
+    experience_(resume)
+    writer_(resume)
