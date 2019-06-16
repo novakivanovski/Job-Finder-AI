@@ -5,7 +5,7 @@ logger = None
 
 
 def setup_logger(logger_name):
-    logs_folder = os.path.join('Storage', logs')
+    logs_folder = os.path.join('Storage', 'logs')
     logger_path = os.path.join(logs_folder, logger_name)
     
     if not os.path.isdir(logs_folder):
