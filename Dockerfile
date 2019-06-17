@@ -6,5 +6,5 @@ COPY requirements.txt ./
 COPY ./src .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python -m nltk.downloader punkt
-ENTRYPOINT [ "sh", "/usr/local/jobfinder/run.sh"]
+CMD [ "sh", "/usr/local/jobfinder/run.sh" ]
 echo Current directory: $PWD
